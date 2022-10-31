@@ -1,7 +1,3 @@
-# gerumap-tim_dimitrijeristic_filipmarcic
-gerumap-tim_dimitrijeristic_filipmarcic created by GitHub Classroom
-
-
 Dimitrije Ristic dristic4321rn@raf.rs
 Filip Marcic fmarcic14822rn@raf.rs
 
