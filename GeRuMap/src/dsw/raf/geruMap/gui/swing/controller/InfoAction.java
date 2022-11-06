@@ -15,7 +15,7 @@ public class InfoAction extends AbstractGeruMapAction {
     }
     public void actionPerformed(ActionEvent arg0)
     {
-        InfoFrame info_frame = InfoFrame.getInstance();
+        InfoFrame info_frame = InfoFrame.getInstance(this.loadIcon("images/user.png"));
         info_frame.setVisible(true);
     }
 }

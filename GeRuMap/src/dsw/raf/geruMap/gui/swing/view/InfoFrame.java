@@ -1,51 +1,66 @@
 package dsw.raf.geruMap.gui.swing.view;
 
+import dsw.raf.geruMap.gui.swing.controller.InfoAction;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.text.BoxView;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-
+@Getter
+@Setter
 public class InfoFrame extends JFrame {
-
-    private InfoFrame(){};
-
+    private InfoFrame(){}
     private static InfoFrame instance = null;
-
-    public static InfoFrame getInstance()
+    private ImageIcon img;
+    public static InfoFrame getInstance(ImageIcon img)
     {
         if (instance == null)
         {
             instance = new InfoFrame();
-            instance.initialiseGUI();
+            instance.setImg(img);
+            instance.initialiseGUI(img);
         }
-
         return instance;
     }
-
-    private void initialiseGUI()
+    private void initialiseGUI(Icon img)
     {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension scr_size = kit.getScreenSize();
         int scr_height = scr_size.height;
         int scr_width = scr_size.width;
-        setSize(scr_width/4, scr_height/4);
+        setSize(scr_width/3, scr_height/3);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Info");
 
-        JPanel desktop = new JPanel();
+        JLabel name = new JLabel("Ime: ");
+        JLabel surname = new JLabel("Prezime: ");
+        JLabel index = new JLabel("Indeks: ");
 
-        JLabel ime = new JLabel("Ime");
-        JLabel prezime = new JLabel("Prezime");
-        JLabel index = new JLabel("123Index");
-        ImagePanel slika = new ImagePanel(new ImageIcon("user.png").getImage());
         JPanel text = new JPanel();
-        text.add(ime);
-        text.add(prezime);
+        text.setMinimumSize(new Dimension(200,200));
+        text.add(name);
+        text.add(surname);
         text.add(index);
-        JSplitPane sp_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,slika,text);
+        text.setLayout(new BoxLayout(text,BoxLayout.Y_AXIS));
 
-        getContentPane().add(sp_pane,BorderLayout.CENTER);
+        ImageIcon test = new ImageIcon(this.img.getImage());
+        ImagePanel imeg = new ImagePanel(test.getImage());
+        imeg.setMinimumSize(new Dimension(200,200));
+
+        JPanel all = new JPanel();
+        all.setLayout(new GridLayout());
+        all.setMinimumSize(new Dimension(400,400));
+        all.add(imeg);
+        all.add(text);
 
 
+        this.add(all);
     }
 }
