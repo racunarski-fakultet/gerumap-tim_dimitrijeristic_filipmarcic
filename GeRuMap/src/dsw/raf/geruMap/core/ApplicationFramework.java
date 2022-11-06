@@ -1,4 +1,4 @@
-package dsw.rudok.app.core;
+package dsw.raf.geruMap.core;
 
 
 public abstract class ApplicationFramework {

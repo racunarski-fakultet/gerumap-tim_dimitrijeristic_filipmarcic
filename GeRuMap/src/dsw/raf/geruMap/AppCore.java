@@ -1,4 +1,4 @@
-package dsw.rudok.app;
+package dsw.raf.geruMap;
 
 public class AppCore {
 }
