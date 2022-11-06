@@ -1,4 +1,6 @@
 package dsw.raf.geruMap.gui.swing.controller.images;
 
-public class NewProjectAction {
+public class NewProjectAction extends AbstractGeruMapAction
+{
+
 }

@@ -1,8 +1,8 @@
 package dsw.raf.geruMap.core;
 
 
-public abstract class ApplicationFramework {
-
+public abstract class ApplicationFramework
+{
     protected Gui gui;
 
     public abstract void run();
