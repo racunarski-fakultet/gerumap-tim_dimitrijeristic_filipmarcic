@@ -9,6 +9,7 @@ public class ActionManager
 {
     private ExitAction exit_act;
     private NewProjectAction newpr_act;
+    private InfoAction inf_act;
 
     public ActionManager() {init_actions();}
 
@@ -16,5 +17,6 @@ public class ActionManager
     {
         exit_act = new ExitAction();
         newpr_act = new NewProjectAction();
+        inf_act = new InfoAction();
     }
 }
