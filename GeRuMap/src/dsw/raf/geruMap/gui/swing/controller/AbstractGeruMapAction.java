@@ -2,6 +2,7 @@ package dsw.raf.geruMap.gui.swing.controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 
 public abstract class AbstractGeruMapAction extends AbstractAction
@@ -18,5 +19,9 @@ public abstract class AbstractGeruMapAction extends AbstractAction
             System.err.println("Resource not found: " + fileName);
         }
         return icon;
+    }
+
+    public void actionPerformed(ActionEvent arg0) {
+
     }
 }
