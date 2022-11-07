@@ -11,7 +11,8 @@ public abstract class MapNodeComposite extends MapNode
 {
     protected Map<String,MapNode> children;
     protected abstract boolean allowsChild(MapNode child);
-    protected boolean add_child(MapNode child)
+    //public
+    public boolean add_child(MapNode child)
     {
         if(!this.allowsChild(child))
         {
@@ -23,7 +24,7 @@ public abstract class MapNodeComposite extends MapNode
             return true;
         }
     }
-    protected boolean delete_child(MapNode child)
+    public boolean delete_child(MapNode child)
     {
         if(!this.allowsChild(child))
         {
