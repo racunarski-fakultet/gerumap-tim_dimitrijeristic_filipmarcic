@@ -1,0 +1,7 @@
+package dsw.raf.geruMap.gui.swing.MapRepository.Implementation;
+
+import dsw.raf.geruMap.gui.swing.MapRepository.Composite.MapNodeComposite;
+
+public class Project extends MapNodeComposite
+{
+}
