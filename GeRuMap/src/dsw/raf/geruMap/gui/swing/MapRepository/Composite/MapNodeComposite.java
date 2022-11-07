@@ -29,7 +29,7 @@ public abstract class MapNodeComposite extends MapNode
     }
     protected boolean delete_child(MapNode child)
     {
-        if(!(child instanceof Element))
+        if(!this.allowsChild(child))
         {
             return false;
         }
