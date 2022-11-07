@@ -14,12 +14,21 @@ public class Project extends MapNodeComposite
         }
         else
         {
+            this.children.put(child.getName(),child);
             return true;
         }
     }
     @Override
     protected boolean delete_child(MapNode child)
     {
-        return false;
+        if(!(child instanceof MindMap))
+        {
+            return false;
+        }
+        else
+        {
+            this.getChildren().remove(child.getName(),child);
+            return true;
+        }
     }
 }

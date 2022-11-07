@@ -10,6 +10,7 @@ import javax.swing.tree.TreeNode;
 public abstract class MapNode
 {
     private String name;
+    private MapNodeComposite parent;
 
     public MapNode() {}
 }

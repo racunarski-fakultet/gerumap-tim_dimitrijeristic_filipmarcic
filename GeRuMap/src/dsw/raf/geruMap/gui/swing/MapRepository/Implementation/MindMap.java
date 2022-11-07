@@ -10,11 +10,11 @@ public class MindMap extends MapNodeComposite
     {
         if(!(child instanceof Element))
         {
-            this.children.put(child.getName(),child);
             return false;
         }
         else
         {
+            this.children.put(child.getName(),child);
             return true;
         }
     }
@@ -22,6 +22,14 @@ public class MindMap extends MapNodeComposite
     @Override
     protected boolean delete_child(MapNode child)
     {
-        return false;
+        if(!(child instanceof Element))
+        {
+            return false;
+        }
+        else
+        {
+            this.getChildren().remove(child.getName(),child);
+            return true;
+        }
     }
 }
