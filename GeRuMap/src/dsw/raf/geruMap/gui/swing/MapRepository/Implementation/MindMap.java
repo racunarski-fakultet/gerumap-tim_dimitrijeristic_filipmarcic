@@ -7,7 +7,5 @@ public class MindMap extends MapNodeComposite
 {
 
     @Override
-    protected boolean allowsChild(MapNode child) {
-        return child instanceof Element;
-    }
+    protected boolean allowsChild(MapNode child) {return child instanceof Element;}
 }
