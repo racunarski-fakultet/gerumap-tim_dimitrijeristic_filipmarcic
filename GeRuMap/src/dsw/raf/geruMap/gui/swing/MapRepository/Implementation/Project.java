@@ -5,5 +5,8 @@ import dsw.raf.geruMap.gui.swing.MapRepository.Composite.MapNodeComposite;
 
 public class Project extends MapNodeComposite
 {
-
+    @Override
+    protected boolean allowsChild(MapNode child) {
+        return child instanceof MindMap;
+    }
 }
