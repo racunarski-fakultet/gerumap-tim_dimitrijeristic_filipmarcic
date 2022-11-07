@@ -6,13 +6,12 @@ import dsw.raf.geruMap.gui.swing.MapRepository.Composite.MapNodeComposite;
 public class ProjectExplorer extends MapNodeComposite
 {
     @Override
-    private boolean add_child(MapNode child)
-    {
-        if (child instanceof Project)
-        {
-            return true;
-        }
-        else
-            return false;
+    protected boolean add_child(MapNode child) {
+        return false;
+    }
+
+    @Override
+    protected boolean delete_child(MapNode child) {
+        return false;
     }
 }

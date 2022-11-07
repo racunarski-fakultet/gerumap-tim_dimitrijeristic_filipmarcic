@@ -7,12 +7,7 @@ import lombok.Setter;
 @Setter
 public abstract class MapNodeComposite extends MapNode
 {
-    private boolean add_child(MapNode child)
-    {
-        return true;
-    }
-    private boolean delete_child(MapNode child)
-    {
-        return true;
-    }
+    protected abstract boolean add_child(MapNode child);
+    protected abstract boolean delete_child(MapNode child);
+
 }
