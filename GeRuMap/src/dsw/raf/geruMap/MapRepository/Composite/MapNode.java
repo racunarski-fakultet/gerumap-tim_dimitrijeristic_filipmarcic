@@ -1,9 +1,7 @@
-package dsw.raf.geruMap.gui.swing.MapRepository.Composite;
+package dsw.raf.geruMap.MapRepository.Composite;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.swing.tree.TreeNode;
 
 @Getter
 @Setter
@@ -13,4 +11,10 @@ public abstract class MapNode
     private MapNodeComposite parent;
 
     public MapNode() {}
+
+    public MapNode(String name, MapNodeComposite parent)
+    {
+        this.name = name;
+        this.parent = parent;
+    }
 }

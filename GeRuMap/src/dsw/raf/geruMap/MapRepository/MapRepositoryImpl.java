@@ -1,4 +1,4 @@
-package dsw.raf.geruMap.gui.swing.MapRepository;
+package dsw.raf.geruMap.MapRepository;
 
 import dsw.raf.geruMap.core.MapRepository;
 
