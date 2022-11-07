@@ -10,6 +10,7 @@ public class MindMap extends MapNodeComposite
     {
         if(!(child instanceof Element))
         {
+            this.children.put(child.getName(),child);
             return false;
         }
         else
