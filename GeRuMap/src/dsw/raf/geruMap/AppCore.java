@@ -10,7 +10,7 @@ public class AppCore extends ApplicationFramework {
     private static AppCore instance = null;
     public static void main(String Args[])
     {
-        MapRepositoryImpl map_repo = new MapRepositoryImpl();
+
         Gui gui = new SwingGui();
         MapRepository rep = new MapRepositoryImpl();
         ApplicationFramework app_core = AppCore.getInstance();

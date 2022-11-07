@@ -1,6 +1,6 @@
 package dsw.raf.geruMap.core;
 
-import dsw.raf.geruMap.gui.swing.SwingGui;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
