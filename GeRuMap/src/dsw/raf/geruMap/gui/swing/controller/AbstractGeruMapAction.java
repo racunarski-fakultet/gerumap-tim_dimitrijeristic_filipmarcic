@@ -2,7 +2,6 @@ package dsw.raf.geruMap.gui.swing.controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 
 public abstract class AbstractGeruMapAction extends AbstractAction implements ActionPerformed

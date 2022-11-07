@@ -2,6 +2,8 @@ package dsw.raf.geruMap.gui.swing.tree;
 
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+import dsw.raf.geruMap.MapRepository.Implementation.Element;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
@@ -9,15 +11,16 @@ import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import java.util.Random;
 
-public class MapTreeImplementation implements MapTree {
+public class MapTreeImplementation implements MapTree
+{
 
     private MapTreeView treeView;
     private DefaultTreeModel treeModel;
 
     @Override
-    public MapTreeView generateTree(ProjectExplorer projectExplorer) {
+    public MapTreeView generateTree(ProjectExplorer projectExplorer)
+    {
         MapTreeItem root = new MapTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
         treeView = new MapTreeView(treeModel);
@@ -25,7 +28,8 @@ public class MapTreeImplementation implements MapTree {
     }
 
     @Override
-    public void addChild(MapTreeItem parent) {
+    public void addChild(MapTreeItem parent)
+    {
 
         if (!(parent.getMapNode() instanceof MapNodeComposite))
             return;
@@ -42,10 +46,14 @@ public class MapTreeImplementation implements MapTree {
         return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
 
-    private MapNode createChild(MapNode parent) {
+    private MapNode createChild(MapNode parent)
+    {
         if (parent instanceof ProjectExplorer)
-      //      return  new Project("Project" +new Random().nextInt(100), parent);
             return new Project();
+        if (parent instanceof Project)
+            return new MindMap();
+        if (parent instanceof MindMap)
+            return new Element();
         return null;
     }
 
