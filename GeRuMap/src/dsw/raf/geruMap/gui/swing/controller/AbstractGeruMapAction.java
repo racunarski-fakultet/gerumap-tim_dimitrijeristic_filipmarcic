@@ -1,11 +1,9 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
 import javax.swing.*;
-import java.awt.*;
 import java.net.URL;
 
-public abstract class AbstractGeruMapAction extends AbstractAction implements ActionPerformed
-{
+public abstract class AbstractGeruMapAction extends AbstractAction {
     public ImageIcon loadIcon(String fileName){
 
         URL imageURL = getClass().getResource(fileName);
