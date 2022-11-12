@@ -10,6 +10,7 @@ import lombok.Setter;
 public class Project extends MapNodeComposite
 {
     private String home_folder;
+    private String autor;
     @Override
     protected boolean allowsChild(MapNode child) {return child instanceof MindMap;}
 }
