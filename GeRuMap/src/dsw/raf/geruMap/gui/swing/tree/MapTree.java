@@ -8,7 +8,9 @@ import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 public interface MapTree {
 
     MapTreeView generateTree(ProjectExplorer projectExplorer);
-    void addChild(MapTreeItem parent);
+    void add_node(MapTreeItem parent);
+    void delete_node(MapTreeItem node);
+    void rename_node(MapTreeItem node);
     MapTreeItem getSelectedNode();
 
 }

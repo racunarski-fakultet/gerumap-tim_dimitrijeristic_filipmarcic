@@ -1,7 +1,6 @@
 package dsw.raf.geruMap.gui.swing.view;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 
 public class MenuBar extends JMenuBar
 {
