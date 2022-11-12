@@ -1,5 +1,12 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
+import dsw.raf.geruMap.gui.swing.tree.controller.MapTreeSelectionListener;
+import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -17,6 +24,7 @@ public class NewProjectAction extends AbstractGeruMapAction
 
     public void actionPerformed(ActionEvent e)
     {
-        int label = new Random().nextInt(100);
+        MainFrame.getInstance().getMapTree().addChild(MainFrame.getInstance().getMapTree().getSelectedNode());
+
     }
 }

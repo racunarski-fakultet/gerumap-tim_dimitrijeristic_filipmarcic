@@ -49,11 +49,11 @@ public class MapTreeImplementation implements MapTree
     private MapNode createChild(MapNode parent)
     {
         if (parent instanceof ProjectExplorer)
-            return new Project();
+            return new Project(Double.toString(Math.random()));
         if (parent instanceof Project)
-            return new MindMap();
+            return new MindMap(Double.toString(Math.random()));
         if (parent instanceof MindMap)
-            return new Element();
+            return new Element(Integer.toString(((MindMap)getSelectedNode().getMapNode()).getCounter()));
         return null;
     }
 

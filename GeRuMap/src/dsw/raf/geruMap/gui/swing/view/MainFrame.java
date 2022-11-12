@@ -1,6 +1,9 @@
 package dsw.raf.geruMap.gui.swing.view;
 
+import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.gui.swing.controller.ActionManager;
+import dsw.raf.geruMap.gui.swing.tree.MapTree;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +17,7 @@ public class MainFrame extends JFrame
     private ActionManager act_man;
     private JMenuBar menu;
     private JToolBar tbar;
+    private MapTree mapTree;
 
     private MainFrame(){}
 
@@ -30,6 +34,7 @@ public class MainFrame extends JFrame
     private void initialise()
     {
         act_man = new ActionManager();
+        mapTree = new MapTreeImplementation();
         initialiseGUI();
     }
 
@@ -52,8 +57,12 @@ public class MainFrame extends JFrame
 
         JPanel desktop = new JPanel();
 
-        JScrollPane sc_pane = new JScrollPane();
+        JTree tree = mapTree.generateTree(AppCore.getInstance().getRep().getProjectExplorer());
+
+
+        JScrollPane sc_pane = new JScrollPane(tree);
         sc_pane.setMinimumSize(new Dimension(200,150));
+
         JSplitPane sp_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,sc_pane,desktop);
         getContentPane().add(sp_pane,BorderLayout.CENTER);
         sp_pane.setDividerLocation(250);
