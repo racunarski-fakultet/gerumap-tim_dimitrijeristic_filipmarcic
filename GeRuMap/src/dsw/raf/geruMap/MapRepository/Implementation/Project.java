@@ -11,6 +11,7 @@ import java.util.HashMap;
 @Setter
 public class Project extends MapNodeComposite
 {
+    private String autor;
     private String home_folder;
     public Project(String name)
     {

@@ -5,7 +5,11 @@ import dsw.raf.geruMap.core.Gui;
 import dsw.raf.geruMap.core.MapRepository;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.gui.swing.SwingGui;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class AppCore extends ApplicationFramework {
     private static AppCore instance = null;
     public static void main(String Args[])

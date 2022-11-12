@@ -5,6 +5,8 @@ import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 
+import javax.swing.*;
+
 public interface MapTree {
 
     MapTreeView generateTree(ProjectExplorer projectExplorer);

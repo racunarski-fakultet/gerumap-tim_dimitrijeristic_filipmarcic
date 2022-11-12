@@ -3,6 +3,8 @@ package dsw.raf.geruMap.gui.swing.controller;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.security.PrivateKey;
+
 @Getter
 @Setter
 public class ActionManager
@@ -11,6 +13,7 @@ public class ActionManager
     private NewProjectAction newpr_act;
     private InfoAction inf_act;
     private RenameAction rename_act;
+    private AuthorAction autor_act;
 
     public ActionManager() {init_actions();}
 
@@ -20,5 +23,6 @@ public class ActionManager
         newpr_act = new NewProjectAction();
         inf_act = new InfoAction();
         rename_act = new RenameAction();
+        autor_act = new AuthorAction();
     }
 }
