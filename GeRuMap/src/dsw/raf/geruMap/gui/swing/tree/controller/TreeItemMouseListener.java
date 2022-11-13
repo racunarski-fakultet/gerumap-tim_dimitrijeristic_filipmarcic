@@ -19,7 +19,10 @@ public class TreeItemMouseListener implements MouseListener {
                 ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
             }
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap)
-            {}
+            {
+                ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
+
+            }
         }
     }
 

@@ -20,7 +20,7 @@ public class MainFrame extends JFrame
     private JToolBar tbar;
     private MapTree mapTree;
     private TabbedPane desktop;
-    private TabbedPane desktop2;
+    private JLabel description;
     private MainFrame(){}
 
     public static MainFrame getInstance()
@@ -56,9 +56,13 @@ public class MainFrame extends JFrame
 
         tbar = new Toolbar();
         add(tbar,BorderLayout.NORTH);
-
-
+//
+        JPanel frame = new JPanel();
+        description = new JLabel("NESTO");
         desktop = new TabbedPane();
+        frame.add(description,0);
+        frame.add(desktop);
+//
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(desktop);
 
         JTree tree = mapTree.generateTree(AppCore.getInstance().getRep().getProjectExplorer());
@@ -66,7 +70,9 @@ public class MainFrame extends JFrame
         JScrollPane sc_pane = new JScrollPane(tree);
         sc_pane.setMinimumSize(new Dimension(200,150));
 
-        JSplitPane sp_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,sc_pane,desktop);
+        JSplitPane sp_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,sc_pane,frame);
+        frame.getParent().getSize();
+
         getContentPane().add(sp_pane,BorderLayout.CENTER);
 
         sp_pane.setDividerLocation(250);
