@@ -1,6 +1,7 @@
 package dsw.raf.geruMap.gui.swing.view;
 
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.core.Subscriber;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,6 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
             tabs = children;
 
             render();
-
         }
     }
 
@@ -36,7 +36,8 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
         }
         for (MapNode i : tabs)
         {
-            this.addTab(i.getName(),new JPanel());
+            Tab tab = new Tab((MindMap) i);
+            this.addTab(i.getName(),new Tab((MindMap) i));
         }
     }
 }
