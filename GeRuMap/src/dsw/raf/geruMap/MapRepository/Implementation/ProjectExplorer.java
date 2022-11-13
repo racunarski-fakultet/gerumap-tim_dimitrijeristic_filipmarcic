@@ -7,10 +7,11 @@ import java.util.HashMap;
 
 public class ProjectExplorer extends MapNodeComposite
 {
-    public ProjectExplorer()
+    public ProjectExplorer(String name,MapNodeComposite parent)
     {
+        super(name,null);
         setName("ProjectExplorer");
-        children = new HashMap<>();
+
     }
     @Override
     protected boolean allowsChild(MapNode child) {return child instanceof Project;}
