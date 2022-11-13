@@ -1,6 +1,7 @@
 package dsw.raf.geruMap.gui.swing.view;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.gui.swing.controller.ActionManager;
 import dsw.raf.geruMap.gui.swing.tree.MapTree;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
@@ -18,7 +19,7 @@ public class MainFrame extends JFrame
     private JMenuBar menu;
     private JToolBar tbar;
     private MapTree mapTree;
-
+    private TabbedPane desktop;
     private MainFrame(){}
 
     public static MainFrame getInstance()
@@ -55,7 +56,12 @@ public class MainFrame extends JFrame
         tbar = new Toolbar();
         add(tbar,BorderLayout.NORTH);
 
-        JPanel desktop = new JPanel();
+
+        desktop = new TabbedPane();
+
+
+        ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(desktop);
+
 
         JTree tree = mapTree.generateTree(AppCore.getInstance().getRep().getProjectExplorer());
 

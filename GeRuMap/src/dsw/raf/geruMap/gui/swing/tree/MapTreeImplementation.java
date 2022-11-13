@@ -6,6 +6,7 @@ import dsw.raf.geruMap.MapRepository.Implementation.Element;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
+import dsw.raf.geruMap.gui.swing.tree.controller.TreeItemMouseListener;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class MapTreeImplementation implements MapTree
         MapTreeItem root = new MapTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
         treeView = new MapTreeView(treeModel);
+        treeView.addMouseListener(new TreeItemMouseListener());
         return treeView;
     }
 

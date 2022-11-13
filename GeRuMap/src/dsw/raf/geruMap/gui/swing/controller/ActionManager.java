@@ -14,7 +14,7 @@ public class ActionManager
     private InfoAction inf_act;
     private RenameAction rename_act;
     private AuthorAction autor_act;
-
+    private DeleteAction delete_act;
     public ActionManager() {init_actions();}
 
     private void init_actions()
@@ -24,5 +24,6 @@ public class ActionManager
         inf_act = new InfoAction();
         rename_act = new RenameAction();
         autor_act = new AuthorAction();
+        delete_act = new DeleteAction();
     }
 }

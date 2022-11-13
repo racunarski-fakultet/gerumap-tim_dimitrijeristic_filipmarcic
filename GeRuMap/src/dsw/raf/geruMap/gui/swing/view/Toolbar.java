@@ -14,6 +14,7 @@ public class Toolbar extends JToolBar
         add(MainFrame.getInstance().getAct_man().getInf_act());
         add(MainFrame.getInstance().getAct_man().getRename_act());
         add(MainFrame.getInstance().getAct_man().getAutor_act());
+        add(MainFrame.getInstance().getAct_man().getDelete_act());
 
     }
 }

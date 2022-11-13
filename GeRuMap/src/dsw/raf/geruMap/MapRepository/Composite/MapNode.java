@@ -1,7 +1,11 @@
 package dsw.raf.geruMap.MapRepository.Composite;
 
+import dsw.raf.geruMap.gui.swing.tree.MapTree;
+import dsw.raf.geruMap.gui.swing.tree.controller.MapTreeSelectionListener;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,5 +20,6 @@ public abstract class MapNode
     {
         this.name = name;
         this.parent = parent;
+
     }
 }
