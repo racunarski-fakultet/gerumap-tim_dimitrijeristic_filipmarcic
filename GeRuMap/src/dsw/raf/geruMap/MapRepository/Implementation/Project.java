@@ -13,10 +13,9 @@ public class Project extends MapNodeComposite
 {
     private String autor;
     private String home_folder;
-    public Project(String name)
+    public Project(String name,MapNodeComposite parent)
     {
-        children = new HashMap<>();
-        this.setName(name);
+        super(name,parent);
 
     }
     @Override

@@ -13,7 +13,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
+import javax.swing.text.html.HTMLDocument;
 import javax.swing.tree.DefaultTreeModel;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 @Getter
 @Setter
 public class MapTreeImplementation implements MapTree
@@ -39,7 +44,7 @@ public class MapTreeImplementation implements MapTree
         if (!(parent.getMapNode() instanceof MapNodeComposite))
             return;
 
-        MapNode child = createChild(parent.getMapNode());
+        MapNode child = createChild((MapNodeComposite) parent.getMapNode());
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).add_child(child);
         treeView.expandPath(treeView.getSelectionPath());
@@ -49,6 +54,21 @@ public class MapTreeImplementation implements MapTree
     @Override
     public void delete_node(MapTreeItem node) {
 
+        if (!(node.getMapNode() instanceof MapNodeComposite))
+        {
+            removeSelf(node);
+        }
+
+        Iterator iterator = node.children().asIterator();
+
+        while(iterator.hasNext())
+        {
+            MapTreeItem item = (MapTreeItem)iterator.next();
+            removeSelf(item);
+        }
+        node.removeFromParent();
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override
@@ -60,15 +80,21 @@ public class MapTreeImplementation implements MapTree
     public MapTreeItem getSelectedNode() {
         return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
+    private void removeSelf(MapTreeItem node)
+    {
+        MapNodeComposite parent = node.getMapNode().getParent();
+        parent.delete_child(node.getMapNode());
+        node.removeFromParent();
+    }
 
-    private MapNode createChild(MapNode parent)
+    private MapNode createChild(MapNodeComposite parent)
     {
         if (parent instanceof ProjectExplorer)
-            return new Project(Double.toString(Math.random()));
+            return new Project(Double.toString(Math.random()),parent);
         if (parent instanceof Project)
-            return new MindMap(Double.toString(Math.random()));
+            return new MindMap(Double.toString(Math.random()),parent);
         if (parent instanceof MindMap)
-            return new Element(Integer.toString(((MindMap)getSelectedNode().getMapNode()).getCounter()));
+            return new Element(Integer.toString(((MindMap)getSelectedNode().getMapNode()).getCounter()),parent);
         return null;
     }
 

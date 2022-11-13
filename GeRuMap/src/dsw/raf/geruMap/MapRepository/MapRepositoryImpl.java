@@ -19,7 +19,7 @@ public class MapRepositoryImpl implements MapRepository, Publisher
     List<Subscriber> subscribers;
 
     public MapRepositoryImpl() {
-        projectExplorer = new ProjectExplorer();
+        projectExplorer = new ProjectExplorer("",null);
         subscribers = new ArrayList<>();
 
     }

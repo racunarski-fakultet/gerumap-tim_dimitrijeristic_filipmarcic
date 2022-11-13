@@ -7,14 +7,11 @@ import dsw.raf.geruMap.core.Subscriber;
 import javax.swing.*;
 import java.util.Map;
 
-public class TabbedPane extends JPanel implements Subscriber {
-    JTabbedPane tabs;
+public class TabbedPane extends JTabbedPane implements Subscriber {
+
     Map<String, MapNode> children;
-
-    TabbedPane()
+    public TabbedPane()
     {
-
-        tabs = new JTabbedPane(JTabbedPane.TOP,JTabbedPane.WRAP_TAB_LAYOUT);
 
     }
 
@@ -26,9 +23,10 @@ public class TabbedPane extends JPanel implements Subscriber {
             children = ((Project) var1).getChildren();
             for (MapNode i : children.values())
             {
-                tabs.addTab(i.getName(),new JPanel());
+                this.setPreferredSize(this.getParent().getSize());
+                this.addTab(i.getName(),new JPanel());
             }
-            this.add(tabs);
+
 
         }
     }

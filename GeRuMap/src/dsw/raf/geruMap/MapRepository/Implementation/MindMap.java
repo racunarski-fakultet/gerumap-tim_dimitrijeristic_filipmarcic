@@ -7,15 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 
-@NoArgsConstructor
+
 
 public class MindMap extends MapNodeComposite
 {
     private int counter =0;
-    public MindMap(String name)
+    public MindMap(String name,MapNodeComposite parent)
     {
-        children = new HashMap<>();
-        setName(name);
+        super(name,parent);
     }
     @Override
     protected boolean allowsChild(MapNode child) {return child instanceof Element;}

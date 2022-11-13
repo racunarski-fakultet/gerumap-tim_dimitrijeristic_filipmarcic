@@ -57,22 +57,18 @@ public class MainFrame extends JFrame
         tbar = new Toolbar();
         add(tbar,BorderLayout.NORTH);
 
-        //dobra impl
+
         desktop = new TabbedPane();
-
-
-
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(desktop);
 
-
         JTree tree = mapTree.generateTree(AppCore.getInstance().getRep().getProjectExplorer());
-
 
         JScrollPane sc_pane = new JScrollPane(tree);
         sc_pane.setMinimumSize(new Dimension(200,150));
 
         JSplitPane sp_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,sc_pane,desktop);
         getContentPane().add(sp_pane,BorderLayout.CENTER);
+
         sp_pane.setDividerLocation(250);
         sp_pane.setOneTouchExpandable(true);
     }
