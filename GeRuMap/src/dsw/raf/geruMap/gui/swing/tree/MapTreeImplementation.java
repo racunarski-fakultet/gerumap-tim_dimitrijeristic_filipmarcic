@@ -16,8 +16,7 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
-import java.util.Enumeration;
-import java.util.Iterator;
+import java.util.*;
 
 @Getter
 @Setter
@@ -52,34 +51,22 @@ public class MapTreeImplementation implements MapTree
     }
 
     @Override
-    public void delete_node(MapTreeItem node) {
+    public void delete_node(MapTreeItem node)
+    {
+        Queue<MapTreeItem> que = new LinkedList<MapTreeItem>();
+        que.add(node);
 
-        if (node.isLeaf())
+        while(!que.isEmpty())
         {
-            System.out.println("DELETED NODE: "+ node.getMapNode().getName());
-            removeSelf(node);
-            return;
+            MapTreeItem temp = que.remove();
+            Iterator<TreeNode> iter = temp.children().asIterator();
 
+            while(iter.hasNext())
+                que.add((MapTreeItem) iter.next());
+
+            temp.delete();
         }
-
-//        Iterator<TreeNode> iterator = node.children().asIterator();
-//
-//        while(iterator.hasNext())
-//        {
-//            MapTreeItem item = (MapTreeItem)iterator.next();
-//            removeSelf(item);
-//        }
-//        removeSelf(node);
-//
-//        treeView.expandPath(treeView.getSelectionPath());
-//        SwingUtilities.updateComponentTreeUI(treeView);
-        Enumeration<TreeNode> children = node.children();
-        while(children.hasMoreElements())
-        {
-            delete_node((MapTreeItem) children.nextElement());
-        }
-        removeSelf(node);
-
+        render();
     }
 
     @Override
@@ -92,11 +79,8 @@ public class MapTreeImplementation implements MapTree
     public MapTreeItem getSelectedNode() {
         return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
-    private void removeSelf(MapTreeItem node)
+    private void render()
     {
-        MapNodeComposite parent = node.getMapNode().getParent();
-        parent.delete_child(node.getMapNode());
-        node.removeFromParent();
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }

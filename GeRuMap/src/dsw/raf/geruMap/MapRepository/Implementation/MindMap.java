@@ -46,7 +46,6 @@ public class MindMap extends MapNodeComposite implements Publisher
 
     @Override
     public void unsubscribe(Subscriber var1) {
-        this.sub = null;
     }
 
     @Override
@@ -56,6 +55,7 @@ public class MindMap extends MapNodeComposite implements Publisher
 
     @Override
     public void publish(Object var1) {
-        sub.update(this);
+        if (sub != null)
+            sub.update(this);
     }
 }

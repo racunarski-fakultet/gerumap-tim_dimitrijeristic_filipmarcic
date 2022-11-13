@@ -5,6 +5,7 @@ import dsw.raf.geruMap.gui.swing.tree.controller.MapTreeSelectionListener;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.swing.*;
 import java.util.List;
 
 @Getter
@@ -31,4 +32,9 @@ public abstract class MapNode
         return name.equals(mapNode.name) && parent.equals(mapNode.parent);
     }
 
+    public void delete()
+    {
+        MapNodeComposite parent = this.getParent();
+        parent.delete_child(this);
+    }
 }

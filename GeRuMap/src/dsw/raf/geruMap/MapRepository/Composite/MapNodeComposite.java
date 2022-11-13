@@ -1,6 +1,8 @@
 package dsw.raf.geruMap.MapRepository.Composite;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Implementation.Element;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.core.MapRepository;
 import lombok.Getter;
@@ -33,7 +35,7 @@ public abstract class MapNodeComposite extends MapNode
         {
             MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
             this.children.add(child);
-            map.publish(child.getParent());
+            map.publish(child);
             return true;
         }
 
@@ -47,8 +49,11 @@ public abstract class MapNodeComposite extends MapNode
         else
         {
             MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
-            this.getChildren().remove(child);
-            map.publish(child.getParent());
+            MapNodeComposite parent = child.getParent();
+
+            parent.getChildren().remove(child);
+            map.publish(parent);
+
 
             return true;
         }
