@@ -3,17 +3,14 @@ package dsw.raf.geruMap.gui.swing.view;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.core.Subscriber;
+import lombok.NoArgsConstructor;
 
 import javax.swing.*;
 import java.util.Map;
-
+@NoArgsConstructor
 public class TabbedPane extends JTabbedPane implements Subscriber {
 
     Map<String, MapNode> children;
-    public TabbedPane()
-    {
-
-    }
 
     @Override
     public void update(Object var1) {

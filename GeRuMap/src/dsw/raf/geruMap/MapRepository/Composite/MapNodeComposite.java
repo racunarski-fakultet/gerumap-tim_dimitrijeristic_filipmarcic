@@ -17,7 +17,7 @@ public abstract class MapNodeComposite extends MapNode
         children = new HashMap<>();
     }
     protected abstract boolean allowsChild(MapNode child);
-    //public
+
     public boolean add_child(MapNode child)
     {
         if(!this.allowsChild(child))

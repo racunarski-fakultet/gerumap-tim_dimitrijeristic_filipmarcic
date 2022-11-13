@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.util.EventObject;
 
 public class RenameAction extends AbstractGeruMapAction {
     public RenameAction()
@@ -21,8 +23,16 @@ public class RenameAction extends AbstractGeruMapAction {
 
     public void actionPerformed(ActionEvent e)
     {
-        //JTextField edit = new JTextField(MainFrame.getInstance().getMapTree().getSelectedNode().toString());
-        //MapTreeImplementation tree = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
+     //   System.out.println(this.getClass());
+       // JTextField edit = new JTextField(MainFrame.getInstance().getMapTree().getSelectedNode().toString());
+        MapTreeImplementation tree = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
         //edit.addActionListener((ActionListener) tree.getTreeView().getCellEditor());
+       EventObject eventObject = new EventObject("true");
+
+       // System.out.println(eventObject.getClass());
+       // System.out.println("SOURCE:"+eventObject.getSource());
+       tree.getTreeView().getCellEditor().isCellEditable(new EventObject("true"));
+
+        System.out.println(eventObject.getSource());
     }
 }

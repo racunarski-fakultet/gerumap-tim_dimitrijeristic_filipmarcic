@@ -13,11 +13,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
-import javax.swing.text.html.HTMLDocument;
 import javax.swing.tree.DefaultTreeModel;
-import java.util.HashMap;
+import javax.swing.tree.TreeNode;
 import java.util.Iterator;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -54,12 +52,9 @@ public class MapTreeImplementation implements MapTree
     @Override
     public void delete_node(MapTreeItem node) {
 
-        if (!(node.getMapNode() instanceof MapNodeComposite))
-        {
-            removeSelf(node);
-        }
+        if (!(node.getMapNode() instanceof MapNodeComposite)) { removeSelf(node);}
 
-        Iterator iterator = node.children().asIterator();
+        Iterator<TreeNode> iterator = node.children().asIterator();
 
         while(iterator.hasNext())
         {
@@ -73,6 +68,7 @@ public class MapTreeImplementation implements MapTree
 
     @Override
     public void rename_node(MapTreeItem node) {
+
 
     }
 
