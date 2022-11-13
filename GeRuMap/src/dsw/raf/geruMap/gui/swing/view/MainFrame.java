@@ -20,6 +20,7 @@ public class MainFrame extends JFrame
     private JToolBar tbar;
     private MapTree mapTree;
     private TabbedPane desktop;
+    private TabbedPane desktop2;
     private MainFrame(){}
 
     public static MainFrame getInstance()
@@ -56,8 +57,9 @@ public class MainFrame extends JFrame
         tbar = new Toolbar();
         add(tbar,BorderLayout.NORTH);
 
-
+        //dobra impl
         desktop = new TabbedPane();
+
 
 
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(desktop);
