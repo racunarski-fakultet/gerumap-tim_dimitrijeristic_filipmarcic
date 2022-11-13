@@ -6,25 +6,37 @@ import dsw.raf.geruMap.core.Subscriber;
 import lombok.NoArgsConstructor;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 @NoArgsConstructor
 public class TabbedPane extends JTabbedPane implements Subscriber {
 
-    Map<String, MapNode> children;
+    List<MapNode> tabs = new ArrayList<MapNode>();
 
     @Override
     public void update(Object var1) {
+        this.setPreferredSize(this.getParent().getSize());
         if (var1 instanceof Project)
         {
+            List<MapNode> children = ((Project) var1).getChildren();
+            tabs = children;
 
-            children = ((Project) var1).getChildren();
-            for (MapNode i : children.values())
-            {
-                this.setPreferredSize(this.getParent().getSize());
-                this.addTab(i.getName(),new JPanel());
-            }
+            render();
 
+        }
+    }
 
+    private void render()
+    {
+        for (int i = this.getTabCount() - 1; i >= 0; i--)
+        {
+            this.removeTabAt(i);
+
+        }
+        for (MapNode i : tabs)
+        {
+            this.addTab(i.getName(),new JPanel());
         }
     }
 }

@@ -61,7 +61,8 @@ public class MapTreeImplementation implements MapTree
             MapTreeItem item = (MapTreeItem)iterator.next();
             removeSelf(item);
         }
-        node.removeFromParent();
+        removeSelf(node);
+
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }

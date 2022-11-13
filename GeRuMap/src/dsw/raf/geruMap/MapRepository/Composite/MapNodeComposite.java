@@ -1,20 +1,25 @@
 package dsw.raf.geruMap.MapRepository.Composite;
 
+import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.core.MapRepository;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
 @Setter
 public abstract class MapNodeComposite extends MapNode
 {
-    protected Map<String,MapNode> children;
+    protected List<MapNode> children;
     public MapNodeComposite(String name,MapNodeComposite parent)
     {
         super(name,parent);
-        children = new HashMap<>();
+        children = new ArrayList<MapNode>();
     }
     protected abstract boolean allowsChild(MapNode child);
 
@@ -26,7 +31,9 @@ public abstract class MapNodeComposite extends MapNode
         }
         else
         {
-            this.children.put(child.getName(),child);
+            MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
+            this.children.add(child);
+            map.publish(child.getParent());
             return true;
         }
 
@@ -39,7 +46,10 @@ public abstract class MapNodeComposite extends MapNode
         }
         else
         {
-            this.getChildren().remove(child.getName(),child);
+            MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
+            this.getChildren().remove(child);
+            map.publish(child.getParent());
+
             return true;
         }
     }

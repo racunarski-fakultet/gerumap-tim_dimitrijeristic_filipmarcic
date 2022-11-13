@@ -22,4 +22,13 @@ public abstract class MapNode
         this.parent = parent;
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MapNode mapNode = (MapNode) o;
+        return name.equals(mapNode.name) && parent.equals(mapNode.parent);
+    }
+
 }
