@@ -13,8 +13,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+import java.util.Enumeration;
 import java.util.Iterator;
 
 @Getter
@@ -52,19 +54,32 @@ public class MapTreeImplementation implements MapTree
     @Override
     public void delete_node(MapTreeItem node) {
 
-        if (!(node.getMapNode() instanceof MapNodeComposite)) { removeSelf(node);}
-
-        Iterator<TreeNode> iterator = node.children().asIterator();
-
-        while(iterator.hasNext())
+        if (node.isLeaf())
         {
-            MapTreeItem item = (MapTreeItem)iterator.next();
-            removeSelf(item);
+            System.out.println("DELETED NODE: "+ node.getMapNode().getName());
+            removeSelf(node);
+            return;
+
+        }
+
+//        Iterator<TreeNode> iterator = node.children().asIterator();
+//
+//        while(iterator.hasNext())
+//        {
+//            MapTreeItem item = (MapTreeItem)iterator.next();
+//            removeSelf(item);
+//        }
+//        removeSelf(node);
+//
+//        treeView.expandPath(treeView.getSelectionPath());
+//        SwingUtilities.updateComponentTreeUI(treeView);
+        Enumeration<TreeNode> children = node.children();
+        while(children.hasMoreElements())
+        {
+            delete_node((MapTreeItem) children.nextElement());
         }
         removeSelf(node);
 
-        treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override
@@ -82,6 +97,8 @@ public class MapTreeImplementation implements MapTree
         MapNodeComposite parent = node.getMapNode().getParent();
         parent.delete_child(node.getMapNode());
         node.removeFromParent();
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     private MapNode createChild(MapNodeComposite parent)
