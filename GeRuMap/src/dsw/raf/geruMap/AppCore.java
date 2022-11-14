@@ -1,5 +1,9 @@
 package dsw.raf.geruMap;
 
+import dsw.raf.geruMap.Logger.ConsoleLogger;
+import dsw.raf.geruMap.Logger.FileLogger;
+import dsw.raf.geruMap.Logger.Logger;
+import dsw.raf.geruMap.MessageGenerator.MessageGenerator;
 import dsw.raf.geruMap.core.ApplicationFramework;
 import dsw.raf.geruMap.core.Gui;
 import dsw.raf.geruMap.core.MapRepository;
@@ -18,7 +22,12 @@ public class AppCore extends ApplicationFramework {
         Gui gui = new SwingGui();
         MapRepository rep = new MapRepositoryImpl();
         ApplicationFramework app_core = AppCore.getInstance();
-        app_core.initialize(gui,rep);
+        MessageGenerator generator = new MessageGenerator();
+        Logger logger = new ConsoleLogger();
+        Logger logger2 = new FileLogger();
+        generator.subscribe(logger);
+        generator.subscribe(logger2);
+        app_core.initialize(gui,rep,generator,logger);
         app_core.run();
     }
     public static AppCore getInstance()

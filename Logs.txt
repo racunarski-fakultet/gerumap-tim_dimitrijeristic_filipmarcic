@@ -1,0 +1,1 @@
+2022-11-14T03:45:11.100236600 ERROR_MESSAGE ProjectExplorer ne moze biti izbrisan2022-11-14T03:45:49.650165700 ERROR_MESSAGE ProjectExplorer ne moze biti izbrisan

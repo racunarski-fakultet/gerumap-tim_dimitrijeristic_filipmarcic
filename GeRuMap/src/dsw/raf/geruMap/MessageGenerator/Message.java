@@ -18,4 +18,9 @@ public class Message {
         this.types = types;
 
     }
+
+    @Override
+    public String toString() {
+        return this.timestamp.toString() +" "+ this.types +" "+ this.content;
+    }
 }

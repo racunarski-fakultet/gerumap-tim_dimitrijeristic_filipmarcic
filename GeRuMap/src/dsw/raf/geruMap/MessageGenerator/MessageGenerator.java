@@ -8,6 +8,7 @@ public class MessageGenerator implements Publisher {
     public void generateMessage(String content,MessageTypes types)
     {
         Message message = new Message(content,types);
+
         this.publish(message);
 
     }
@@ -24,9 +25,12 @@ public class MessageGenerator implements Publisher {
 
     @Override
     public void publish(Object var1) {
+        if(subscribers!=null)
         for (Subscriber subs:subscribers)
         {
             subs.update(var1);
         }
+        // System.out.println(((Message)var1).getContent());
+        //System.out.println((Message)var1);
     }
 }
