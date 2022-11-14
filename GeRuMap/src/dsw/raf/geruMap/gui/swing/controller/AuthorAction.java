@@ -4,6 +4,7 @@ import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -21,13 +22,20 @@ public class AuthorAction extends AbstractGeruMapAction{
 
     public void actionPerformed(ActionEvent e)
     {
-        MapNode node = MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
-        if(node instanceof Project)
-        {
-            ((Project) node).setAutor(JOptionPane.showInputDialog("Unesi autora"));
+        if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) {
+            Project node =((Project)MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()) ;
+            String autor = "";
+            while (autor.isEmpty()) {
+                autor = JOptionPane.showInputDialog("Unesi autora");
+                if(autor==null)
+                    return;
+                if (autor.isEmpty())
+                    AppCore.getInstance().getGenerator().generateMessage("Ime autora ne moze biti prazno", MessageTypes.ERROR_MESSAGE);
+            }
+
+            node.setAutor(autor);
+
             ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
         }
-
-
     }
 }

@@ -10,6 +10,7 @@ import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -48,8 +49,7 @@ public class MapRepositoryImpl implements MapRepository, Publisher
         for(Subscriber subs:subscribers)
         {
             subs.update(var1);
-            MapTreeView treeView = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).getTreeView();
-            treeView.expandPath(treeView.getSelectionPath());
+            SwingUtilities.updateComponentTreeUI(((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeView());
         }
 
     }

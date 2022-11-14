@@ -2,6 +2,10 @@ package dsw.raf.geruMap.gui.swing.tree.controller;
 
 
 
+import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 
 import javax.swing.*;
@@ -50,6 +54,13 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 
         MapTreeItem clicked = (MapTreeItem) clickedOn;
         clicked.setName(e.getActionCommand());
+        MapNode node = clicked.getMapNode();
+
+        //sluzi za menanje imena u tree
+        if(node instanceof Project)
+            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
+        else
+            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node.getParent());
 
     }
 

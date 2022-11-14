@@ -4,6 +4,8 @@ import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
+import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import java.awt.event.MouseEvent;
@@ -14,6 +16,10 @@ public class TreeItemMouseListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if(e.getClickCount()==2)
         {
+
+            MapTreeView treeView = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).getTreeView();
+            treeView.expandPath(treeView.getSelectionPath());
+
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)
             {
                 ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());

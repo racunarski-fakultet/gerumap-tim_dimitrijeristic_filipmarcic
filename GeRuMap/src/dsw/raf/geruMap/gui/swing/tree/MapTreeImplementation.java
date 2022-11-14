@@ -1,14 +1,18 @@
 package dsw.raf.geruMap.gui.swing.tree;
 
+import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import dsw.raf.geruMap.MapRepository.Implementation.Element;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.tree.controller.TreeItemMouseListener;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -72,7 +76,21 @@ public class MapTreeImplementation implements MapTree
 
     @Override
     public void rename_node(MapTreeItem node) {
-
+        MapNode node1 = node.getMapNode();
+        String name="";
+        while(name.isEmpty())
+        {
+            name = JOptionPane.showInputDialog("Podesi ime");
+            if(name==null)
+                return;
+            if(name.isEmpty())
+                AppCore.getInstance().getGenerator().generateMessage("Ime ne moze biti prazno", MessageTypes.ERROR_MESSAGE);
+        }
+        node.setName(name);
+        if(node1 instanceof Project)
+            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node);
+        else
+            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node.getParent());
 
     }
 

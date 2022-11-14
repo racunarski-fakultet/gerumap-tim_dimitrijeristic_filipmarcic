@@ -1,6 +1,12 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.MessageGenerator.MessageTypes;
+import dsw.raf.geruMap.gui.swing.tree.MapTree;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
@@ -23,16 +29,9 @@ public class RenameAction extends AbstractGeruMapAction {
 
     public void actionPerformed(ActionEvent e)
     {
-     //   System.out.println(this.getClass());
-       // JTextField edit = new JTextField(MainFrame.getInstance().getMapTree().getSelectedNode().toString());
-        MapTreeImplementation tree = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
-        //edit.addActionListener((ActionListener) tree.getTreeView().getCellEditor());
-       EventObject eventObject = new EventObject("true");
+        if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof ProjectExplorer)
+            AppCore.getInstance().getGenerator().generateMessage("ProjectExplorer ne moze biti preimenovan",MessageTypes.ERROR_MESSAGE);
+        else MainFrame.getInstance().getMapTree().rename_node(MainFrame.getInstance().getMapTree().getSelectedNode());
 
-       // System.out.println(eventObject.getClass());
-       // System.out.println("SOURCE:"+eventObject.getSource());
-       tree.getTreeView().getCellEditor().isCellEditable(new EventObject("true"));
-
-        System.out.println(eventObject.getSource());
     }
 }
