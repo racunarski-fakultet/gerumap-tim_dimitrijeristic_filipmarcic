@@ -8,7 +8,8 @@ import javax.swing.*;
 
 public class DescriptionLabel extends JLabel implements Subscriber {
 
-    public DescriptionLabel() { this.setAlignmentX(CENTER_ALIGNMENT);}
+    public DescriptionLabel() { this.setAlignmentX(CENTER_ALIGNMENT);
+    this.setText("<html>PROJEKAT:<br/>AUTOR:</html>");}
 
     @Override
     public void update(Object var1) {
@@ -20,11 +21,16 @@ public class DescriptionLabel extends JLabel implements Subscriber {
                 autor = proj.getAutor();
             else
                 autor="";
-            String string = "<html>PROJEKAT: "+proj.getName()+"<br/> AUTOR: "+autor+"</html>";
+            String name;
+            if(proj.getName()!=null)
+                name = proj.getName();
+            else
+                name="";
+
+            String string = "<html>PROJEKAT: "+name+"<br/> AUTOR: "+autor+"</html>";
             this.setText(string);
         }
         else if(var1 instanceof ProjectExplorer)
-            this.setText(null);
-
+            this.setText("<html>PROJEKAT:<br/>AUTOR:</html>");
     }
 }
