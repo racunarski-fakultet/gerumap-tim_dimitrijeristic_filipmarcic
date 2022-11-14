@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import java.util.*;
@@ -65,6 +64,7 @@ public class MapTreeImplementation implements MapTree
                 que.add((MapTreeItem) iter.next());
             temp.delete();
         }
+        node.delete();
         //???
         treeView.getSelectionModel().removeSelectionPath(treeView.getSelectionPath());
         render();
