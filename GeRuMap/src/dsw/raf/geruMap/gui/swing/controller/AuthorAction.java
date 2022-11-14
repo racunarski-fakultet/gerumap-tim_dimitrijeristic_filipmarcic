@@ -1,7 +1,9 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -23,6 +25,7 @@ public class AuthorAction extends AbstractGeruMapAction{
         if(node instanceof Project)
         {
             ((Project) node).setAutor(JOptionPane.showInputDialog("Unesi autora"));
+            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
         }
 
 

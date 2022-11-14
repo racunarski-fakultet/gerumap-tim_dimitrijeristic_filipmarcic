@@ -6,6 +6,9 @@ import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.core.MapRepository;
 import dsw.raf.geruMap.core.Publisher;
 import dsw.raf.geruMap.core.Subscriber;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
+import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +48,8 @@ public class MapRepositoryImpl implements MapRepository, Publisher
         for(Subscriber subs:subscribers)
         {
             subs.update(var1);
+            MapTreeView treeView = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).getTreeView();
+            treeView.expandPath(treeView.getSelectionPath());
         }
 
     }
