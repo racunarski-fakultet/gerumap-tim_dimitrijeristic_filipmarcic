@@ -1,6 +1,5 @@
 package dsw.raf.geruMap.core;
 
-public interface Gui
-{
+public interface Gui extends Subscriber {
     void start();
 }

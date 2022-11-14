@@ -54,6 +54,8 @@ public class MainFrame extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("GeruMap");
 
+
+
         menu = new MenuBar();
         setJMenuBar(menu);
 
@@ -63,11 +65,9 @@ public class MainFrame extends JFrame
         TabbedPaneFrame frame = new TabbedPaneFrame();
         description = new DescriptionLabel();
 
-
         desktop = new TabbedPane();
         frame.add(description);
         frame.add(desktop);
-
 
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(desktop);
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(description);
@@ -77,7 +77,6 @@ public class MainFrame extends JFrame
         sc_pane.setMinimumSize(new Dimension(200,150));
 
         JSplitPane sp_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,sc_pane,frame);
-
 
         getContentPane().add(sp_pane,BorderLayout.CENTER);
 

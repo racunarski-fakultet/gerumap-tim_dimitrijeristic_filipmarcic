@@ -8,19 +8,29 @@ import java.time.LocalDateTime;
 @Setter
 public class Message {
     String content;
-    MessageTypes types;
+    MessageTypes type;
     LocalDateTime timestamp;
 
     public Message(String content,MessageTypes types)
     {
         this.timestamp = LocalDateTime.now();
         this.content = content;
-        this.types = types;
+        this.type = types;
 
     }
 
     @Override
     public String toString() {
-        return this.timestamp.toString() +" "+ this.types +" "+ this.content;
+        if(timestamp!=null)
+        return this.timestamp.toString() +" "+ this.type +" "+ this.content;
+        else
+            return this.content;
+
+    }
+    public Message returnNoTimestamp()
+    {
+        Message temp = new Message(this.content,this.type);
+        temp.setTimestamp(null);
+        return temp;
     }
 }
