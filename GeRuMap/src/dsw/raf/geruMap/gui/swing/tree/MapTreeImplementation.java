@@ -63,9 +63,10 @@ public class MapTreeImplementation implements MapTree
 
             while(iter.hasNext())
                 que.add((MapTreeItem) iter.next());
-
             temp.delete();
         }
+        //???
+        treeView.getSelectionModel().removeSelectionPath(treeView.getSelectionPath());
         render();
     }
 
