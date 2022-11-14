@@ -9,17 +9,10 @@ import java.io.PrintWriter;
 
 public class FileLogger extends Logger {
     FileOutputStream file;
+    PrintWriter printWriter;
 
-    {
-        try {
-            file = new FileOutputStream(new File("Logs.txt"),true);
-        } catch (FileNotFoundException e) {
-            System.out.println("NE RADI");
-            throw new RuntimeException(e);
-        }
-    }
 
-    PrintWriter pr;
+
 
     @Override
     public void update(Object var1) {
@@ -31,14 +24,14 @@ public class FileLogger extends Logger {
     public void createLog(Message message) {
 
         try {
-
-            pr = new PrintWriter(file);
-            pr.append(message.toString());
+            file = new FileOutputStream(new File("Logs.txt"),true);
+            printWriter = new PrintWriter(file);
+            printWriter.append(message.toString()+"\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
         finally {
-            pr.close();
+            printWriter.close();
         }
 
     }
