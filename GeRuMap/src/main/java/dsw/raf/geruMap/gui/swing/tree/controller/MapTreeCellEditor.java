@@ -65,9 +65,9 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 
         MapTreeItem clicked = (MapTreeItem) clickedOn;
         clicked.setName(e.getActionCommand());
-        MapNode node = clicked.getMapNode();
 
         //sluzi za menanje imena u tree
+        MapNode node = clicked.getMapNode();
         if(node instanceof Project)
             ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
         else
