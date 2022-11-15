@@ -24,7 +24,8 @@ public class Tab extends JPanel implements Subscriber
     private void render()
     {
         if (!elems.isEmpty())
-            this.add(new JLabel(elems.get(0).getName()));
+            for(MapNode element:elems)
+                this.add(new JLabel(element.getName()));
     }
 
     public Tab(MindMap map) {
