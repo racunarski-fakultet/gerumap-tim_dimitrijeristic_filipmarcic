@@ -88,10 +88,8 @@ public class MapTreeImplementation implements MapTree
                 AppCore.getInstance().getGenerator().generateMessage("Ime ne moze biti prazno", MessageTypes.ERROR_MESSAGE);
         }
         node.setName(name);
-        if(node1 instanceof Project)
-            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node);
-        else
-            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node.getParent());
+
+        ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj());
 
     }
 
