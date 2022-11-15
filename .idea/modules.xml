@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GeRuMap/GeRuMap.iml" filepath="$PROJECT_DIR$/GeRuMap/GeRuMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gerumap-tim_dimitrijeristic_filipmarcic.iml" filepath="$PROJECT_DIR$/.idea/gerumap-tim_dimitrijeristic_filipmarcic.iml" />
     </modules>
   </component>
