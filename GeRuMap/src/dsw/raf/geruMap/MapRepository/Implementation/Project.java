@@ -23,17 +23,4 @@ public class Project extends MapNodeComposite
     @Override
     protected boolean allowsChild(MapNode child) {return child instanceof MindMap;}
 
-    @Override
-    public boolean add_child(MapNode child) {
-        super.add_child(child);
-        ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(this);
-        return true;
-    }
-
-    @Override
-    public boolean delete_child(MapNode child) {
-        super.delete_child(child);
-        ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(this);
-        return true;
-    }
 }

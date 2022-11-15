@@ -3,6 +3,7 @@ package dsw.raf.geruMap.gui.swing.view;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.core.Subscriber;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class TabbedPane extends JTabbedPane implements Subscriber {
 
-    List<MapNode> tabs = new ArrayList<MapNode>();
+    List<MapNode> tabs = new ArrayList<>();
 
     @Override
     public void update(Object var1) {
@@ -23,6 +24,10 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
             List<MapNode> children = ((Project) var1).getChildren();
             tabs = children;
 
+            render();
+        }else if (var1 instanceof ProjectExplorer)
+        {
+            tabs = null;
             render();
         }
     }
@@ -34,6 +39,8 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
             this.removeTabAt(i);
 
         }
+        if (tabs == null)
+            return;
         for (MapNode i : tabs)
         {
             Tab tab = new Tab((MindMap) i);

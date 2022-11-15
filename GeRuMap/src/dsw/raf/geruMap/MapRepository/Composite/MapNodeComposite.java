@@ -35,7 +35,8 @@ public abstract class MapNodeComposite extends MapNode
         {
             MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
             this.children.add(child);
-            map.publish(child);
+            if(this.equals(map.getSelectedProj()))
+                map.publish(child.getParent());
             return true;
         }
 
@@ -52,7 +53,8 @@ public abstract class MapNodeComposite extends MapNode
             MapNodeComposite parent = child.getParent();
 
             parent.getChildren().remove(child);
-            map.publish(parent);
+            if(parent.equals(map.getSelectedProj()))
+                map.publish(parent);
 
 
             return true;

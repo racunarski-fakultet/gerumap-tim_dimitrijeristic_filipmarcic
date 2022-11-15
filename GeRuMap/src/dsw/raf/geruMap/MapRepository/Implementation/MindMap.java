@@ -23,21 +23,6 @@ public class MindMap extends MapNodeComposite implements Publisher
     }
     @Override
     protected boolean allowsChild(MapNode child) {return child instanceof Element;}
-
-    @Override
-    public boolean add_child(MapNode child) {
-        super.add_child(child);
-        this.publish(this);
-        return true;
-    }
-
-    @Override
-    public boolean delete_child(MapNode child) {
-        super.delete_child(child);
-        this.publish(this);
-        return true;
-    }
-
     public int getCounter()
     {
         counter++;
