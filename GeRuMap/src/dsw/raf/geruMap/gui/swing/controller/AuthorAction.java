@@ -22,6 +22,9 @@ public class AuthorAction extends AbstractGeruMapAction{
 
     public void actionPerformed(ActionEvent e)
     {
+        if(MainFrame.getInstance().getMapTree().getSelectedNode()==null)
+            return;
+
         if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) {
             Project node =((Project)MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()) ;
             String autor = "";

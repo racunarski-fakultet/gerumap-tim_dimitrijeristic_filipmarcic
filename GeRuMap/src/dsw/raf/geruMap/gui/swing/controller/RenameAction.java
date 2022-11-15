@@ -29,6 +29,9 @@ public class RenameAction extends AbstractGeruMapAction {
 
     public void actionPerformed(ActionEvent e)
     {
+         if(MainFrame.getInstance().getMapTree().getSelectedNode()==null)
+            return;
+
         if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof ProjectExplorer)
             AppCore.getInstance().getGenerator().generateMessage("ProjectExplorer ne moze biti preimenovan",MessageTypes.ERROR_MESSAGE);
         else MainFrame.getInstance().getMapTree().rename_node(MainFrame.getInstance().getMapTree().getSelectedNode());
