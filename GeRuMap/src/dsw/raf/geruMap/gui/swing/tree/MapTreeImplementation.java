@@ -3,10 +3,6 @@ package dsw.raf.geruMap.gui.swing.tree;
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
-import dsw.raf.geruMap.MapRepository.FactoryUtils;
-import dsw.raf.geruMap.MapRepository.Implementation.Element;
-import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
-import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
@@ -70,6 +66,11 @@ public class MapTreeImplementation implements MapTree
             temp.delete();
         }
         node.delete();
+        if(node.getMapNode().equals(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj()))
+        {
+            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node.getMapNode().getParent());
+            ((MapRepositoryImpl) AppCore.getInstance().getRep()).setSelectedProj(null);
+        }
         //???
         treeView.getSelectionModel().removeSelectionPath(treeView.getSelectionPath());
         render();
@@ -77,7 +78,7 @@ public class MapTreeImplementation implements MapTree
 
     @Override
     public void rename_node(MapTreeItem node) {
-        MapNode node1 = node.getMapNode();
+       // MapNode node1 = node.getMapNode();
         String name="";
         while(name.isEmpty())
         {

@@ -1,36 +1,24 @@
 package dsw.raf.geruMap.gui.swing.view;
 
-import dsw.raf.geruMap.MapRepository.Implementation.Project;
-import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
-import dsw.raf.geruMap.core.Subscriber;
+
 
 import javax.swing.*;
+import java.util.Objects;
 
-public class DescriptionLabel extends JLabel implements Subscriber {
+public class DescriptionLabel extends JLabel {
 
     public DescriptionLabel() { this.setAlignmentX(CENTER_ALIGNMENT);
-    this.setText("<html>PROJEKAT:<br/>AUTOR:</html>");}
+        this.setText("<html>PROJEKAT:<br/>AUTOR:</html>");}
+    String autor;
+    String name;
 
-    @Override
-    public void update(Object var1) {
-        if(var1 instanceof Project)
-        {
-            Project proj =(Project) var1;
-            String autor;
-            if(proj.getAutor()!=null)
-                autor = proj.getAutor();
-            else
-                autor="";
-            String name;
-            if(proj.getName()!=null)
-                name = proj.getName();
-            else
-                name="";
-
-            String string = "<html>PROJEKAT: "+name+"<br/> AUTOR: "+autor+"</html>";
-            this.setText(string);
-        }
-        else if(var1 instanceof ProjectExplorer)
-            this.setText("<html>PROJEKAT:<br/>AUTOR:</html>");
+    public void updateText(String name,String autor)
+    {
+        this.autor = Objects.requireNonNullElse(autor, " ");
+        this.name = Objects.requireNonNullElse(name, " ");
+        String string = "<html>PROJEKAT: "+this.name+"<br/> AUTOR: "+this.autor+"</html>";
+        this.setText(string);
     }
+
 }
+

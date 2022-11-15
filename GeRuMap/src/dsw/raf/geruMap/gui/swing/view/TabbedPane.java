@@ -10,23 +10,24 @@ import lombok.NoArgsConstructor;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 @NoArgsConstructor
 public class TabbedPane extends JTabbedPane implements Subscriber {
 
     List<MapNode> tabs = new ArrayList<>();
-
+    DescriptionLabel description = MainFrame.getInstance().getDescription();
     @Override
     public void update(Object var1) {
         this.setPreferredSize(this.getParent().getSize());
         if (var1 instanceof Project)
         {
+            description.updateText(((Project) var1).getName(),((Project) var1).getAutor());
             List<MapNode> children = ((Project) var1).getChildren();
             tabs = children;
 
             render();
         }else if (var1 instanceof ProjectExplorer)
         {
+            description.updateText(null,null);
             tabs = null;
             render();
         }

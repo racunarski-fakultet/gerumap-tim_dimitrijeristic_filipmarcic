@@ -10,8 +10,6 @@ import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 @Getter
 @Setter
@@ -70,7 +68,7 @@ public class MainFrame extends JFrame
         frame.add(desktop);
 
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(desktop);
-        ((MapRepositoryImpl)AppCore.getInstance().getRep()).subscribe(description);
+
         JTree tree = mapTree.generateTree(AppCore.getInstance().getRep().getProjectExplorer());
 
         JScrollPane sc_pane = new JScrollPane(tree);
