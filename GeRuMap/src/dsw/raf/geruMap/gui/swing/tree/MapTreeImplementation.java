@@ -3,6 +3,7 @@ package dsw.raf.geruMap.gui.swing.tree;
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+import dsw.raf.geruMap.MapRepository.FactoryUtils;
 import dsw.raf.geruMap.MapRepository.Implementation.Element;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
@@ -45,12 +46,12 @@ public class MapTreeImplementation implements MapTree
 
         if (!(parent.getMapNode() instanceof MapNodeComposite))
             return;
-
-        MapNode child = createChild((MapNodeComposite) parent.getMapNode());
+        MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
+        //  MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).add_child(child);
         treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
+        render();
     }
 
     @Override
@@ -100,19 +101,20 @@ public class MapTreeImplementation implements MapTree
     }
     private void render()
     {
-        treeView.expandPath(treeView.getSelectionPath());
+       // treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
-    private MapNode createChild(MapNodeComposite parent)
-    {
-        if (parent instanceof ProjectExplorer)
-            return new Project(Double.toString(Math.random()),parent);
-        if (parent instanceof Project)
-            return new MindMap(Double.toString(Math.random()),parent);
-        if (parent instanceof MindMap)
-            return new Element(Integer.toString(((MindMap)getSelectedNode().getMapNode()).getCounter()),parent);
-        return null;
-    }
+//    private MapNode createChild(MapNodeComposite parent)
+//    {
+//
+//        if (parent instanceof ProjectExplorer)
+//            return new Project(Double.toString(Math.random()),parent);
+//        if (parent instanceof Project)
+//            return new MindMap(Double.toString(Math.random()),parent);
+//        if (parent instanceof MindMap)
+//            return new Element(Integer.toString(((MindMap)getSelectedNode().getMapNode()).getCounter()),parent);
+//        return null;
+//    }
 
 }

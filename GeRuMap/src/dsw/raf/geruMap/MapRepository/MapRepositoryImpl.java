@@ -20,11 +20,13 @@ import java.util.List;
 public class MapRepositoryImpl implements MapRepository, Publisher
 {
     private ProjectExplorer projectExplorer;
-    List<Subscriber> subscribers;
+    private List<Subscriber> subscribers;
+    private FactoryUtils factoryUtils;
 
     public MapRepositoryImpl() {
         projectExplorer = new ProjectExplorer("",null);
         subscribers = new ArrayList<>();
+        factoryUtils = new FactoryUtils();
 
     }
 
@@ -33,7 +35,10 @@ public class MapRepositoryImpl implements MapRepository, Publisher
         return projectExplorer;
     }
 
-
+    public FactoryUtils getFactoryUtils()
+    {
+        return this.factoryUtils;
+    }
     @Override
     public void unsubscribe(Subscriber var1) {
         subscribers.remove(var1);

@@ -22,6 +22,8 @@ public class DeleteAction extends AbstractGeruMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(MainFrame.getInstance().getMapTree().getSelectedNode()==null)
+            return;
         if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof ProjectExplorer)
         {
             AppCore.getInstance().getGenerator().generateMessage("ProjectExplorer ne moze biti izbrisan", MessageTypes.ERROR_MESSAGE);

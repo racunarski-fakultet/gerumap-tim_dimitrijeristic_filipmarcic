@@ -5,8 +5,12 @@ package dsw.raf.geruMap.gui.swing.tree.controller;
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.MessageGenerator.MessageTypes;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
@@ -51,6 +55,13 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 
         if (!(clickedOn instanceof MapTreeItem))
             return;
+
+        if((((MapTreeItem) clickedOn).getMapNode() instanceof ProjectExplorer))
+        {
+            AppCore.getInstance().getGenerator().generateMessage("ProjectExplorer ne moze biti preimenovan", MessageTypes.ERROR_MESSAGE);
+            SwingUtilities.updateComponentTreeUI(((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeView());
+            return;
+        }
 
         MapTreeItem clicked = (MapTreeItem) clickedOn;
         clicked.setName(e.getActionCommand());
