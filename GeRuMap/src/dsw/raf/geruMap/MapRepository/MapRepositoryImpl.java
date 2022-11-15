@@ -33,7 +33,6 @@ public class MapRepositoryImpl implements MapRepository, Publisher
         projectExplorer = new ProjectExplorer("",null);
         subscribers = new ArrayList<>();
         factoryUtils = new FactoryUtils();
-
     }
 
     @Override

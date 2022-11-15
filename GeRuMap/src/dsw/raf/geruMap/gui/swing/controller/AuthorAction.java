@@ -35,7 +35,7 @@ public class AuthorAction extends AbstractGeruMapAction{
 
             node.setAutor(autor);
 
-            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
+            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(((MapRepositoryImpl) AppCore.getInstance().getRep()).getSelectedProj());
         }
     }
 }
