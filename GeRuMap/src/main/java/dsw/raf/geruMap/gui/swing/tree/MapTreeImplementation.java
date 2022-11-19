@@ -3,13 +3,13 @@ package dsw.raf.geruMap.gui.swing.tree;
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+import dsw.raf.geruMap.MapRepository.FactoryUtils;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.tree.controller.TreeItemMouseListener;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
-import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,8 +42,8 @@ public class MapTreeImplementation implements MapTree
 
         if (!(parent.getMapNode() instanceof MapNodeComposite))
             return;
-        MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
-        //  MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
+        //MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
+        MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).add_child(child);
         treeView.expandPath(treeView.getSelectionPath());
@@ -68,11 +68,11 @@ public class MapTreeImplementation implements MapTree
         node.delete();
         if(node.getMapNode().equals(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj()))
         {
-            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node.getMapNode().getParent());
+           // ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node.getMapNode().getParent());
             ((MapRepositoryImpl) AppCore.getInstance().getRep()).setSelectedProj(null);
         }
         //???
-        treeView.getSelectionModel().removeSelectionPath(treeView.getSelectionPath());
+        //treeView.getSelectionModel().removeSelectionPath(treeView.getSelectionPath());
         render();
     }
 
@@ -90,7 +90,7 @@ public class MapTreeImplementation implements MapTree
         }
         node.setName(name);
 
-        ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj());
+        //((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj());
 
     }
 

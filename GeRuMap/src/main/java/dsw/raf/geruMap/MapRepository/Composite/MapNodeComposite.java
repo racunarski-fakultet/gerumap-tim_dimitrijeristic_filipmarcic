@@ -1,17 +1,12 @@
 package dsw.raf.geruMap.MapRepository.Composite;
 
 import dsw.raf.geruMap.AppCore;
-import dsw.raf.geruMap.MapRepository.Implementation.Element;
-import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
-import dsw.raf.geruMap.core.MapRepository;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -22,6 +17,7 @@ public abstract class MapNodeComposite extends MapNode
     {
         super(name,parent);
         children = new ArrayList<MapNode>();
+        setMaprep((MapRepositoryImpl) AppCore.getInstance().getRep());
     }
     protected abstract boolean allowsChild(MapNode child);
 
@@ -33,9 +29,9 @@ public abstract class MapNodeComposite extends MapNode
         }
         else
         {
-            MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
             this.children.add(child);
-            map.publish(map.getSelectedProj());
+           // if(getMaprep()!=null)
+            getMaprep().publish(getMaprep().getSelectedProj());
             return true;
         }
 
@@ -48,11 +44,14 @@ public abstract class MapNodeComposite extends MapNode
         }
         else
         {
-            MapRepositoryImpl map = (MapRepositoryImpl)AppCore.getInstance().getRep();
             MapNodeComposite parent = child.getParent();
 
+
             parent.getChildren().remove(child);
-            map.publish(map.getSelectedProj());
+            getMaprep().publish(getMaprep().getSelectedProj());
+            //??? magija
+            if(child.equals(getMaprep().getSelectedProj()))
+                getMaprep().publish(parent);
             return true;
         }
     }

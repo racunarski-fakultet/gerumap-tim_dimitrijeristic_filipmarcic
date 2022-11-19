@@ -3,10 +3,7 @@ package dsw.raf.geruMap.gui.swing.tree.controller;
 
 
 import dsw.raf.geruMap.AppCore;
-import dsw.raf.geruMap.MapRepository.Composite.MapNode;
-import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
-import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
@@ -67,11 +64,12 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
         clicked.setName(e.getActionCommand());
 
         //sluzi za menanje imena u tree
-        MapNode node = clicked.getMapNode();
-        if(node instanceof Project)
-            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
-        else
-            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node.getParent());
+        //MapNode node = clicked.getMapNode();
+
+//        if(node instanceof Project)
+//            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(node);
+//        else
+//            ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(node.getParent());
 
     }
 

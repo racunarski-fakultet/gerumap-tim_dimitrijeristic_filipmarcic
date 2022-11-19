@@ -12,6 +12,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class TreeItemMouseListener implements MouseListener {
+    private MapRepositoryImpl maprep;
+    public TreeItemMouseListener() {
+        maprep= (MapRepositoryImpl) AppCore.getInstance().getRep();
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getClickCount()==2)
@@ -22,12 +27,12 @@ public class TreeItemMouseListener implements MouseListener {
 
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)
             {
-                ((MapRepositoryImpl)AppCore.getInstance().getRep()).setSelectedProj((Project)MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
-                ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
+                maprep.setSelectedProj((Project)MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
             }
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap)
             {
-                ((MapRepositoryImpl)AppCore.getInstance().getRep()).publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
+                System.out.println("MOUSELISTENER");
+               // maprep.publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
 
             }
         }

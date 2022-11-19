@@ -1,22 +1,17 @@
 package dsw.raf.geruMap.MapRepository;
 
-import dsw.raf.geruMap.MapRepository.Composite.MapNode;
-import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.core.MapRepository;
 import dsw.raf.geruMap.core.Publisher;
 import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
-import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +57,10 @@ public class MapRepositoryImpl implements MapRepository, Publisher
             SwingUtilities.updateComponentTreeUI(((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeView());
         }
 
+    }
+
+    public void setSelectedProj(Project selectedProj) {
+        this.selectedProj = selectedProj;
+        this.publish(selectedProj);
     }
 }

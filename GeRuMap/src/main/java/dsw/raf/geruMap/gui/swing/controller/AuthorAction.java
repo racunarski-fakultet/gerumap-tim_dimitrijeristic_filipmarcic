@@ -1,9 +1,7 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
 import dsw.raf.geruMap.AppCore;
-import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
-import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
@@ -38,7 +36,7 @@ public class AuthorAction extends AbstractGeruMapAction{
 
             node.setAutor(autor);
 
-            ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(((MapRepositoryImpl) AppCore.getInstance().getRep()).getSelectedProj());
+           // ((MapRepositoryImpl) AppCore.getInstance().getRep()).publish(((MapRepositoryImpl) AppCore.getInstance().getRep()).getSelectedProj());
         }
     }
 }
