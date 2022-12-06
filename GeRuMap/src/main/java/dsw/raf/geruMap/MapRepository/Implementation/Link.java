@@ -2,9 +2,9 @@ package dsw.raf.geruMap.MapRepository.Implementation;
 
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 
-public class Veza extends Element
+public class Link extends Element
 {
-    public Veza(String name, MapNodeComposite parent)
+    public Link(String name, MapNodeComposite parent)
     {
         super(name, parent);
     }

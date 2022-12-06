@@ -2,9 +2,9 @@ package dsw.raf.geruMap.MapRepository.Implementation;
 
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 
-public class Pojam extends Element
+public class Thought extends Element
 {
-    public Pojam(String name, MapNodeComposite parent) {super(name, parent);}
+    public Thought(String name, MapNodeComposite parent) {super(name, parent);}
 
 
 }

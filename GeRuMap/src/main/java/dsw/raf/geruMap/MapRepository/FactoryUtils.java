@@ -5,7 +5,7 @@ import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
-import dsw.raf.geruMap.MapRepository.NodeFactory.ElementFactory;
+import dsw.raf.geruMap.MapRepository.NodeFactory.ThoughtFactory;
 import dsw.raf.geruMap.MapRepository.NodeFactory.MindMapFactory;
 import dsw.raf.geruMap.MapRepository.NodeFactory.NodeFactory;
 import dsw.raf.geruMap.MapRepository.NodeFactory.ProjectFactory;
@@ -14,7 +14,7 @@ public class FactoryUtils {
 
      static NodeFactory projectFactory = new ProjectFactory();
      static NodeFactory mindMapFactory = new MindMapFactory();
-     static NodeFactory elementFactory = new ElementFactory();
+     static NodeFactory elementFactory = new ThoughtFactory();
     public static MapNode createNode(MapNodeComposite parent)
     {
         if (parent instanceof ProjectExplorer)
