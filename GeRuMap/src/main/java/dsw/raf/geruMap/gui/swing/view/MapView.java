@@ -11,6 +11,7 @@ import dsw.raf.geruMap.core.Subscriber;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapView extends JPanel implements Subscriber
@@ -22,14 +23,15 @@ public class MapView extends JPanel implements Subscriber
     {
         if (var1 instanceof MindMap)
         {
-            elems = null;
+            elems = new ArrayList<>();
 
-            for(MapNode child : ((MindMap)var1).getChildren())
-            {
-                if (child instanceof Link)
-                    elems.add(new LinkPainter((Link)child));
-                else
-                    elems.add(new ThoughtPainter((Thought)child));
+            if (((MindMap)var1).getChildren() != null) {
+                for (MapNode child : ((MindMap) var1).getChildren()) {
+                    if (child instanceof Link)
+                        elems.add(new LinkPainter((Link) child));
+                    else
+                        elems.add(new ThoughtPainter((Thought) child));
+                }
             }
 
             repaint();
@@ -41,6 +43,7 @@ public class MapView extends JPanel implements Subscriber
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
 
         for (ElementPainter painter : elems)
             painter.paint(g2);

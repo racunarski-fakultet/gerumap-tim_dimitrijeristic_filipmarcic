@@ -26,6 +26,5 @@ public class NewProjectAction extends AbstractGeruMapAction
     {
         if(MainFrame.getInstance().getMapTree().getSelectedNode()!=null)
         MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().getSelectedNode());
-
     }
 }
