@@ -7,7 +7,7 @@ import dsw.raf.geruMap.core.Subscriber;
 import javax.swing.*;
 import java.util.List;
 
-public class Tab extends JPanel implements Subscriber
+public class MapView extends JPanel implements Subscriber
 {
     List<MapNode> elems;
     MapNode myMap;
@@ -28,7 +28,7 @@ public class Tab extends JPanel implements Subscriber
                 this.add(new JLabel(element.getName()));
     }
 
-    public Tab(MindMap map) {
+    public MapView(MindMap map) {
         this.myMap = map;
         map.subscribe(this);
         update(map);

@@ -60,7 +60,7 @@ public class MainFrame extends JFrame
         tbar = new Toolbar();
         add(tbar,BorderLayout.NORTH);
 
-        TabbedPaneFrame frame = new TabbedPaneFrame();
+        ProjectView frame = new ProjectView();
         description = new DescriptionLabel();
 
         desktop = new TabbedPane();

@@ -44,9 +44,9 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
             return;
         for (MapNode i : tabs)
         {
-            Tab tab = new Tab((MindMap) i);
+            MapView tab = new MapView((MindMap) i);
             tab.update(i);
-            this.addTab(i.getName(),new Tab((MindMap) i));
+            this.addTab(i.getName(),new MapView((MindMap) i));
         }
     }
 }

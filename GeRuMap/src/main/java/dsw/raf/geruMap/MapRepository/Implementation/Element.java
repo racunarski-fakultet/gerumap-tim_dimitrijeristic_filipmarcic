@@ -5,6 +5,8 @@ import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 
 public class Element extends MapNode
 {
+    private int boja;
+    private int debljina;
 
     public Element(String name, MapNodeComposite parent)
     {
