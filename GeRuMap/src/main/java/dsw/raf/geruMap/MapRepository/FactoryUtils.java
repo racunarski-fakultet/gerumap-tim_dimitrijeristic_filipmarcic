@@ -14,7 +14,7 @@ public class FactoryUtils {
 
      static NodeFactory projectFactory = new ProjectFactory();
      static NodeFactory mindMapFactory = new MindMapFactory();
-     static NodeFactory elementFactory = new ThoughtFactory();
+     static NodeFactory thoughtFactory = new ThoughtFactory();
     public static MapNode createNode(MapNodeComposite parent)
     {
         if (parent instanceof ProjectExplorer)
@@ -22,7 +22,7 @@ public class FactoryUtils {
         if (parent instanceof Project)
            return mindMapFactory.createNode(Double.toString(Math.random()),parent);
         if (parent instanceof MindMap)
-           return elementFactory.createNode(Integer.toString(((MindMap)parent).getCounter()),parent);
+           return thoughtFactory.createNode(Integer.toString(((MindMap)parent).getCounter()),parent);
         return null;
     }
 }
