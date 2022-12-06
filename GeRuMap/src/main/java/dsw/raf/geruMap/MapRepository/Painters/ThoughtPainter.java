@@ -10,7 +10,7 @@ public class ThoughtPainter extends ElementPainter{
     }
 
     @Override
-    public void paint(Graphics2D g, Element element) {
+    public void paint(Graphics2D g) {
 
     }
 

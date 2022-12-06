@@ -11,7 +11,7 @@ public abstract class ElementPainter {
 
     public ElementPainter(Element element) {this.element = element;}
 
-    public abstract void paint(Graphics2D g, Element element);
+    public abstract void paint(Graphics2D g);
 
     public abstract boolean elementAt(Element element, Point pos);
 
