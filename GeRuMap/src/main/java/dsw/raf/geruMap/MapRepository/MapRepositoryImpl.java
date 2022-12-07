@@ -7,6 +7,7 @@ import dsw.raf.geruMap.core.MapRepository;
 import dsw.raf.geruMap.core.Publisher;
 import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
+import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class MapRepositoryImpl implements MapRepository, Publisher
     private List<Subscriber> subscribers;
     private FactoryUtils factoryUtils;
     private Project selectedProj;
+    private MapTreeItem selectedItem;
 
     public MapRepositoryImpl() {
         projectExplorer = new ProjectExplorer("",null);

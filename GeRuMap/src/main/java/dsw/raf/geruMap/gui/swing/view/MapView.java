@@ -9,12 +9,16 @@ import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class MapView extends JPanel implements Subscriber
 {
     List<ElementPainter> elems;

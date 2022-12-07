@@ -1,6 +1,14 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
+import dsw.raf.geruMap.MapRepository.Implementation.Thought;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
+import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -16,7 +24,11 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
     @Override
     public void mousePressed(MouseEvent e) {
        // System.out.println("MOUSE PRESSED");
-        MainFrame.getInstance().getState_man().getCurrentState().mousePress(e.getX(),e.getY());
+        MapTreeImplementation maptree = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
+
+        MapTreeItem item = maptree.findNode(((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap(),null);
+
+        maptree.add_node(item);
     }
 
     @Override

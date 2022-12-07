@@ -1,5 +1,7 @@
 package dsw.raf.geruMap.StateManager.States;
 
+import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
+
 public class SelectionState implements AbstractState{
     @Override
     public void mouseClick(int x, int y) {
@@ -12,7 +14,7 @@ public class SelectionState implements AbstractState{
     }
 
     @Override
-    public void mousePress(int x, int y) {
+    public void mousePress(int x, int y, MapTreeItem node) {
 
     }
 

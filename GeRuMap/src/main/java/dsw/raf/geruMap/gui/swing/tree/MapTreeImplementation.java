@@ -4,12 +4,17 @@ import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import dsw.raf.geruMap.MapRepository.FactoryUtils;
+import dsw.raf.geruMap.MapRepository.Implementation.Element;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
+import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.tree.controller.TreeItemMouseListener;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +30,34 @@ public class MapTreeImplementation implements MapTree
 
     private MapTreeView treeView;
     private DefaultTreeModel treeModel;
+
+    public MapTreeItem findNode(MapNode node, MapTreeItem item)
+    {
+        if (item == null)
+            item = (MapTreeItem) ((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeModel().getRoot();
+
+        for (int i = 0; i < item.getChildCount(); i++)
+        {
+            MapTreeItem temp = (MapTreeItem) item.getChildAt(i);
+            if (temp.getMapNode().equals(node))
+                return temp;
+
+            if (item.getMapNode() instanceof Project)
+            {
+                if (temp.getMapNode().equals(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj()))
+                    return findNode(node, temp);
+                else continue;
+            }
+            else if(temp.getMapNode() instanceof MindMap)
+            {
+                if (temp.getMapNode().equals(((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()))
+                    return findNode(node,temp);
+                else continue;
+            }
+        }
+
+        return null;
+    }
 
     @Override
     public MapTreeView generateTree(ProjectExplorer projectExplorer)
