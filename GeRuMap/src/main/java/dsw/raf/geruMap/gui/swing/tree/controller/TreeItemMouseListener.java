@@ -31,7 +31,7 @@ public class TreeItemMouseListener implements MouseListener {
             }
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap)
             {
-                System.out.println("MOUSELISTENER");
+               // System.out.println("MOUSELISTENER");
                // maprep.publish(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
 
             }

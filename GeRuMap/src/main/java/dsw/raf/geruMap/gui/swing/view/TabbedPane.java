@@ -5,16 +5,22 @@ import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.core.Subscriber;
+import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
 import lombok.NoArgsConstructor;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-@NoArgsConstructor
+
 public class TabbedPane extends JTabbedPane implements Subscriber {
 
     List<MapNode> tabs = new ArrayList<>();
     DescriptionLabel description = MainFrame.getInstance().getDescription();
+    public TabbedPane()
+    {
+        super();
+
+    }
     @Override
     public void update(Object var1) {
         this.setPreferredSize(this.getParent().getSize());

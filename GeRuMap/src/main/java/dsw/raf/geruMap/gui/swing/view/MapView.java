@@ -8,6 +8,7 @@ import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.core.Subscriber;
+import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,6 +51,8 @@ public class MapView extends JPanel implements Subscriber
     }
 
     public MapView(MindMap map) {
+        this.addMouseListener(new StateMouseListener());
+        this.addMouseMotionListener(new StateMouseListener());
         this.myMap = map;
         map.subscribe(this);
         update(map);

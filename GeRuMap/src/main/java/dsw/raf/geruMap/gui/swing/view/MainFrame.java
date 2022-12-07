@@ -2,6 +2,7 @@ package dsw.raf.geruMap.gui.swing.view;
 
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.StateManager.StateManager;
 import dsw.raf.geruMap.gui.swing.controller.ActionManager;
 import dsw.raf.geruMap.gui.swing.tree.MapTree;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
@@ -22,6 +23,8 @@ public class MainFrame extends JFrame
     private MapTree mapTree;
     private TabbedPane desktop;
     private DescriptionLabel description;
+    private StateManager state_man;
+    private StateToolbar stbar;
     private MainFrame(){}
 
     public static MainFrame getInstance()
@@ -38,6 +41,7 @@ public class MainFrame extends JFrame
     {
         act_man = new ActionManager();
         mapTree = new MapTreeImplementation();
+        state_man = new StateManager();
         initialiseGUI();
     }
 
@@ -59,6 +63,8 @@ public class MainFrame extends JFrame
 
         tbar = new Toolbar();
         add(tbar,BorderLayout.NORTH);
+        stbar = new StateToolbar();
+        add(stbar,BorderLayout.EAST);
 
         ProjectView frame = new ProjectView();
         description = new DescriptionLabel();
