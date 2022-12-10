@@ -1,10 +1,4 @@
 package dsw.raf.geruMap.gui.swing.controller;
-
-import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
-import dsw.raf.geruMap.MapRepository.Implementation.Project;
-import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
-import dsw.raf.geruMap.gui.swing.tree.controller.MapTreeSelectionListener;
-import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import javax.swing.*;

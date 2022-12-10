@@ -27,11 +27,11 @@ public class ThoughtPainter extends ElementPainter{
             System.out.println(device.getSize());
            // int x = (int) (device.getPosition().getX()+device.getSize().width/2);
             int y = (int) (device.getPosition().getY()+device.getSize().height/2);
+            int width = g.getFontMetrics().stringWidth(device.getName());
 
-
-            g.drawOval(device.getPosition().x,device.getPosition().y,device.getSize().width,device.getSize().height);
+            g.drawOval(device.getPosition().x,device.getPosition().y,width,device.getSize().height);
             g.setPaint(Color.WHITE);
-            g.fillOval(device.getPosition().x,device.getPosition().y,device.getSize().width,device.getSize().height);
+            g.fillOval(device.getPosition().x,device.getPosition().y,width,device.getSize().height);
             g.setPaint(Color.BLACK);
             g.drawString(device.getName(), device.getPosition().x,y+3);
 
