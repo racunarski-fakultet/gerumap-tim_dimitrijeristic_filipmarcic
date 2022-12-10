@@ -83,6 +83,19 @@ public class MapTreeImplementation implements MapTree
         render();
     }
 
+    public void add_node(MapTreeItem parent,MapNode child)
+    {
+
+        if (!(parent.getMapNode() instanceof MapNodeComposite))
+            return;
+        //MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
+       // MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
+        parent.add(new MapTreeItem(child));
+        ((MapNodeComposite) parent.getMapNode()).add_child(child);
+        treeView.expandPath(treeView.getSelectionPath());
+        render();
+    }
+
     @Override
     public void delete_node(MapTreeItem node)
     {

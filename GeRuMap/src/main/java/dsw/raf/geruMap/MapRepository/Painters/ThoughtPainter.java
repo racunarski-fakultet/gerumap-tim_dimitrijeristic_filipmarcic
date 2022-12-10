@@ -33,7 +33,7 @@ public class ThoughtPainter extends ElementPainter{
             g.setPaint(Color.WHITE);
             g.fillOval(device.getPosition().x,device.getPosition().y,device.getSize().width,device.getSize().height);
             g.setPaint(Color.BLACK);
-            g.drawString(device.getName(), device.getPosition().x+2,y+3);
+            g.drawString(device.getName(), device.getPosition().x,y+3);
 
         }
     }

@@ -23,12 +23,14 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-       // System.out.println("MOUSE PRESSED");
-        MapTreeImplementation maptree = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
+        // System.out.println("MOUSE PRESSED");
+        int a = MainFrame.getInstance().getDesktop().getSelectedIndex();
+        MapTreeImplementation map = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
+        MapRepositoryImpl rep = ((MapRepositoryImpl) AppCore.getInstance().getRep());
+        MapTreeItem item = (MapTreeItem) map.getTreeModel().getChild(rep.getSelectedItem(),a);
 
-        MapTreeItem item = maptree.findNode(((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap(),null);
 
-        maptree.add_node(item);
+        MainFrame.getInstance().getState_man().getCurrentState().mousePress(e.getX(),e.getY(),item);
     }
 
     @Override
