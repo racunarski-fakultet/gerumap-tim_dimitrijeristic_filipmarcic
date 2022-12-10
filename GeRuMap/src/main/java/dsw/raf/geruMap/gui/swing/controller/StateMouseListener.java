@@ -14,7 +14,7 @@ import java.awt.event.MouseMotionListener;
 
 public class StateMouseListener implements MouseListener, MouseMotionListener {
     MapTreeView treeView = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).getTreeView();
-    MapTreeItem TreeItemMap = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -29,10 +29,10 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
 //        MapTreeImplementation map = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
 //        MapRepositoryImpl rep = ((MapRepositoryImpl) AppCore.getInstance().getRep());
 
-
+        MapTreeItem TreeItemMap = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
 
         MainFrame.getInstance().getState_man().getCurrentState().mousePress(e.getX(),e.getY(), TreeItemMap);
-        render();
+        //render();
     }
 
     @Override
@@ -46,6 +46,7 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
     }
     private void render()
     {
+        MapTreeItem TreeItemMap = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
         treeView.setSelectionPath(new TreePath(TreeItemMap.getPath()));
         SwingUtilities.updateComponentTreeUI(treeView);
         treeView.expandPath(treeView.getSelectionPath());

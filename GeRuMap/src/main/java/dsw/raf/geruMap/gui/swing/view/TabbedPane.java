@@ -9,6 +9,7 @@ import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
 import lombok.NoArgsConstructor;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,10 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
 
     private void render()
     {
+
+        MapView temp = (MapView) getSelectedComponent();
+        Boolean flag = false;
+
         for (int i = this.getTabCount() - 1; i >= 0; i--)
         {
             this.removeTabAt(i);
@@ -51,8 +56,19 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
         for (MapNode i : tabs)
         {
             MapView tab = new MapView((MindMap) i);
+
+            if (temp != null && temp.getMyMap().equals(tab.getMyMap()))
+            {
+                flag = true;
+                temp = tab;
+            }
+
+
             tab.update(i);
-            this.addTab(i.getName(),new MapView((MindMap) i));
+            this.addTab(i.getName(),tab);
         }
+
+        if (flag)
+            this.setSelectedComponent(temp);
     }
 }
