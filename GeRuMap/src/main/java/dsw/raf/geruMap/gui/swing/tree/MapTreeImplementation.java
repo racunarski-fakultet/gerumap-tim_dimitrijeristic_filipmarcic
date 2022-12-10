@@ -31,28 +31,25 @@ public class MapTreeImplementation implements MapTree
     private MapTreeView treeView;
     private DefaultTreeModel treeModel;
 
-    public MapTreeItem findNode(MapNode node, MapTreeItem item)
+    public MapTreeItem findNode(MapNode node)
     {
-        if (item == null)
-            item = (MapTreeItem) ((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeModel().getRoot();
+        MapTreeItem temp = (MapTreeItem) ((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeModel().getRoot();
+        Queue<MapTreeItem> q = new ArrayDeque<>();
+        q.add(temp);
 
-        for (int i = 0; i < item.getChildCount(); i++)
+        while (!q.isEmpty())
         {
-            MapTreeItem temp = (MapTreeItem) item.getChildAt(i);
-            if (temp.getMapNode().equals(node))
-                return temp;
+            MapTreeItem cur = q.poll();
 
-            if (item.getMapNode() instanceof Project)
+            if (cur.getMapNode().equals(node))
+                return cur;
+
+            if (cur != null)
             {
-                if (temp.getMapNode().equals(((MapRepositoryImpl)AppCore.getInstance().getRep()).getSelectedProj()))
-                    return findNode(node, temp);
-                else continue;
-            }
-            else if(temp.getMapNode() instanceof MindMap)
-            {
-                if (temp.getMapNode().equals(((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()))
-                    return findNode(node,temp);
-                else continue;
+                for (int i = 0; i < cur.getChildCount(); i++)
+                {
+                    q.add((MapTreeItem) cur.getChildAt(i));
+                }
             }
         }
 
