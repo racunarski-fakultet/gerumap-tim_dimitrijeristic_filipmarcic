@@ -15,7 +15,7 @@ public class GhostLink extends Element implements Publisher {
     Point from;
     Point to;
     public GhostLink(Point from, Point to,int thickness, Paint paint) {
-        super(null, null, null, null, thickness, paint);
+        super("ghost", null, from, new Dimension(0,0), thickness, paint);
         this.from = from;
         this.paint = paint;
     }
@@ -39,6 +39,7 @@ public class GhostLink extends Element implements Publisher {
     }
     public void setTo(Point point)
     {
+        to = point;
         publish(this);
     }
 }

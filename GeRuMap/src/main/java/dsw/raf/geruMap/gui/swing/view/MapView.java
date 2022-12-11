@@ -26,6 +26,7 @@ import java.util.List;
 public class MapView extends JPanel implements Subscriber
 {
     List<ElementPainter> elems;
+    GhostPainter ghost;
     MapNode myMap;
     @Override
     public void update(Object var1)
@@ -40,11 +41,6 @@ public class MapView extends JPanel implements Subscriber
                         elems.add(new LinkPainter((Link) child));
                     else if(child instanceof Thought)
                         elems.add(new ThoughtPainter((Thought) child));
-                    else
-                    {
-                        elems.add(new GhostPainter((GhostLink)child));
-                        System.out.println("PUSIGA");
-                    }
                 }
             }
 
@@ -61,6 +57,9 @@ public class MapView extends JPanel implements Subscriber
 
         for (ElementPainter painter : elems)
             painter.paint(g2);
+
+        if(ghost!=null)
+            ghost.paint(g2);
     }
 
     public MapView(MindMap map) {

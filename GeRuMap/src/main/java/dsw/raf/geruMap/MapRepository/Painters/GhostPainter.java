@@ -16,22 +16,19 @@ public class GhostPainter extends ElementPainter{
 
 
     @Override
-    public void paint(Graphics2D g) {
+    public void paint(Graphics2D g)
+    {
         GhostLink temp = (GhostLink)element;
-        int xFrom = (int) temp.getFrom().getX();
-        int yFrom = (int) temp.getFrom().getY();
-        int xTo = (int) temp.getTo().getX();
-        int yTo = (int) temp.getTo().getY();
+
         g.setPaint(temp.getPaint());
+        g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(element.getThickness()));
-        g.drawLine(xFrom,yFrom,xTo,yTo);
+        g.drawLine(temp.getFrom().x,temp.getFrom().y,temp.getTo().x,temp.getTo().y);
     }
 
     @Override
     public boolean elementAt(Element element, Point pos) {
         return false;
     }
-
-
     }
 
