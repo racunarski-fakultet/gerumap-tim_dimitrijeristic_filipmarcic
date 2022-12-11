@@ -8,15 +8,18 @@ import lombok.Setter;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 @Getter
 @Setter
 public class MapTreeItem extends DefaultMutableTreeNode {
 
     private MapNode mapNode;
+    private int id;
 
     public MapTreeItem(MapNode nodeModel) {
         this.mapNode = nodeModel;
+        this.id = this.hashCode();
     }
 
     @Override

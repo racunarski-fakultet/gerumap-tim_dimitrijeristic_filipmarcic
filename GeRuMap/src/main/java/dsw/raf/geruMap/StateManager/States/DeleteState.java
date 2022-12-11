@@ -1,7 +1,10 @@
 package dsw.raf.geruMap.StateManager.States;
 
 import dsw.raf.geruMap.MapRepository.Implementation.Element;
+import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
 
@@ -19,20 +22,14 @@ public class DeleteState implements AbstractState {
     @Override
     public void mousePress(int x, int y, MapTreeItem node)
     {
-        MapTreeItem temp;
-
-        for (int i = node.getChildCount() - 1; i >= 0; i--)
+        for (ElementPainter i : ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getElems())
         {
-            temp = (MapTreeItem) node.getChildAt(i);
-
-            Point hit = ((Element)temp.getMapNode()).getPosition();
-            Dimension size = ((Element)temp.getMapNode()).getSize();
-
-            if ((x > hit.getX() && x < hit.getX() + size.width) && (y > hit.getY() && y < hit.getY() + size.height))
+            if (i.elementAt(i.getElement(),new Point(x,y)))
             {
-                temp.delete();
-                break;
+                System.out.println("deleted");
+                MainFrame.getInstance().getMapTree().findNode(i.getElement()).delete();
             }
+
         }
     }
 

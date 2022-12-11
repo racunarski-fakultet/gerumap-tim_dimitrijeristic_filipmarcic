@@ -25,11 +25,13 @@ public class MapRepositoryImpl implements MapRepository, Publisher
     private FactoryUtils factoryUtils;
     private Project selectedProj;
     private MapTreeItem selectedItem;
+    private MapSelection mapSelection;
 
     public MapRepositoryImpl() {
         projectExplorer = new ProjectExplorer("",null);
         subscribers = new ArrayList<>();
         factoryUtils = new FactoryUtils();
+        mapSelection = new MapSelection();
     }
 
     @Override

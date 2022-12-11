@@ -1,9 +1,11 @@
 package dsw.raf.geruMap.gui.swing.view;
 
+import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
@@ -59,6 +61,7 @@ public class MapView extends JPanel implements Subscriber
         this.addMouseMotionListener(new StateMouseListener());
         this.myMap = map;
         map.subscribe(this);
+        ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().subscribe(this);
         update(map);
     }
 }

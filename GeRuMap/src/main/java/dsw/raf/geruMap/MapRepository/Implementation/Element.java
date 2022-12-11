@@ -10,7 +10,7 @@ import java.awt.*;
 @Setter
 public abstract class Element extends MapNode
 {
-    private int boja;
+    private Color boja;
     private int debljina;
 
     protected Paint paint;
@@ -23,6 +23,7 @@ public abstract class Element extends MapNode
         super(name,parent);
 
         this.position = position;
+        this.boja = Color.WHITE;
         this.size = size;
         this.stroke = stroke;
         this.paint = paint;

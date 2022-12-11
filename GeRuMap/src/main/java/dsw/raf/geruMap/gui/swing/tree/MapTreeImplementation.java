@@ -4,10 +4,7 @@ import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import dsw.raf.geruMap.MapRepository.FactoryUtils;
-import dsw.raf.geruMap.MapRepository.Implementation.Element;
-import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
-import dsw.raf.geruMap.MapRepository.Implementation.Project;
-import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
+import dsw.raf.geruMap.MapRepository.Implementation.*;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.tree.controller.TreeItemMouseListener;
@@ -21,6 +18,7 @@ import lombok.Setter;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import java.util.*;
 
 @Getter
@@ -74,7 +72,9 @@ public class MapTreeImplementation implements MapTree
             return;
         //MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
         MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
-        parent.add(new MapTreeItem(child));
+        MapTreeItem item = new MapTreeItem(child);
+        parent.add(item);
+
         ((MapNodeComposite) parent.getMapNode()).add_child(child);
         treeView.expandPath(treeView.getSelectionPath());
         render();
@@ -87,7 +87,9 @@ public class MapTreeImplementation implements MapTree
             return;
         //MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
        // MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
-        parent.add(new MapTreeItem(child));
+        MapTreeItem item = new MapTreeItem(child);
+        parent.add(item);
+
         ((MapNodeComposite) parent.getMapNode()).add_child(child);
         treeView.expandPath(treeView.getSelectionPath());
         render();
