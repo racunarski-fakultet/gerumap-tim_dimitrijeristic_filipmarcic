@@ -20,7 +20,6 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
     public TabbedPane()
     {
         super();
-
     }
     @Override
     public void update(Object var1) {

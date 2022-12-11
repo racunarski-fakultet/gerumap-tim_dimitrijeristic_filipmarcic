@@ -3,3 +3,4 @@
 2022-11-19T21:57:25.198661100 ERROR_MESSAGE ProjectExplorer ne moze biti izbrisan
 2022-11-19T21:57:29.769139900 ERROR_MESSAGE ProjectExplorer ne moze biti preimenovan
 2022-12-05T21:21:49.004873700 ERROR_MESSAGE Ime ne moze biti prazno
+2022-12-10T18:35:38.564471400 ERROR_MESSAGE ProjectExplorer ne moze biti izbrisan
