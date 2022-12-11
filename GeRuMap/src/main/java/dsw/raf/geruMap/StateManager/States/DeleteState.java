@@ -47,7 +47,8 @@ public class DeleteState implements AbstractState {
             }
         }
 
-        MainFrame.getInstance().getMapTree().findNode(temp.getElement()).delete();
+        if (temp != null)
+            MainFrame.getInstance().getMapTree().findNode(temp.getElement()).delete();
     }
 
     @Override
