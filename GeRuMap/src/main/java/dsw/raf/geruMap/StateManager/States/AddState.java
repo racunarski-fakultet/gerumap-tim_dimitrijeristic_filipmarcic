@@ -10,12 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddState implements AbstractState{
-    GhostLink ghostLink;
 
 
     @Override
     public void mouseDrag(int x, int y) {
-
     }
 
     @Override

@@ -68,7 +68,6 @@ public class MapView extends JPanel implements Subscriber
         this.myMap = map;
         map.subscribe(this);
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().subscribe(this);
-        ((MapRepositoryImpl)AppCore.getInstance().getRep()).getGhostLink().subscribe(this);
         update(map);
     }
 }

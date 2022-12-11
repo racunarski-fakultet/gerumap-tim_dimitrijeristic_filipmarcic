@@ -10,17 +10,17 @@ import lombok.Setter;
 import java.awt.*;
 @Getter
 @Setter
-public class GhostLink extends Element implements Publisher {
+public class GhostLink implements Publisher {
     private MapView sub;
     Point from;
     Point to;
-    public GhostLink(Point from, Point to,int thickness, Paint paint) {
-        super("ghost", null, from, new Dimension(0,0), thickness, paint);
+    public GhostLink(Point from) {
+
         this.from = from;
-        this.paint = paint;
+        this.to = from;
     }
     public GhostLink() {
-        super(null, null, null, null, 0, null);
+
     }
 
     @Override

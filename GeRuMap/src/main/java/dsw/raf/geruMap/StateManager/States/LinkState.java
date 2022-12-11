@@ -18,15 +18,17 @@ public class LinkState implements AbstractState {
     @Override
     public void mouseDrag(int x, int y) {
         this.ghostLink.setTo(new Point(x,y));
+
+
         MainFrame.getInstance().getDesktop().repaint();
     }
 
     @Override
     public void mousePress(int x, int y, MapTreeItem node) {
-        this.ghostLink = new GhostLink(new Point(x,y),new Point(x,y),2,Color.BLACK);
+        this.ghostLink = new GhostLink(new Point(x,y));
         ghostLink.subscribe((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent());
         ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).setGhost(new GhostPainter(ghostLink));
-        MainFrame.getInstance().getDesktop().repaint();
+       // MainFrame.getInstance().getDesktop().repaint();
 
         System.out.println("PRESS");
     }

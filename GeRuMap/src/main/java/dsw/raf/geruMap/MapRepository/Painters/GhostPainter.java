@@ -8,27 +8,20 @@ import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
 
-public class GhostPainter extends ElementPainter{
+public class GhostPainter {
+    GhostLink element;
 
-    public GhostPainter(Element element) {
-        super(element);
+    public GhostPainter(GhostLink element) {
+        this.element = element;
     }
 
 
-    @Override
-    public void paint(Graphics2D g)
-    {
-        GhostLink temp = (GhostLink)element;
-
-        g.setPaint(temp.getPaint());
+    public void paint(Graphics2D g) {
         g.setColor(Color.BLACK);
-        g.setStroke(new BasicStroke(element.getThickness()));
-        g.drawLine(temp.getFrom().x,temp.getFrom().y,temp.getTo().x,temp.getTo().y);
+        g.setStroke(new BasicStroke(2));
+        g.drawLine(element.getFrom().x, element.getFrom().y, element.getTo().x, element.getTo().y);
     }
+}
 
-    @Override
-    public boolean elementAt(Element element, Point pos) {
-        return false;
-    }
-    }
+
 
