@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.util.Random;
+
 @Getter
 @Setter
 public abstract class Element extends MapNode
@@ -21,7 +23,7 @@ public abstract class Element extends MapNode
         super(name,parent);
 
         this.position = position;
-        this.boja = Color.WHITE;
+        this.boja = new Color(new Random().nextInt()%10);
         this.size = size;
         this.thickness = thickness;
         this.paint = paint;

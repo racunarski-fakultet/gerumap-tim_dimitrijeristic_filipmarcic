@@ -56,7 +56,12 @@ public class MapView extends JPanel implements Subscriber
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
 
         for (ElementPainter painter : elems)
-            painter.paint(g2);
+            if (painter instanceof LinkPainter)
+                painter.paint(g2);
+
+        for (ElementPainter painter : elems)
+            if (painter instanceof ThoughtPainter)
+                painter.paint(g2);
 
         if(ghost!=null)
             ghost.paint(g2);

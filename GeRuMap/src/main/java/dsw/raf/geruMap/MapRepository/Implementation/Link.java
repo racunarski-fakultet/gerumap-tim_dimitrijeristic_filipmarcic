@@ -1,8 +1,13 @@
 package dsw.raf.geruMap.MapRepository.Implementation;
+import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.util.Random;
+
 @Getter
 @Setter
 public class Link extends Element
@@ -12,7 +17,7 @@ public class Link extends Element
 
     public Link(Thought parentThought, Thought childThought,int thickness, Paint paint)
     {
-        super(null,null,null,null,thickness,paint);
+        super(Integer.toString(new Random().nextInt()), (MapNodeComposite) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap(),null,null,thickness,paint);
         this.parentThought=parentThought;
         this.childThought=childThought;
     }
