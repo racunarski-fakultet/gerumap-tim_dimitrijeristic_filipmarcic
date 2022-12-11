@@ -22,8 +22,7 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-       // System.out.println("MOUSE CLICKED");
-        MainFrame.getInstance().getState_man().getCurrentState().mouseClick(e.getX(),e.getY());
+
     }
 
     @Override
@@ -36,6 +35,7 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
         MapTreeItem TreeItemMap = MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
 
         MainFrame.getInstance().getState_man().getCurrentState().mousePress(e.getX(),e.getY(), TreeItemMap);
+        MainFrame.getInstance().getDesktop().repaint();
         render();
 
     }
@@ -49,8 +49,7 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
        // System.out.println("MOUSE DRAGGED");
         MainFrame.getInstance().getState_man().getCurrentState().mouseDrag(e.getX(),e.getY());
     }
-    private void render()
-    {
+    private void render() {
         MapTreeItem TreeItemMap = ((MapTreeImplementation) MainFrame.getInstance().getMapTree()).findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
         treeView.setSelectionPath(new TreePath(TreeItemMap.getPath()));
         SwingUtilities.updateComponentTreeUI(treeView);

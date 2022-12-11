@@ -10,10 +10,6 @@ import dsw.raf.geruMap.gui.swing.view.MapView;
 import java.awt.*;
 
 public class SelectionState implements AbstractState{
-    @Override
-    public void mouseClick(int x, int y) {
-        System.out.println("SELECTION STATE CLICK");
-    }
 
     @Override
     public void mouseDrag(int x, int y) {

@@ -2,11 +2,13 @@ package dsw.raf.geruMap.gui.swing.view;
 
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
+import dsw.raf.geruMap.MapRepository.Painters.GhostPainter;
 import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.core.Subscriber;
@@ -36,8 +38,13 @@ public class MapView extends JPanel implements Subscriber
                 for (MapNode child : ((MindMap) var1).getChildren()) {
                     if (child instanceof Link)
                         elems.add(new LinkPainter((Link) child));
-                    else
+                    else if(child instanceof Thought)
                         elems.add(new ThoughtPainter((Thought) child));
+                    else
+                    {
+                        elems.add(new GhostPainter((GhostLink)child));
+                        System.out.println("PUSIGA");
+                    }
                 }
             }
 
@@ -62,6 +69,7 @@ public class MapView extends JPanel implements Subscriber
         this.myMap = map;
         map.subscribe(this);
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().subscribe(this);
+        ((MapRepositoryImpl)AppCore.getInstance().getRep()).getGhostLink().subscribe(this);
         update(map);
     }
 }

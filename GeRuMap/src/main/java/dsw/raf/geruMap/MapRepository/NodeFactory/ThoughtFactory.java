@@ -16,7 +16,7 @@ public class ThoughtFactory extends NodeFactory
         Random r = new Random();
         int x = Math.abs(r.nextInt()%500);
         int y = Math.abs(r.nextInt()%500);
-        Thought ret = new Thought(name,parent,new Point(x,y),new Dimension(100,50),new BasicStroke(2f),fill);
+        Thought ret = new Thought(name,parent,new Point(x,y),new Dimension(100,50),2,fill);
 
 
 

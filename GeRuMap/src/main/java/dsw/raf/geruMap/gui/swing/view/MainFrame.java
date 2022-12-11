@@ -1,6 +1,7 @@
 package dsw.raf.geruMap.gui.swing.view;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.StateManager.StateManager;
 import dsw.raf.geruMap.gui.swing.controller.ActionManager;
@@ -25,6 +26,7 @@ public class MainFrame extends JFrame
     private DescriptionLabel description;
     private StateManager state_man;
     private StateToolbar stbar;
+    private GhostLink glink;
     private MainFrame(){}
 
     public static MainFrame getInstance()

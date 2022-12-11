@@ -9,10 +9,7 @@ import dsw.raf.geruMap.gui.swing.view.MapView;
 import java.awt.*;
 
 public class DeleteState implements AbstractState {
-    @Override
-    public void mouseClick(int x, int y) {
 
-    }
 
     @Override
     public void mouseDrag(int x, int y) {

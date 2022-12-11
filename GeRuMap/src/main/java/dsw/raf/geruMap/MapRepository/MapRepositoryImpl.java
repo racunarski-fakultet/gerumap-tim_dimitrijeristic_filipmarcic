@@ -1,6 +1,7 @@
 package dsw.raf.geruMap.MapRepository;
 
 
+import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.core.MapRepository;
@@ -26,12 +27,14 @@ public class MapRepositoryImpl implements MapRepository, Publisher
     private Project selectedProj;
     private MapTreeItem selectedItem;
     private MapSelection mapSelection;
+    private GhostLink ghostLink;
 
     public MapRepositoryImpl() {
         projectExplorer = new ProjectExplorer("",null);
         subscribers = new ArrayList<>();
         factoryUtils = new FactoryUtils();
         mapSelection = new MapSelection();
+        ghostLink = new GhostLink();
     }
 
     @Override
@@ -39,10 +42,6 @@ public class MapRepositoryImpl implements MapRepository, Publisher
         return projectExplorer;
     }
 
-    public FactoryUtils getFactoryUtils()
-    {
-        return this.factoryUtils;
-    }
     @Override
     public void unsubscribe(Subscriber var1) {
         subscribers.remove(var1);

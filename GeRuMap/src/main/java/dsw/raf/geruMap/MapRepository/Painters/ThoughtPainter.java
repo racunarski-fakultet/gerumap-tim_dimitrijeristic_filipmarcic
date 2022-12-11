@@ -16,13 +16,10 @@ public class ThoughtPainter extends ElementPainter{
     @Override
     public void paint(Graphics2D g) {
 
-       // g.setPaint(Color.RED);
 
-        g.setStroke(element.getStroke());
-        //g.draw(getShape());
+        g.setStroke(new BasicStroke(element.getThickness()));
         g.setPaint(element.getPaint());
 
-        //g.fill(getShape());
 
         if (element instanceof Thought)
         {

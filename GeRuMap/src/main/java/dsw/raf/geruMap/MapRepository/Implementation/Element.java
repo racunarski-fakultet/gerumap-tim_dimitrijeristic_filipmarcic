@@ -11,21 +11,19 @@ import java.awt.*;
 public abstract class Element extends MapNode
 {
     private Color boja;
-    private int debljina;
-
     protected Paint paint;
-    protected Stroke stroke;
+    protected int thickness;
     protected Dimension size;
     protected Point position;
 
-    public Element(String name, MapNodeComposite parent, Point position, Dimension size, Stroke stroke, Paint paint)
+    public Element(String name, MapNodeComposite parent, Point position, Dimension size, int thickness, Paint paint)
     {
         super(name,parent);
 
         this.position = position;
         this.boja = Color.WHITE;
         this.size = size;
-        this.stroke = stroke;
+        this.thickness = thickness;
         this.paint = paint;
     }
 }
