@@ -44,6 +44,7 @@ public class MainFrame extends JFrame
         act_man = new ActionManager();
         mapTree = new MapTreeImplementation();
         state_man = new StateManager();
+        StylePicker.getInstance();
         initialiseGUI();
     }
 

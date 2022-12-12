@@ -18,7 +18,7 @@ public class ThoughtPainter extends ElementPainter{
 
 
         g.setStroke(new BasicStroke(element.getThickness()));
-        g.setPaint(element.getPaint());
+      //  g.setPaint(element.getPaint());
 
 
         if (element instanceof Thought)
@@ -41,7 +41,7 @@ public class ThoughtPainter extends ElementPainter{
             }
             else
             {
-                g.setPaint(Color.BLACK);
+                g.setPaint(element.getPaint());
                 g.drawOval(x, y, width, temp.getSize().height);
                 g.setPaint(Color.WHITE);
                 g.fillOval(x, y, width, temp.getSize().height);
