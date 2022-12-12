@@ -2,15 +2,9 @@ package dsw.raf.geruMap.gui.swing.view;
 
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
-import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
-import dsw.raf.geruMap.MapRepository.Implementation.Link;
-import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
-import dsw.raf.geruMap.MapRepository.Implementation.Thought;
+import dsw.raf.geruMap.MapRepository.Implementation.*;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
-import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
-import dsw.raf.geruMap.MapRepository.Painters.GhostPainter;
-import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
-import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
+import dsw.raf.geruMap.MapRepository.Painters.*;
 import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
 import lombok.Getter;
@@ -27,7 +21,9 @@ public class MapView extends JPanel implements Subscriber
 {
     List<ElementPainter> elems;
     GhostPainter ghost;
+    LassoPainter lasso;
     MapNode myMap;
+
     @Override
     public void update(Object var1)
     {
@@ -65,6 +61,8 @@ public class MapView extends JPanel implements Subscriber
 
         if(ghost!=null)
             ghost.paint(g2);
+        if(lasso!=null)
+            lasso.paint(g2);
     }
 
     public MapView(MindMap map) {
