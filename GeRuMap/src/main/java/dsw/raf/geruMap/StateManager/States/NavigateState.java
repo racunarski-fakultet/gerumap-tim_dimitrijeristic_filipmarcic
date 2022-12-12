@@ -12,30 +12,31 @@ import java.awt.*;
 
 public class NavigateState implements AbstractState{
 
-    Point startPoint;
+    Point start;
     int counter;
 
     @Override
     public void mouseDrag(int x, int y) {
+        Point end = new Point(x,y);
+
+        Point delta = new Point(start.x - end.x, start.y - end.y);
 
         for (ElementPainter i : ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getElems())
         {
             if(i instanceof ThoughtPainter)
             {
-                Point newPoint = i.getElement().getPosition();
-                int dx = (x - startPoint.x)/20;
-                int dy = (y - startPoint.y)/20;
-                newPoint.x= newPoint.x+dx;
-                newPoint.y= newPoint.y+dy;
-                i.getElement().setPosition(newPoint);
+                i.getElement().getPosition().x -= delta.x;
+                i.getElement().getPosition().y -= delta.y;
             }
         }
+
+        start = end;
         MainFrame.getInstance().getDesktop().repaint();
     }
 
     @Override
     public void mousePress(int x, int y, MapTreeItem node) {
-        startPoint = new Point(x,y);
+        start = new Point(x,y);
         counter=0;
     }
 

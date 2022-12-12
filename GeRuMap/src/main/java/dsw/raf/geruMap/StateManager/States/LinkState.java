@@ -84,7 +84,7 @@ public class LinkState implements AbstractState {
 
         }
 
-        if (node2 != null)
+        if (node2 != null && !node2.equals(node1))
             MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()),new Link(node1,node2,2,new Color(255,255,255)));
 
     }
