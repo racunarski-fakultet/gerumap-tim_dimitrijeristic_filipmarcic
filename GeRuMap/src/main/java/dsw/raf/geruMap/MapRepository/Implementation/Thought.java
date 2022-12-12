@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.util.Objects;
+
 @Getter
 @Setter
 public class Thought extends Element
@@ -15,5 +17,19 @@ public class Thought extends Element
         super(name, parent,position,size,thickness,paint);
         this.position=position;
         this.size=size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Thought thought = (Thought) o;
+        return position.equals(thought.position) && size.equals(thought.size);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, size);
     }
 }

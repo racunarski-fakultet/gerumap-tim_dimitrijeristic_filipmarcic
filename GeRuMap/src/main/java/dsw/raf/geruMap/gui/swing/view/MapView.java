@@ -49,7 +49,7 @@ public class MapView extends JPanel implements Subscriber
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         for (ElementPainter painter : elems)
             if (painter instanceof LinkPainter)
