@@ -70,10 +70,6 @@ public class StylePicker extends JFrame {
         return instance.colorChooserOut;
     }
 
-    public void setColorChooserOut(JColorChooser colorChooserOut) {
-        instance.colorChooserOut = colorChooserOut;
-    }
-
     public int getThickness() {
         return Integer.parseInt(instance.thickness.getText());
     }
