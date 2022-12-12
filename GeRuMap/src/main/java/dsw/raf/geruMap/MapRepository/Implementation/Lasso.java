@@ -53,7 +53,7 @@ public class Lasso implements Publisher
             int left_x = epos.x - esize.width/2;
             int right_x = epos.x + esize.width/2;
             int up_y = epos.y - esize.height/2;
-            int down_y = epos.y - esize.height/2;
+            int down_y = epos.y + esize.height/2;
 
             if ((left_x > start.x && left_x < end.x || right_x > start.x && right_x < end.x) && (up_y > start.y && up_y < end.y || down_y > start.y && down_y < end.y))
                 return true;
