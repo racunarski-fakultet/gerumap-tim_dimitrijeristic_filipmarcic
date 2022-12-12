@@ -24,7 +24,6 @@ public class ThoughtPainter extends ElementPainter{
         if (element instanceof Thought)
         {
             Thought temp=(Thought)element;
-            System.out.println(temp.getSize());
             int width = g.getFontMetrics().stringWidth(temp.getName())*2;
             temp.setSize(new Dimension(width, (int) temp.getSize().getHeight()));
             int x = (int)temp.getPosition().getX() - temp.getSize().width/2;
@@ -37,7 +36,7 @@ public class ThoughtPainter extends ElementPainter{
                 g.setPaint(Color.WHITE);
                 g.fillOval(x,y,width,temp.getSize().height);
                 g.setPaint(Color.BLACK);
-                g.drawString(temp.getName(), x,y);
+                g.drawString(temp.getName(), x- temp.getSize().width/4,y-temp.getSize().height/2+3);
             }
             else
             {
@@ -46,7 +45,8 @@ public class ThoughtPainter extends ElementPainter{
                 g.setPaint(Color.WHITE);
                 g.fillOval(x, y, width, temp.getSize().height);
                 g.setPaint(Color.BLACK);
-                g.drawString(temp.getName(), x, y);
+                g.drawString(temp.getName(), x+ temp.getSize().width/4,y+temp.getSize().height/2+3);
+
             }
 
         }

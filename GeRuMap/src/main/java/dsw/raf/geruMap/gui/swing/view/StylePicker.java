@@ -9,11 +9,9 @@ import lombok.Setter;
 import javax.swing.*;
 import java.awt.*;
 
-@Getter
-@Setter
+
 public class StylePicker extends JFrame {
     private static JColorChooser colorChooserOut;
-    private static JColorChooser getColorChooserIn;
     private static TextField thickness;
     private static Button selectionButton;
     private StylePicker(){}

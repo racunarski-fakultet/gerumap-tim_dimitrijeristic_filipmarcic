@@ -46,7 +46,6 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
     }
     @Override
     public void mouseDragged(MouseEvent e) {
-       // System.out.println("MOUSE DRAGGED");
         MainFrame.getInstance().getState_man().getCurrentState().mouseDrag(e.getX(),e.getY());
     }
     private void render() {

@@ -51,7 +51,6 @@ public class LinkState implements AbstractState {
         }
        // MainFrame.getInstance().getDesktop().repaint();
 
-        System.out.println("PRESS");
     }
 
     @Override
@@ -60,7 +59,6 @@ public class LinkState implements AbstractState {
         Point location = new Point(x,y);
         ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).setGhost(null);
         MainFrame.getInstance().getDesktop().repaint();
-        System.out.println("RELEASE");
 
         for (ElementPainter i : ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getElems())
         {
