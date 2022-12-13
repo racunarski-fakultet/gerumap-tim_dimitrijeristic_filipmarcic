@@ -66,8 +66,10 @@ public class LinkState implements AbstractState {
             {
                 if (i.elementAt(i.getElement(),location))
                 {
-                    ghostLink.setFrom(i.getElement().getPosition());
+                   // ghostLink.setFrom(i.getElement().getPosition());
                     node2 = (Thought) i.getElement();
+                    if(node1==node2)
+                        node2=null;
                 }
 
             }

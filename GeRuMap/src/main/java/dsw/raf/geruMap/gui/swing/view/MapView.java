@@ -31,6 +31,7 @@ public class MapView extends JPanel implements Subscriber
     private int lastvalueH =1;
 
     public AffineTransform affineTransform;
+    private double scaling = 1;
     private double translateX = 0;
     private double translateY = 0;
     private final double translateFactor = 1;

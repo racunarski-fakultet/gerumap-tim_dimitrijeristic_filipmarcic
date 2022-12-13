@@ -23,6 +23,8 @@ public class ZoomInAction extends AbstractGeruMapAction{
             temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
         else
             temp.getAffineTransform().setToScale(5,5);
+        System.out.println(temp.getAffineTransform().getScaleX());
+
         temp.repaint();
     }
 }
