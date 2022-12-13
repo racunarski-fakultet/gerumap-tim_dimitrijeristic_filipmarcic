@@ -1,5 +1,7 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
 import javax.swing.*;
@@ -16,6 +18,11 @@ public class ZoomInAction extends AbstractGeruMapAction{
     }
 
     public void actionPerformed(ActionEvent arg0) {
-
+        MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
+        if(temp.getAffineTransform().getScaleX()*1.2<5)
+            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
+        else
+            temp.setScaling(5);
+        temp.repaint();
     }
 }
