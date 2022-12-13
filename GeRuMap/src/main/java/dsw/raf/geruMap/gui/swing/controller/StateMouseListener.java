@@ -31,7 +31,7 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
         System.out.println("X:"+e.getX()+" Y:"+e.getY());
         MapTreeItem TreeItemMap = MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
         MainFrame.getInstance().getState_man().getCurrentState().mousePress(e.getX(),e.getY(), TreeItemMap);
-        MainFrame.getInstance().getDesktop().repaint();
+        MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
         render();
 
     }
@@ -39,12 +39,13 @@ public class StateMouseListener implements MouseListener, MouseMotionListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         MainFrame.getInstance().getState_man().getCurrentState().mouseRelease(e.getX(),e.getY());
-        MainFrame.getInstance().getDesktop().repaint();
+        MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
+
     }
     @Override
     public void mouseDragged(MouseEvent e) {
         MainFrame.getInstance().getState_man().getCurrentState().mouseDrag(e.getX(),e.getY());
-        MainFrame.getInstance().getDesktop().repaint();
+        MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
     }
     private void render() {
         MapTreeItem TreeItemMap = (MainFrame.getInstance().getMapTree()).findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());

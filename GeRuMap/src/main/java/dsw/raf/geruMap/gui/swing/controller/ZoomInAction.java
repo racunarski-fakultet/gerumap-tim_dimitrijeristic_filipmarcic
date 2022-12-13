@@ -1,10 +1,15 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.MapRepository.Implementation.Thought;
+import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
+import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
+import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -19,11 +24,33 @@ public class ZoomInAction extends AbstractGeruMapAction{
 
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
-        if(temp.getAffineTransform().getScaleX()*1.2<5)
-            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
+//        if(temp.getAffineTransform().getScaleX()*1.2<5)
+//            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
+//        else
+//            temp.getAffineTransform().setToScale(5,5);
+//        System.out.println(temp.getAffineTransform().getScaleX());
+
+//        for(ElementPainter painter : temp.getElems())
+//        {
+//
+//                if(painter.getScaleFactor()*1.2<3)
+//                {
+//                    painter.setScaleFactor(painter.getScaleFactor()*1.2);
+//                    if(painter instanceof ThoughtPainter)
+//                    {
+//                        Thought thought = (Thought) painter.getElement();
+//                       // thought.setSize(new Dimension((int) (thought.getSize().width*1.2), (int) (thought.getSize().height*1.2)));
+//                    }
+//                }
+//                else
+//                    painter.setScaleFactor(3.0);
+//            }
+        if(temp.getScaling()*1.2>3)
+            temp.setScaling(3);
         else
-            temp.getAffineTransform().setToScale(5,5);
-        System.out.println(temp.getAffineTransform().getScaleX());
+            temp.setScaling(temp.getScaling()*1.2);
+
+
 
         temp.repaint();
     }

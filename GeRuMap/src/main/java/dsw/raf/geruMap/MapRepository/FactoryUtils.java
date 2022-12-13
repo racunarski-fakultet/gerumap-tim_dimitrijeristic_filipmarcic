@@ -18,9 +18,9 @@ public class FactoryUtils {
     public static MapNode createNode(MapNodeComposite parent)
     {
         if (parent instanceof ProjectExplorer)
-           return projectFactory.createNode(Double.toString(Math.random()),parent);
+           return projectFactory.createNode("Project "+ ((ProjectExplorer) parent).getCounter(),parent);
         if (parent instanceof Project)
-           return mindMapFactory.createNode(Double.toString(Math.random()),parent);
+           return mindMapFactory.createNode("Mind map "+ ((Project) parent).getCounter(),parent);
         if (parent instanceof MindMap)
            return thoughtFactory.createNode(Integer.toString(((MindMap)parent).getCounter()),parent);
         return null;

@@ -31,7 +31,7 @@ public class MapView extends JPanel implements Subscriber
     private int lastvalueH =1;
 
     public AffineTransform affineTransform;
-    private double scaling = 1;
+    private double scaling = 1.0;
     private double translateX = 0;
     private double translateY = 0;
     private final double translateFactor = 1;
@@ -64,8 +64,8 @@ public class MapView extends JPanel implements Subscriber
         if(affineTransform==null)
             affineTransform = g2.getTransform();
 
-        g2.setTransform(affineTransform);
-
+        //g2.setTransform(affineTransform);
+        g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*scaling)));
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 

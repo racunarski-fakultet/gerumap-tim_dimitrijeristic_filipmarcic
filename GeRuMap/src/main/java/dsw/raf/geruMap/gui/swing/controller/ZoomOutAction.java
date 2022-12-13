@@ -1,10 +1,14 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.MapRepository.Implementation.Thought;
+import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
+import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -19,11 +23,37 @@ public class ZoomOutAction extends AbstractGeruMapAction {
 
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
-        if(temp.getAffineTransform().getScaleX()*0.8>1)
-            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*0.8,temp.getAffineTransform().getScaleY()*0.8);
+//        if(temp.getAffineTransform().getScaleX()*0.8>1)
+//            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*0.8,temp.getAffineTransform().getScaleY()*0.8);
+//        else
+//            temp.getAffineTransform().setToScale(1,1);
+//        System.out.println(temp.getAffineTransform().getScaleX());
+
+//        for(ElementPainter painter : temp.getElems())
+//        {
+//            if(painter.getScaleFactor()*0.8>1)
+//            {
+//                painter.setScaleFactor(painter.getScaleFactor()*0.8);
+//                if(painter instanceof ThoughtPainter)
+//                {
+//                    Thought thought = (Thought) painter.getElement();
+//               //     thought.setSize(new Dimension((int) (thought.getSize().width*0.8), (int) (thought.getSize().height*0.8)));
+//                }
+//            }
+//            else
+//            {
+//                painter.setScaleFactor(1.0);
+//                if(painter instanceof ThoughtPainter)
+//                {
+//                    Thought thought = (Thought) painter.getElement();
+//                  //  thought.getSize().height=50;
+//                }
+//            }
+//        }
+        if(temp.getScaling()*0.8<1)
+            temp.setScaling(1.0);
         else
-            temp.getAffineTransform().setToScale(1,1);
-        System.out.println(temp.getAffineTransform().getScaleX());
+            temp.setScaling(temp.getScaling()*0.8);
 
         temp.repaint();
     }

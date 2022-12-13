@@ -28,7 +28,7 @@ public class LinkState implements AbstractState {
         this.ghostLink.setTo(new Point(x,y));
 
 
-        MainFrame.getInstance().getDesktop().repaint();
+        MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
     }
 
     @Override

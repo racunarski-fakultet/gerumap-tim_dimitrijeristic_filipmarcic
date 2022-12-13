@@ -4,6 +4,8 @@ import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.Element;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import javax.swing.text.Position;
 import java.awt.*;
@@ -15,17 +17,18 @@ public class ThoughtPainter extends ElementPainter{
 
     @Override
     public void paint(Graphics2D g) {
+        MapView view = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
 
-
-        g.setStroke(new BasicStroke(element.getThickness()));
-      //  g.setPaint(element.getPaint());
-
+        g.setStroke(new BasicStroke((float) (element.getThickness()*view.getScaling())));
+       // g.setFont(new Font(g.getFont().getName(),g.getFont().getStyle(), (int) (g.getFont().getSize())));
 
         if (element instanceof Thought)
         {
             Thought temp=(Thought)element;
             int width = g.getFontMetrics().stringWidth(temp.getName())*2;
-            temp.setSize(new Dimension(width, (int) temp.getSize().getHeight()));
+            int height = g.getFontMetrics().getHeight()*2;
+        //    width *= scaleFactor;
+            temp.setSize(new Dimension(width, height));
             int x = (int)temp.getPosition().getX() - temp.getSize().width/2;
             int y = (int)temp.getPosition().getY() - temp.getSize().height/2;
 
@@ -37,6 +40,7 @@ public class ThoughtPainter extends ElementPainter{
                 g.fillOval(x,y,width,temp.getSize().height);
                 g.setPaint(Color.BLACK);
                 g.drawString(temp.getName(), x + temp.getSize().width/4,y + temp.getSize().height/2+5);
+
             }
             else
             {

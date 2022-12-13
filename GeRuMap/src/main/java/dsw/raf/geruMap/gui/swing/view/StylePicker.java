@@ -33,7 +33,7 @@ public class StylePicker extends JFrame {
                     {
                         element.setPaint(colorChooserOut.getColor());
                         element.setThickness(Integer.parseInt(thickness.getText()));
-                        MainFrame.getInstance().getDesktop().repaint();
+                        MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
 
                     }
                 instance.setVisible(false);
