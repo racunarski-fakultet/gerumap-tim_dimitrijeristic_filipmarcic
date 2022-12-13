@@ -19,7 +19,7 @@ public class SelectionState implements AbstractState{
     {
         lasso.setEnd(new Point(x,y));
 
-        MainFrame.getInstance().getDesktop().repaint();
+       // MainFrame.getInstance().getDesktop().repaint();
     }
 
     @Override
@@ -57,6 +57,6 @@ public class SelectionState implements AbstractState{
         }
 
         ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).setLasso(null);
-        MainFrame.getInstance().getDesktop().repaint();
+       // MainFrame.getInstance().getDesktop().repaint();
     }
 }

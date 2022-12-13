@@ -21,8 +21,11 @@ public class ActionManager
     private LinkStateAction linkstate_act;
     private MoveStateAction movestate_act;
     private SelectionStateAction selectionstate_act;
-    private ZoomStateAction zoomstate_act;
     private StyleAction style_act;
+    private ZoomOutAction zoomOut_act;
+    private ZoomInAction zoomIn_act;
+    private ZoomStateAction zoomstate_act;
+
     public ActionManager() {init_actions();}
 
     private void init_actions()
@@ -40,5 +43,8 @@ public class ActionManager
         selectionstate_act = new SelectionStateAction();
         zoomstate_act = new ZoomStateAction();
         style_act = new StyleAction();
+        zoomIn_act = new ZoomInAction();
+        zoomOut_act = new ZoomOutAction();
+
     }
 }

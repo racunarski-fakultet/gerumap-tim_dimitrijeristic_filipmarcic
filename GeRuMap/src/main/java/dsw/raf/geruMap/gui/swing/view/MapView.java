@@ -12,6 +12,9 @@ import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +22,20 @@ import java.util.List;
 @Setter
 public class MapView extends JPanel implements Subscriber
 {
-    List<ElementPainter> elems;
-    GhostPainter ghost;
-    LassoPainter lasso;
-    MapNode myMap;
+    private List<ElementPainter> elems;
+    private GhostPainter ghost;
+    private LassoPainter lasso;
+    private MapNode myMap;
+    private Scrollbar vScroll = new Scrollbar(Scrollbar.VERTICAL);
+    private Scrollbar hScroll = new Scrollbar(Scrollbar.HORIZONTAL);
+    private int lastvalueH =1;
+
+    public AffineTransform affineTransform;
+    private double scaling = 1;
+    private double translateX = 0;
+    private double translateY = 0;
+    private final double scalingFactor = 1.2;
+    private final double translateFactor = 1;
 
     @Override
     public void update(Object var1)
@@ -49,6 +62,12 @@ public class MapView extends JPanel implements Subscriber
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+        if(affineTransform==null)
+            affineTransform = g2.getTransform();
+
+        g2.setTransform(affineTransform);
+
+
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         for (ElementPainter painter : elems)
@@ -66,11 +85,43 @@ public class MapView extends JPanel implements Subscriber
     }
 
     public MapView(MindMap map) {
+        initializeGUI();
+
         this.addMouseListener(new StateMouseListener());
         this.addMouseMotionListener(new StateMouseListener());
         this.myMap = map;
         map.subscribe(this);
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().subscribe(this);
         update(map);
+    }
+    private void initializeGUI()
+    {
+        this.setLayout(new BorderLayout());
+        this.add(vScroll,BorderLayout.EAST);
+        this.add(hScroll,BorderLayout.SOUTH);
+        hScroll.setBackground(Color.white);
+        vScroll.setBackground(Color.white);
+        hScroll.setMaximum(100);
+        hScroll.setMinimum(1);
+        hScroll.addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                System.out.println(e.getAdjustmentType());
+                if(e.getValue()> lastvalueH)
+                {
+                    affineTransform.translate(-e.getValue()*translateFactor,translateY);
+                    repaint();
+                    lastvalueH =e.getValue();
+                }
+                else if(e.getValue()< lastvalueH)
+                {
+                    affineTransform.translate(e.getValue()*translateFactor,translateY);
+                    repaint();
+                    lastvalueH =e.getValue();
+                }
+                else
+                    repaint();
+            }
+        });
     }
 }

@@ -36,7 +36,7 @@ public class ThoughtPainter extends ElementPainter{
                 g.setPaint(Color.WHITE);
                 g.fillOval(x,y,width,temp.getSize().height);
                 g.setPaint(Color.BLACK);
-                g.drawString(temp.getName(), x + temp.getSize().width/4,y + temp.getSize().height/2+3);
+                g.drawString(temp.getName(), x + temp.getSize().width/4,y + temp.getSize().height/2+5);
             }
             else
             {
@@ -45,7 +45,7 @@ public class ThoughtPainter extends ElementPainter{
                 g.setPaint(Color.WHITE);
                 g.fillOval(x, y, width, temp.getSize().height);
                 g.setPaint(Color.BLACK);
-                g.drawString(temp.getName(), x + temp.getSize().width/4,y + temp.getSize().height/2+3);
+                g.drawString(temp.getName(), x + temp.getSize().width/4,y + temp.getSize().height/2+5);
 
             }
 

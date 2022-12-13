@@ -28,7 +28,7 @@ public class MoveState implements AbstractState{
         }
 
         start = end;
-        MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
+       // MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();
     }
 
     @Override

@@ -28,7 +28,6 @@ public class DeleteState implements AbstractState {
         {
             if (i.elementAt(i.getElement(),new Point(x,y)))
             {
-                System.out.println("deleted");
                 temp = i;
             }
         }

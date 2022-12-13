@@ -13,7 +13,6 @@ import java.awt.*;
 public class NavigateState implements AbstractState{
 
     Point start;
-    int counter;
 
     @Override
     public void mouseDrag(int x, int y) {
@@ -31,17 +30,15 @@ public class NavigateState implements AbstractState{
         }
 
         start = end;
-        MainFrame.getInstance().getDesktop().repaint();
+       // MainFrame.getInstance().getDesktop().repaint();
     }
 
     @Override
     public void mousePress(int x, int y, MapTreeItem node) {
         start = new Point(x,y);
-        counter=0;
     }
 
     @Override
     public void mouseRelease(int x, int y) {
-         counter = 0;
     }
 }

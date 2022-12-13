@@ -21,7 +21,6 @@ public class AddState implements AbstractState{
     @Override
     public void mousePress(int x, int y, MapTreeItem node)
     {
-        System.out.println("ADD STATE press");
         String content = JOptionPane.showInputDialog("Unesi sadrzaj");
         int width = content.length()*6;
         Dimension size = new Dimension(width,50);
