@@ -13,6 +13,7 @@ import java.util.List;
 public class MindMap extends MapNodeComposite implements Publisher
 {
     private int counter =0;
+    public Double scaling =1.0;
     private List<MapNode> elems = new ArrayList<MapNode>();
 
     public MindMap(String name,MapNodeComposite parent)

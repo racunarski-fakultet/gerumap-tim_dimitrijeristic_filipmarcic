@@ -21,11 +21,17 @@ public class AddState implements AbstractState{
     @Override
     public void mousePress(int x, int y, MapTreeItem node)
     {
-        String content = JOptionPane.showInputDialog("Unesi sadrzaj");
-        int width = content.length()*6;
-        Dimension size = new Dimension(width,50);
-        Thought child = new Thought(content, (MapNodeComposite) node.getMapNode(),new Point(x , y),size,StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
-        MainFrame.getInstance().getMapTree().add_node(node,child);
+        try
+        {
+            String content = JOptionPane.showInputDialog("Unesi sadrzaj");
+            int width = content.length()*6;
+            Dimension size = new Dimension(width,50);
+            Thought child = new Thought(content, (MapNodeComposite) node.getMapNode(),new Point(x , y),size,StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
+            MainFrame.getInstance().getMapTree().add_node(node,child);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

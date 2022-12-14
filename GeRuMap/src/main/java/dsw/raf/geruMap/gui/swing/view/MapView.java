@@ -7,6 +7,7 @@ import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.*;
 import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
+import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,11 +31,12 @@ public class MapView extends JPanel implements Subscriber
     private Scrollbar hScroll = new Scrollbar(Scrollbar.HORIZONTAL);
     private int lastvalueH =1;
 
-    public AffineTransform affineTransform;
+    public AffineTransform affineTransform=new AffineTransform();
     private double scaling = 1.0;
     private double translateX = 0;
     private double translateY = 0;
-    private final double translateFactor = 1;
+    private final double translateFactor = 10;
+    private final double scaleFactor = 1.2;
 
     @Override
     public void update(Object var1)
@@ -59,15 +61,12 @@ public class MapView extends JPanel implements Subscriber
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D) g;
         if(affineTransform==null)
             affineTransform = g2.getTransform();
 
         //g2.setTransform(affineTransform);
-        g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*scaling)));
-
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
 
         for (ElementPainter painter : elems)
             if (painter instanceof LinkPainter)
@@ -84,7 +83,7 @@ public class MapView extends JPanel implements Subscriber
     }
 
     public MapView(MindMap map) {
-        initializeGUI();
+      //  initializeGUI();
 
         this.addMouseListener(new StateMouseListener());
         this.addMouseMotionListener(new StateMouseListener());
@@ -100,27 +99,5 @@ public class MapView extends JPanel implements Subscriber
         this.add(hScroll,BorderLayout.SOUTH);
         hScroll.setBackground(Color.white);
         vScroll.setBackground(Color.white);
-        hScroll.setMaximum(100);
-        hScroll.setMinimum(1);
-        hScroll.addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                System.out.println(e.getAdjustmentType());
-                if(e.getValue()> lastvalueH)
-                {
-                    affineTransform.translate(-e.getValue()*translateFactor,translateY);
-                    repaint();
-                    lastvalueH =e.getValue();
-                }
-                else if(e.getValue()< lastvalueH)
-                {
-                    affineTransform.translate(e.getValue()*translateFactor,translateY);
-                    repaint();
-                    lastvalueH =e.getValue();
-                }
-                else
-                    repaint();
-            }
-        });
     }
 }

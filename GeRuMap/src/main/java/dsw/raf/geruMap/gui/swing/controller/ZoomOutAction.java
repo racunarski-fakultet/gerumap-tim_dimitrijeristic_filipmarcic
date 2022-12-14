@@ -1,5 +1,6 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
@@ -22,7 +23,9 @@ public class ZoomOutAction extends AbstractGeruMapAction {
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
+        MapView view = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
+        MindMap temp = (MindMap) view.getMyMap();
+
 //        if(temp.getAffineTransform().getScaleX()*0.8>1)
 //            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*0.8,temp.getAffineTransform().getScaleY()*0.8);
 //        else
@@ -50,11 +53,19 @@ public class ZoomOutAction extends AbstractGeruMapAction {
 //                }
 //            }
 //        }
-        if(temp.getScaling()*0.8<1)
-            temp.setScaling(1.0);
+//        if(temp.getScaling()*0.8<1)
+//            temp.setScaling(1.0);
+//        else
+//            temp.setScaling(temp.getScaling()*0.8);
+        if(temp.scaling*0.8<1)
+            temp.scaling=1.0;
         else
-            temp.setScaling(temp.getScaling()*0.8);
+            temp.scaling= temp.scaling*0.8;
 
-        temp.repaint();
+
+
+        view.repaint();
+
+//        temp.repaint();
     }
 }

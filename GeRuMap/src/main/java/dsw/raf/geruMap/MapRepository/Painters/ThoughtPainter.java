@@ -2,6 +2,7 @@ package dsw.raf.geruMap.MapRepository.Painters;
 
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.Element;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
@@ -19,7 +20,7 @@ public class ThoughtPainter extends ElementPainter{
     public void paint(Graphics2D g) {
         MapView view = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
 
-        g.setStroke(new BasicStroke((float) (element.getThickness()*view.getScaling())));
+        g.setStroke(new BasicStroke((float) (element.getThickness()*((MindMap)view.getMyMap()).scaling)));
        // g.setFont(new Font(g.getFont().getName(),g.getFont().getStyle(), (int) (g.getFont().getSize())));
 
         if (element instanceof Thought)

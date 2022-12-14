@@ -2,6 +2,7 @@ package dsw.raf.geruMap.MapRepository.Painters;
 
 import dsw.raf.geruMap.MapRepository.Implementation.Element;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
@@ -28,7 +29,7 @@ public class LinkPainter extends ElementPainter{
         int xTo = (int) to.getPosition().getX();
         int yTo = (int) to.getPosition().getY();
         g.setPaint(Color.BLACK);
-        g.setStroke(new BasicStroke((float) (element.getThickness()*view.getScaling()*1.5)));
+        g.setStroke(new BasicStroke((float) (element.getThickness()*((MindMap)view.getMyMap()).scaling*1.5)));
         g.drawLine(xFrom,yFrom,xTo,yTo);
     }
 
