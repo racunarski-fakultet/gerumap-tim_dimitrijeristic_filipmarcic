@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
 
         MapView temp = (MapView) getSelectedComponent();
         Boolean flag = false;
+        AffineTransform at = null;
 
         for (int i = this.getTabCount() - 1; i >= 0; i--)
         {
@@ -59,6 +61,7 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
             if (temp != null && temp.getMyMap().equals(tab.getMyMap()))
             {
                 flag = true;
+                at = temp.getAffineTransform();
                 temp = tab;
             }
 
@@ -68,6 +71,10 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
         }
 
         if (flag)
+        {
             this.setSelectedComponent(temp);
+            ((MapView)this.getSelectedComponent()).setAffineTransform(at);
+        }
+
     }
 }

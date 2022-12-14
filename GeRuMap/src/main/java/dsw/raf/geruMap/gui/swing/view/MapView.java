@@ -30,8 +30,9 @@ public class MapView extends JPanel implements Subscriber
     private Scrollbar vScroll = new Scrollbar(Scrollbar.VERTICAL);
     private Scrollbar hScroll = new Scrollbar(Scrollbar.HORIZONTAL);
     private int lastvalueH =1;
+    private double scale = 1;
 
-    public AffineTransform affineTransform=new AffineTransform();
+    public AffineTransform affineTransform;
     private double scaling = 1.0;
     private double translateX = 0;
     private double translateY = 0;
@@ -65,7 +66,7 @@ public class MapView extends JPanel implements Subscriber
         if(affineTransform==null)
             affineTransform = g2.getTransform();
 
-        //g2.setTransform(affineTransform);
+        g2.setTransform(affineTransform);
         g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
 
         for (ElementPainter painter : elems)

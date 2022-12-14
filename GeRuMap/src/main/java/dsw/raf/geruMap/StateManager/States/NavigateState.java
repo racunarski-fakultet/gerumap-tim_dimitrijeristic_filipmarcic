@@ -16,9 +16,12 @@ public class NavigateState implements AbstractState{
 
     @Override
     public void mouseDrag(int x, int y) {
-        Point end = new Point(x,y);
+        Point end =  new Point(x,y);
 
-        Point delta = new Point(start.x - end.x, start.y - end.y);
+        Point delta = new Point((int) (((double)(start.x - end.x))*((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getScale()),
+                (int) (((double)(start.y - end.y))*((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getScale()));
+
+//        ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getAffineTransform().
 
         for (ElementPainter i : ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getElems())
         {
