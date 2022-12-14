@@ -22,6 +22,7 @@ public class LinkState implements AbstractState {
     GhostLink ghostLink;
     Thought node1;
     Thought node2;
+    boolean create;
 
     @Override
     public void mouseDrag(int x, int y) {
@@ -45,6 +46,8 @@ public class LinkState implements AbstractState {
                 {
                     ghostLink.setFrom(i.getElement().getPosition());
                     node1 = (Thought) i.getElement();
+                    create = true;
+                    break;
                 }
 
             }
@@ -86,8 +89,11 @@ public class LinkState implements AbstractState {
 
         }
 
-        if (node2 != null && !node2.equals(node1))
+        if (node2 != null && !node2.equals(node1) && create)
             MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()),new Link(node1,node2,2,new Color(255,255,255)));
 
+        node1 = null;
+        node2 = null;
+        create = false;
     }
 }

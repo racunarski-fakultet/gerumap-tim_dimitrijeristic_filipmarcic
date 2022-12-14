@@ -12,6 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Gerumap" target="1.5" />
+      <module name="gerumap-tim_dimitrijeristic_filipmarcic" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
