@@ -1,21 +1,17 @@
 package dsw.raf.geruMap.StateManager.States;
 
-import com.sun.tools.javac.Main;
-import dsw.raf.geruMap.AppCore;
+
 import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
-import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.GhostPainter;
-import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
-import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
+import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
-import javax.swing.text.Position;
 import java.awt.*;
 
 public class LinkState implements AbstractState {
@@ -90,7 +86,7 @@ public class LinkState implements AbstractState {
         }
 
         if (node2 != null && !node2.equals(node1) && create)
-            MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()),new Link(node1,node2,2,new Color(255,255,255)));
+            MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()),new Link(node1,node2, StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor()));
 
         node1 = null;
         node2 = null;
