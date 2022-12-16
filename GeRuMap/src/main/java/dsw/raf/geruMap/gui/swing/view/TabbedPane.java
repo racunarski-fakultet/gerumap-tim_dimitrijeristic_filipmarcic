@@ -30,9 +30,9 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
             description.updateText(((Project) var1).getName(),((Project) var1).getAutor());
             List<MapNode> children = ((Project) var1).getChildren();
             tabs = children;
+
             render();
-        }
-        else if (var1 instanceof ProjectExplorer)
+        }else if (var1 instanceof ProjectExplorer)
         {
             description.updateText(null,null);
             tabs = null;
@@ -63,6 +63,7 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
                 flag = true;
                 at = temp.getAffineTransform();
                 temp = tab;
+                temp.setAffineTransform(at);
             }
 
 
@@ -73,7 +74,6 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
         if (flag)
         {
             this.setSelectedComponent(temp);
-            ((Graphics2D)((MapView)this.getSelectedComponent()).getGraphics()).setTransform(at);
         }
 
     }
