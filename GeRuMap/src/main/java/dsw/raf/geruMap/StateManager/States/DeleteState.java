@@ -10,6 +10,7 @@ import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class DeleteState implements AbstractState {
 
@@ -52,6 +53,11 @@ public class DeleteState implements AbstractState {
 
     @Override
     public void mouseRelease(int x, int y) {
+
+    }
+
+    @Override
+    public void mouseScrolled(MouseWheelEvent e) {
 
     }
 }

@@ -11,6 +11,7 @@ import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class MoveState implements AbstractState{
     Point start;
@@ -73,5 +74,10 @@ public class MoveState implements AbstractState{
         if (single)
             ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().remove_all();
         single = false;
+    }
+
+    @Override
+    public void mouseScrolled(MouseWheelEvent e) {
+
     }
 }

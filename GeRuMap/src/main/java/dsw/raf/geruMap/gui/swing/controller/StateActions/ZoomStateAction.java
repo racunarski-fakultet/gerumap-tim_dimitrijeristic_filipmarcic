@@ -13,11 +13,12 @@ public class ZoomStateAction extends AbstractGeruMapAction
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
         putValue(SMALL_ICON, loadIcon("images/log-out.png"));
-        putValue(NAME, "Navigate");
-        putValue(SHORT_DESCRIPTION, "Navigate");
+        putValue(NAME, "Zoom");
+        putValue(SHORT_DESCRIPTION, "Zoom");
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        MainFrame.getInstance().getState_man().setNavigateState();
+        MainFrame.getInstance().getState_man().setZoomState();
     }
 }
+

@@ -73,7 +73,7 @@ public class TabbedPane extends JTabbedPane implements Subscriber {
         if (flag)
         {
             this.setSelectedComponent(temp);
-            ((MapView)this.getSelectedComponent()).setAffineTransform(at);
+            ((Graphics2D)((MapView)this.getSelectedComponent()).getGraphics()).setTransform(at);
         }
 
     }

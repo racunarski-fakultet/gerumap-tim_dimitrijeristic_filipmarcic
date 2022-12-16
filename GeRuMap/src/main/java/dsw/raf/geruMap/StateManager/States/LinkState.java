@@ -13,6 +13,7 @@ import dsw.raf.geruMap.gui.swing.view.MapView;
 import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class LinkState implements AbstractState {
     GhostLink ghostLink;
@@ -91,5 +92,10 @@ public class LinkState implements AbstractState {
         node1 = null;
         node2 = null;
         create = false;
+    }
+
+    @Override
+    public void mouseScrolled(MouseWheelEvent e) {
+
     }
 }

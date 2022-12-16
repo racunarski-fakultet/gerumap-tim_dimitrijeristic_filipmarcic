@@ -1,6 +1,8 @@
 package dsw.raf.geruMap.MapRepository.Painters;
 
 import dsw.raf.geruMap.MapRepository.Implementation.Lasso;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
 
@@ -19,7 +21,7 @@ public class LassoPainter
         Point end = lasso.getEnd();
 
         g.setColor(Color.BLACK);
-        g.setStroke(new BasicStroke(2));
+        g.setStroke(new BasicStroke((float) (2*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX())));
 
         if (start.x < end.x && start.y < end.y)
             g.drawRect(start.x, start.y, -(start.x - end.x),-(start.y - end.y));

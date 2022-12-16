@@ -1,7 +1,9 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
+import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
+import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
@@ -13,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 
 public class ZoomInAction extends AbstractGeruMapAction{
     public ZoomInAction()
@@ -25,9 +28,32 @@ public class ZoomInAction extends AbstractGeruMapAction{
 
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
+
 //        MindMap temp = (MindMap) view.getMyMap();
+        Point mouse = new Point(MouseInfo.getPointerInfo().getLocation().x - temp.getLocationOnScreen().x, MouseInfo.getPointerInfo().getLocation().y - temp.getLocationOnScreen().y);
         if(temp.getAffineTransform().getScaleX()*1.2<5)
-            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
+        {
+            double x = mouse.getX();
+            double y = mouse.getY();
+//            //temp.getAffineTransform().translate(x,y);
+//            Graphics2D g2 = (Graphics2D) temp.getGraphics();
+//            AffineTransform at = temp.getAffineTransform();
+//            //at.translate(x,y);
+//            at.setToScale(at.getScaleX()*1.25,at.getScaleY()*1.25);
+//            //at.translate(-x,-y);
+//            temp.setAffineTransform(at);
+//            //((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).paintComponents(g2);
+//            //temp.getAffineTransform().translate(-x,-y);
+
+
+            AffineTransform at = temp.getAffineTransform();
+            //double x2 = at.getTranslateX();
+            //double y2 = at.getTranslateY();
+            at.translate(x ,y);
+            at.scale(1.25,1.25);
+            at.translate(-x,-y);
+        }
+
         else
             temp.getAffineTransform().setToScale(5,5);
         //temp.setScale(temp.getAffineTransform().getScaleX());

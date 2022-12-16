@@ -2,8 +2,10 @@ package dsw.raf.geruMap.StateManager;
 
 import dsw.raf.geruMap.StateManager.States.*;
 
+
 public class StateManager {
     private AbstractState currentState;
+    private ZoomState zoomState;
     private LinkState linkState;
     private SelectionState selectionState;
     private AddState addState;
@@ -14,6 +16,7 @@ public class StateManager {
     private void initStates()
     {
         addState = new AddState();
+        zoomState = new ZoomState();
         linkState = new LinkState();
         selectionState = new SelectionState();
         deleteState = new DeleteState();
@@ -45,4 +48,6 @@ public class StateManager {
     public void setMoveState(){this.currentState = moveState;}
 
     public void setNavigateState(){this.currentState = navigateState;}
+
+    public void setZoomState(){this.currentState = zoomState;}
 }

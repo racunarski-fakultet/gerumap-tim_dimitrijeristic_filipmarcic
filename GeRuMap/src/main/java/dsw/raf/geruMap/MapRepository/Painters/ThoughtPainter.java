@@ -20,14 +20,14 @@ public class ThoughtPainter extends ElementPainter{
     public void paint(Graphics2D g) {
         MapView view = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
 
-        g.setStroke(new BasicStroke((float) (element.getThickness()*((MindMap)view.getMyMap()).scaling)));
-       // g.setFont(new Font(g.getFont().getName(),g.getFont().getStyle(), (int) (g.getFont().getSize())));
+        g.setStroke(new BasicStroke((float) (element.getThickness()*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX())));
+        g.setFont(new Font(g.getFont().getName(),g.getFont().getStyle(), (int) (g.getFont().getSize()*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX())));
 
         if (element instanceof Thought)
         {
             Thought temp=(Thought)element;
-            int width = g.getFontMetrics().stringWidth(temp.getName())*2;
-            int height = g.getFontMetrics().getHeight()*2;
+            int width = (int) (g.getFontMetrics().stringWidth(temp.getName())*2*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX());;
+            int height = (int) (g.getFontMetrics().getHeight()*2*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX());;
         //    width *= scaleFactor;
             temp.setSize(new Dimension(width, height));
             int x = (int)temp.getPosition().getX() - temp.getSize().width/2;
@@ -41,7 +41,6 @@ public class ThoughtPainter extends ElementPainter{
                 g.fillOval(x,y,width,temp.getSize().height);
                 g.setPaint(Color.BLACK);
                 g.drawString(temp.getName(), x + temp.getSize().width/4,y + temp.getSize().height/2+5);
-
             }
             else
             {

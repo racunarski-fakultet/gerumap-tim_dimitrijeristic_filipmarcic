@@ -10,6 +10,7 @@ import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class SelectionState implements AbstractState{
     Lasso lasso;
@@ -58,5 +59,10 @@ public class SelectionState implements AbstractState{
 
         ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).setLasso(null);
        // MainFrame.getInstance().getDesktop().repaint();
+    }
+
+    @Override
+    public void mouseScrolled(MouseWheelEvent e) {
+
     }
 }

@@ -9,6 +9,7 @@ import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 
 public class NavigateState implements AbstractState{
 
@@ -18,8 +19,8 @@ public class NavigateState implements AbstractState{
     public void mouseDrag(int x, int y) {
         Point end =  new Point(x,y);
 
-        Point delta = new Point((int) (((double)(start.x - end.x))*((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getScale()),
-                (int) (((double)(start.y - end.y))*((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getScale()));
+        Point delta = new Point((int) (((double)(start.x - end.x))),
+                (int) (((double)(start.y - end.y))));
 
 //        ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getAffineTransform().
 
@@ -43,5 +44,10 @@ public class NavigateState implements AbstractState{
 
     @Override
     public void mouseRelease(int x, int y) {
+    }
+
+    @Override
+    public void mouseScrolled(MouseWheelEvent e) {
+
     }
 }

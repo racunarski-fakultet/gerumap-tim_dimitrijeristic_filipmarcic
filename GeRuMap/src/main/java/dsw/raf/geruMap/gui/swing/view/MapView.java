@@ -63,7 +63,8 @@ public class MapView extends JPanel implements Subscriber
         if(affineTransform==null)
             affineTransform = g2.getTransform();
 
-        g2.setTransform(affineTransform);
+        AffineTransform temp_transform = g2.getTransform();
+        //g2.setTransform(affineTransform);
         //g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
 
         for (ElementPainter painter : elems)
@@ -74,10 +75,13 @@ public class MapView extends JPanel implements Subscriber
             if (painter instanceof ThoughtPainter)
                 painter.paint(g2);
 
+        g2.setTransform(temp_transform);
+
         if(ghost!=null)
             ghost.paint(g2);
         if(lasso!=null)
             lasso.paint(g2);
+
     }
 
     public MapView(MindMap map) {
@@ -85,6 +89,7 @@ public class MapView extends JPanel implements Subscriber
 
         this.addMouseListener(new StateMouseListener());
         this.addMouseMotionListener(new StateMouseListener());
+        this.addMouseWheelListener(new StateMouseListener());
         this.myMap = map;
         map.subscribe(this);
         ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().subscribe(this);
