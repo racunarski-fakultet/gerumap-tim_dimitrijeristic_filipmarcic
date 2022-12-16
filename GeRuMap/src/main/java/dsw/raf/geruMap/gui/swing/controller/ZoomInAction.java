@@ -24,13 +24,14 @@ public class ZoomInAction extends AbstractGeruMapAction{
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        MapView view = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
-        MindMap temp = (MindMap) view.getMyMap();
-//        if(temp.getAffineTransform().getScaleX()*1.2<5)
-//            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
-//        else
-//            temp.getAffineTransform().setToScale(5,5);
-//        System.out.println(temp.getAffineTransform().getScaleX());
+        MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
+//        MindMap temp = (MindMap) view.getMyMap();
+        if(temp.getAffineTransform().getScaleX()*1.2<5)
+            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*1.2,temp.getAffineTransform().getScaleY()*1.2);
+        else
+            temp.getAffineTransform().setToScale(5,5);
+        //temp.setScale(temp.getAffineTransform().getScaleX());
+        System.out.println(temp.getAffineTransform().getScaleX());
 
 //        for(ElementPainter painter : temp.getElems())
 //        {
@@ -47,13 +48,13 @@ public class ZoomInAction extends AbstractGeruMapAction{
 //                else
 //                    painter.setScaleFactor(3.0);
 //            }
-        if(temp.scaling*1.2>3)
-            temp.scaling=3.0;
-        else
-            temp.scaling= temp.scaling*1.2;
+//        if(temp.scaling*1.2>3)
+//            temp.scaling=3.0;
+//        else
+//            temp.scaling= temp.scaling*1.2;
 
 
 
-        view.repaint();
+        temp.repaint();
     }
 }
