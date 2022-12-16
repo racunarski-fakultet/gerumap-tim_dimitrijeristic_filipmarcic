@@ -31,17 +31,16 @@ public class LinkPainter extends ElementPainter{
         int xTo = (int) to.getPosition().getX();
         int yTo = (int) to.getPosition().getY();
         g.setPaint(element.getPaint());
-        g.setStroke(new BasicStroke(1.5f*((float) (element.getThickness()*((MindMap)view.getMyMap()).scaling))));
+        g.setStroke(new BasicStroke(1.5f*((float) (element.getThickness()))));//*2))));//((MindMap)view.getMyMap()).scaling))));
         if (((MapRepositoryImpl) AppCore.getInstance().getRep()).getMapSelection().getSelection().contains(element))
         {
             g.setPaint(Color.RED);
-            g.drawLine(xFrom,yFrom,xTo,yTo);
         }
         else
         {
             g.setPaint(element.getPaint());
-            g.drawLine(xFrom,yFrom,xTo,yTo);
         }
+        g.drawLine(xFrom,yFrom,xTo,yTo);
     }
 
     @Override

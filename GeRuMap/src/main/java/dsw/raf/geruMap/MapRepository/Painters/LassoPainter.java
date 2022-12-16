@@ -21,7 +21,7 @@ public class LassoPainter
         Point end = lasso.getEnd();
 
         g.setColor(Color.BLACK);
-        g.setStroke(new BasicStroke((float) (2*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX())));
+        g.setStroke(new BasicStroke(2));//((float) (2*((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).affineTransform.getScaleX())));
 
         if (start.x < end.x && start.y < end.y)
             g.drawRect(start.x, start.y, -(start.x - end.x),-(start.y - end.y));

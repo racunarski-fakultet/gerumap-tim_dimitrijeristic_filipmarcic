@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 
 public class ZoomOutAction extends AbstractGeruMapAction {
     public ZoomOutAction()
@@ -24,12 +25,19 @@ public class ZoomOutAction extends AbstractGeruMapAction {
 
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
-//        MindMap temp = (MindMap) view.getMyMap();
+        AffineTransform at = temp.getAffineTransform();
+        Point mouse = new Point(MouseInfo.getPointerInfo().getLocation().x - temp.getLocationOnScreen().x, MouseInfo.getPointerInfo().getLocation().y - temp.getLocationOnScreen().y);
+        //        MindMap temp = (MindMap) view.getMyMap();
 
-        if(temp.getAffineTransform().getScaleX()*0.8>1)
-            temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*0.8,temp.getAffineTransform().getScaleY()*0.8);
-        else
-            temp.getAffineTransform().setToScale(1,1);
+        if(at.getScaleX()/1.25>=1)
+        {
+            at.translate(mouse.x,mouse.y);
+            at.scale(Math.pow(1.25,-1),Math.pow(1.25,-1));
+            at.translate(-mouse.x,-mouse.y);
+        }
+            //temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*0.8,temp.getAffineTransform().getScaleY()*0.8);
+//        else
+//            temp.getAffineTransform().setToScale(1,1);
         System.out.println(temp.getAffineTransform().getScaleX());
 
 //        for(ElementPainter painter : temp.getElems())

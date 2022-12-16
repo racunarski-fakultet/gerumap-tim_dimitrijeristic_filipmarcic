@@ -64,7 +64,7 @@ public class MapView extends JPanel implements Subscriber
             affineTransform = g2.getTransform();
 
         AffineTransform temp_transform = g2.getTransform();
-        //g2.setTransform(affineTransform);
+        g2.setTransform(affineTransform);
         //g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
 
         for (ElementPainter painter : elems)
@@ -75,7 +75,7 @@ public class MapView extends JPanel implements Subscriber
             if (painter instanceof ThoughtPainter)
                 painter.paint(g2);
 
-        g2.setTransform(temp_transform);
+        //g2.setTransform(temp_transform);
 
         if(ghost!=null)
             ghost.paint(g2);

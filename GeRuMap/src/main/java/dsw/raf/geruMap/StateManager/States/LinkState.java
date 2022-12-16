@@ -92,6 +92,7 @@ public class LinkState implements AbstractState {
         node1 = null;
         node2 = null;
         create = false;
+        ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).repaint();
     }
 
     @Override

@@ -28,13 +28,11 @@ public class ZoomInAction extends AbstractGeruMapAction{
 
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
-
+        AffineTransform at = temp.getAffineTransform();
 //        MindMap temp = (MindMap) view.getMyMap();
         Point mouse = new Point(MouseInfo.getPointerInfo().getLocation().x - temp.getLocationOnScreen().x, MouseInfo.getPointerInfo().getLocation().y - temp.getLocationOnScreen().y);
-        if(temp.getAffineTransform().getScaleX()*1.2<5)
+        if(at.getScaleX()*1.2<=5)
         {
-            double x = mouse.getX();
-            double y = mouse.getY();
 //            //temp.getAffineTransform().translate(x,y);
 //            Graphics2D g2 = (Graphics2D) temp.getGraphics();
 //            AffineTransform at = temp.getAffineTransform();
@@ -44,18 +42,15 @@ public class ZoomInAction extends AbstractGeruMapAction{
 //            temp.setAffineTransform(at);
 //            //((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).paintComponents(g2);
 //            //temp.getAffineTransform().translate(-x,-y);
-
-
-            AffineTransform at = temp.getAffineTransform();
             //double x2 = at.getTranslateX();
             //double y2 = at.getTranslateY();
-            at.translate(x ,y);
+            at.translate(mouse.x ,mouse.y);
             at.scale(1.25,1.25);
-            at.translate(-x,-y);
+            at.translate(-mouse.x,-mouse.y);
         }
-
-        else
-            temp.getAffineTransform().setToScale(5,5);
+//
+//        else
+//            temp.getAffineTransform().setToScale(5,5);
         //temp.setScale(temp.getAffineTransform().getScaleX());
         System.out.println(temp.getAffineTransform().getScaleX());
 
