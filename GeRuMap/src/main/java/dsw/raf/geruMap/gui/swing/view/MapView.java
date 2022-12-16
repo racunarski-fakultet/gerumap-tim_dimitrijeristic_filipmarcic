@@ -7,14 +7,11 @@ import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.*;
 import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.controller.StateMouseListener;
-import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +64,7 @@ public class MapView extends JPanel implements Subscriber
             affineTransform = g2.getTransform();
 
         g2.setTransform(affineTransform);
-        g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
+        //g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
 
         for (ElementPainter painter : elems)
             if (painter instanceof LinkPainter)
