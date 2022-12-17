@@ -1,6 +1,5 @@
 package dsw.raf.geruMap.StateManager.States;
 
-import dsw.raf.geruMap.MapRepository.Implementation.Element;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.LinkPainter;
