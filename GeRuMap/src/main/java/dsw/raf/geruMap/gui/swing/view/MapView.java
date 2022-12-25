@@ -63,9 +63,8 @@ public class MapView extends JPanel implements Subscriber
         if(affineTransform==null)
             affineTransform = g2.getTransform();
 
-        AffineTransform temp_transform = g2.getTransform();
-        g2.setTransform(affineTransform);
-        //g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), (int) (g2.getFont().getSize()*((MindMap)myMap).scaling)));
+        //affineTransform.concatenate(g2.getTransform());
+        g2.transform(affineTransform);
 
         for (ElementPainter painter : elems)
             if (painter instanceof LinkPainter)
