@@ -13,6 +13,7 @@ public class Project extends MapNodeComposite
     private String autor;
     private String home_folder;
     private int counter =0;
+    private boolean changed = true;
 
     public Project(String name,MapNodeComposite parent)
     {
@@ -33,4 +34,9 @@ public class Project extends MapNodeComposite
 
     }
 
+    @Override
+    public String toString() {
+        return "Project{" + "autor='" + autor + '\'' + ", home_folder='" +
+                home_folder + '\'' + ", counter=" + counter + '\'' + "name=" + this.getName() + '}';
+    }
 }

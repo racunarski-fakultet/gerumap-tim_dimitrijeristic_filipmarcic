@@ -13,8 +13,6 @@ import java.util.List;
 public class MindMap extends MapNodeComposite implements Publisher
 {
     private int counter =0;
-    public Double scaling =1.0;
-    private List<MapNode> elems = new ArrayList<MapNode>();
 
     public MindMap(String name,MapNodeComposite parent)
     {
@@ -42,5 +40,10 @@ public class MindMap extends MapNodeComposite implements Publisher
         if(!subscribers.isEmpty())
             for(Subscriber sub:subscribers)
                     sub.update(var1);
+    }
+
+    @Override
+    public String toString() {
+        return "MindMap{" + "counter=" + counter + '\'' + "name=" + this.getName() + '}';
     }
 }

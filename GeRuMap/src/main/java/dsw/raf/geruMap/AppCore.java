@@ -4,12 +4,10 @@ import dsw.raf.geruMap.Logger.ConsoleLogger;
 import dsw.raf.geruMap.Logger.FileLogger;
 import dsw.raf.geruMap.Logger.Logger;
 import dsw.raf.geruMap.MessageGenerator.MessageGenerator;
-import dsw.raf.geruMap.core.ApplicationFramework;
-import dsw.raf.geruMap.core.Gui;
-import dsw.raf.geruMap.core.MapRepository;
+import dsw.raf.geruMap.core.*;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
-import dsw.raf.geruMap.core.Subscriber;
 import dsw.raf.geruMap.gui.swing.SwingGui;
+import dsw.raf.geruMap.serializer.GsonSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,10 +24,11 @@ public class AppCore extends ApplicationFramework {
         MessageGenerator generator = new MessageGenerator();
         Logger logger = new ConsoleLogger();
         Logger logger2 = new FileLogger();
+        Serializer serializer = new GsonSerializer();
 
 
 
-        app_core.initialize(gui,rep,generator,logger);
+        app_core.initialize(gui,rep,generator,logger,serializer);
         generator.subscribe(logger);
         generator.subscribe(logger2);
 

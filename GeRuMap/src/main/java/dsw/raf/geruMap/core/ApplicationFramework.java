@@ -16,13 +16,15 @@ public abstract class ApplicationFramework
     protected MapRepository rep;
     protected MessageGenerator generator;
     protected Logger logger;
+    protected Serializer serializer;
     public abstract void run();
 
-    public void initialize(Gui gui,MapRepository rep,MessageGenerator generator,Logger logger)
+    public void initialize(Gui gui,MapRepository rep,MessageGenerator generator,Logger logger,Serializer serializer)
     {
         this.logger = logger;
         this.generator = generator;
         this.gui = gui;
         this.rep = rep;
+        this.serializer = serializer;
     }
 }
