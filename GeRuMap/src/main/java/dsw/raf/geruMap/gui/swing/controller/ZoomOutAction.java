@@ -26,53 +26,14 @@ public class ZoomOutAction extends AbstractGeruMapAction {
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
         AffineTransform at = temp.getAffineTransform();
-        Point mouse = new Point(MouseInfo.getPointerInfo().getLocation().x - temp.getLocationOnScreen().x, MouseInfo.getPointerInfo().getLocation().y - temp.getLocationOnScreen().y);
-        //        MindMap temp = (MindMap) view.getMyMap();
+        Point pt = new Point(MainFrame.getInstance().getDesktop().getSelectedComponent().getWidth()/2,MainFrame.getInstance().getDesktop().getSelectedComponent().getHeight()/2);
 
         if(at.getScaleX()/1.25>=1)
         {
-            at.translate(mouse.x,mouse.y);
+            at.translate(pt.x,pt.y);
             at.scale(Math.pow(1.25,-1),Math.pow(1.25,-1));
-            at.translate(-mouse.x,-mouse.y);
+            at.translate(-pt.x,-pt.y);
         }
-            //temp.getAffineTransform().setToScale(temp.getAffineTransform().getScaleX()*0.8,temp.getAffineTransform().getScaleY()*0.8);
-//        else
-//            temp.getAffineTransform().setToScale(1,1);
-        System.out.println(temp.getAffineTransform().getScaleX());
-
-//        for(ElementPainter painter : temp.getElems())
-//        {
-//            if(painter.getScaleFactor()*0.8>1)
-//            {
-//                painter.setScaleFactor(painter.getScaleFactor()*0.8);
-//                if(painter instanceof ThoughtPainter)
-//                {
-//                    Thought thought = (Thought) painter.getElement();
-//               //     thought.setSize(new Dimension((int) (thought.getSize().width*0.8), (int) (thought.getSize().height*0.8)));
-//                }
-//            }
-//            else
-//            {
-//                painter.setScaleFactor(1.0);
-//                if(painter instanceof ThoughtPainter)
-//                {
-//                    Thought thought = (Thought) painter.getElement();
-//                  //  thought.getSize().height=50;
-//                }
-//            }
-//        }
-//        if(temp.getScaling()*0.8<1)
-//            temp.setScaling(1.0);
-//        else
-//            temp.setScaling(temp.getScaling()*0.8);
-//        if(temp.scaling*0.8<1)
-//            temp.scaling=1.0;
-//        else
-//            temp.scaling= temp.scaling*0.8;
-
-
-
-//        view.repaint();
 
         temp.repaint();
     }

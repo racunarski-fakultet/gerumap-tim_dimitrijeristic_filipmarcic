@@ -29,52 +29,14 @@ public class ZoomInAction extends AbstractGeruMapAction{
     public void actionPerformed(ActionEvent arg0) {
         MapView temp = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
         AffineTransform at = temp.getAffineTransform();
-//        MindMap temp = (MindMap) view.getMyMap();
-        Point mouse = new Point(MouseInfo.getPointerInfo().getLocation().x - temp.getLocationOnScreen().x, MouseInfo.getPointerInfo().getLocation().y - temp.getLocationOnScreen().y);
+        Point pt = new Point(MainFrame.getInstance().getDesktop().getSelectedComponent().getWidth()/2,MainFrame.getInstance().getDesktop().getSelectedComponent().getHeight()/2);
+
         if(at.getScaleX()*1.2<=5)
         {
-//            //temp.getAffineTransform().translate(x,y);
-//            Graphics2D g2 = (Graphics2D) temp.getGraphics();
-//            AffineTransform at = temp.getAffineTransform();
-//            //at.translate(x,y);
-//            at.setToScale(at.getScaleX()*1.25,at.getScaleY()*1.25);
-//            //at.translate(-x,-y);
-//            temp.setAffineTransform(at);
-//            //((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).paintComponents(g2);
-//            //temp.getAffineTransform().translate(-x,-y);
-            //double x2 = at.getTranslateX();
-            //double y2 = at.getTranslateY();
-            at.translate(mouse.x ,mouse.y);
+            at.translate(pt.x ,pt.y);
             at.scale(1.25,1.25);
-            at.translate(-mouse.x,-mouse.y);
+            at.translate(-pt.x,-pt.y);
         }
-//
-//        else
-//            temp.getAffineTransform().setToScale(5,5);
-        //temp.setScale(temp.getAffineTransform().getScaleX());
-        System.out.println(temp.getAffineTransform().getScaleX());
-
-//        for(ElementPainter painter : temp.getElems())
-//        {
-//
-//                if(painter.getScaleFactor()*1.2<3)
-//                {
-//                    painter.setScaleFactor(painter.getScaleFactor()*1.2);
-//                    if(painter instanceof ThoughtPainter)
-//                    {
-//                        Thought thought = (Thought) painter.getElement();
-//                       // thought.setSize(new Dimension((int) (thought.getSize().width*1.2), (int) (thought.getSize().height*1.2)));
-//                    }
-//                }
-//                else
-//                    painter.setScaleFactor(3.0);
-//            }
-//        if(temp.scaling*1.2>3)
-//            temp.scaling=3.0;
-//        else
-//            temp.scaling= temp.scaling*1.2;
-
-
 
         temp.repaint();
     }
