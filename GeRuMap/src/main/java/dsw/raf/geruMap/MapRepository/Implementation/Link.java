@@ -22,4 +22,8 @@ public class Link extends Element
         this.childThought=childThought;
     }
 
+    @Override
+    public String toString() {
+        return "Link{" + "paint=" + paint + ", thickness=" + thickness + ", parentThought=" + parentThought + ", childThought=" + childThought + '}';
+    }
 }

@@ -32,4 +32,9 @@ public class Thought extends Element
     public int hashCode() {
         return Objects.hash(position, size);
     }
+
+    @Override
+    public String toString() {
+        return "Thought{" + "paint=" + paint + ", thickness=" + thickness + ", position=" + position + ", size=" + size + '}';
+    }
 }
