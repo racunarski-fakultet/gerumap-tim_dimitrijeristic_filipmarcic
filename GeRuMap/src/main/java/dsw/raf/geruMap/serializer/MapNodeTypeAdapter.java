@@ -149,60 +149,60 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
 
     @Override
     public MapNode deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-        if(jsonElement.isJsonNull())
+        if(jsonElement == null)
+        {
+            System.out.println("null");
             return null;
+        }
         MapTreeImplementation mapTreeImplementation = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
         JsonObject object = jsonElement.getAsJsonObject();
-        String elemType = object.get("type").toString();
-
+        String elemType = object.get("type").getAsString();
         MapNode node = null;
 
 
-        if (elemType == "Project") {
+        if (elemType.equals("Project")) {
             int counter = 0;
             ProjectExplorer projectExplorer = AppCore.getInstance().getRep().getProjectExplorer();
             Project project = new Project(object.get("name").getAsString(), projectExplorer);
+            if(object.get("author")!=null)
             project.setAutor(object.get("author").getAsString());
             project.setCounter(object.get("counter").getAsInt());
             project.setHome_folder(object.get("folder").getAsString());
             MainFrame.getInstance().getMapTree().add_node((MapTreeItem) mapTreeImplementation.getTreeModel().getRoot(), project);
 
-            while (deserialize(object.get("map " + counter), type, jsonDeserializationContext) != null) {
+            while (object.get("map " + counter) != null) {
+                System.out.println("while");
                 MapNode node1 = deserialize(object.get("map " + counter), type, jsonDeserializationContext);
                 node1.setParent(project);
                 MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(project), node1);
                 counter++;
             }
             node = project;
-        } else if (elemType == "MindMap") {
+        } else if (elemType.equals("MindMap")) {
             MindMap mindMap = new MindMap(object.get("name").getAsString(), null);
             mindMap.setCounter(object.get("counter").getAsInt());
             int counter = 0;
-            while (deserialize(object.get("element " + counter), type, jsonDeserializationContext) != null) ;
+            while (object.get("element " + counter)!= null)
             {
-
                 MapNode node1 = deserialize(object.get("element " + counter), type, jsonDeserializationContext);
                 node1.setParent(mindMap);
                 MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(mindMap), node1);
                 counter++;
             }
             node = mindMap;
-        } else if (elemType == "Thought") {
+        } else if (elemType.equals("Thought")) {
             Color color = new Color(object.get("paint").getAsInt());
             Point thoughtPoint = new Point(object.get("x").getAsInt(), object.get("y").getAsInt());
             Dimension thoughtDimension = new Dimension(object.get("height").getAsInt(), object.get("width").getAsInt());
-            Thought thought = new Thought(object.get("name").getAsString(), null, thoughtPoint, thoughtDimension, object.get("thickness").getAsInt(), color);
-            node = thought;
-        } else if (elemType == "Link")
+            node = new Thought(object.get("name").getAsString(), null, thoughtPoint, thoughtDimension, object.get("thickness").getAsInt(), color);
+        } else if (elemType.equals("Link"))
         {
             Color color = new Color(object.get("paint").getAsInt());
             MapNode parent = deserialize(object.get("parent"),type,jsonDeserializationContext);
             MapNode child = deserialize(object.get("child"),type,jsonDeserializationContext);
-            Link link = new Link((Thought) parent, (Thought) child,object.get("thickness").getAsInt(),color);
-            node=link;
+            node= new Link((Thought) parent, (Thought) child,object.get("thickness").getAsInt(),color);
 
         }
-
         return node;
     }
 }

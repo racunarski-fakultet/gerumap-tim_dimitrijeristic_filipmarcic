@@ -2,6 +2,8 @@ package dsw.raf.geruMap.gui.swing.controller;
 
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
+import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -25,6 +27,11 @@ public class LoadAction extends AbstractGeruMapAction {
                 File file = jfc.getSelectedFile();
                 Project p = AppCore.getInstance().getSerializer().loadProject(file);
                 p.setChanged(false);
+
+                MapTreeView treeView = ((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeView();
+                SwingUtilities.updateComponentTreeUI(treeView);
+                treeView.expandPath(treeView.getSelectionPath());
+
 
             } catch (Exception ex) {
                 ex.printStackTrace();
