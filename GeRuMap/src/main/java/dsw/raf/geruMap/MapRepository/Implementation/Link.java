@@ -15,9 +15,9 @@ public class Link extends Element
     private Thought parentThought;
     private Thought childThought;
 
-    public Link(Thought parentThought, Thought childThought,int thickness, Paint paint)
+    public Link(Thought parentThought, Thought childThought,int thickness, Color paint)
     {
-        super(parentThought.getName()+"---"+childThought.getName(), (MapNodeComposite) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap(),null,null,thickness,paint);
+        super(parentThought.getName()+" --- "+childThought.getName(), (MapNodeComposite) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap(),null,null,thickness,paint);
         this.parentThought=parentThought;
         this.childThought=childThought;
     }

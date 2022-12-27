@@ -11,9 +11,9 @@ import java.util.Objects;
 @Setter
 public class Thought extends Element
 {
-    private Point position;
-    private Dimension size;
-    public Thought(String name, MapNodeComposite parent, Point position, Dimension size, int thickness, Paint paint) {
+//    private Point position;
+//    private Dimension size;
+    public Thought(String name, MapNodeComposite parent, Point position, Dimension size, int thickness, Color paint) {
         super(name, parent,position,size,thickness,paint);
         this.position=position;
         this.size=size;

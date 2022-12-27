@@ -12,18 +12,16 @@ import java.util.Random;
 @Setter
 public abstract class Element extends MapNode
 {
-    private Color boja;
-    protected Paint paint;
+    protected Color paint;
     protected int thickness;
     protected Dimension size;
     protected Point position;
 
-    public Element(String name, MapNodeComposite parent, Point position, Dimension size, int thickness, Paint paint)
+    public Element(String name, MapNodeComposite parent, Point position, Dimension size, int thickness, Color paint)
     {
         super(name,parent);
 
         this.position = position;
-        this.boja = new Color(new Random().nextInt()%10);
         this.size = size;
         this.thickness = thickness;
         this.paint = paint;
