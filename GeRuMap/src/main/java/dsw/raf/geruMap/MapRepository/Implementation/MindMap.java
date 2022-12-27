@@ -4,12 +4,16 @@ import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import dsw.raf.geruMap.core.Publisher;
 import dsw.raf.geruMap.core.Subscriber;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Getter
+@Setter
 public class MindMap extends MapNodeComposite implements Publisher
 {
     private int counter =0;

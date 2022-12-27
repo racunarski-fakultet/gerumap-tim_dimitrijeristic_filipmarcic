@@ -2,6 +2,7 @@ package dsw.raf.geruMap.serializer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.core.Serializer;
 
@@ -17,7 +18,7 @@ public class GsonSerializer implements Serializer
     @Override
     public Project loadProject(File file) {
         try (FileReader fileReader = new FileReader(file)) {
-            return gson.fromJson(fileReader, Project.class);
+            return (Project) adapter.deserialize(gson.fromJson(file.toString(), JsonElement.class),null,null);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
