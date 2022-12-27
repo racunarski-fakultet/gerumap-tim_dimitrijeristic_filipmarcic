@@ -13,7 +13,7 @@ import java.io.IOException;
 public class GsonSerializer implements Serializer
 {
     private final Gson gson = new GsonBuilder().registerTypeAdapter(MapNodeTypeAdapter.class, new MapNodeTypeAdapter()).create();
-
+    private final MapNodeTypeAdapter adapter = new MapNodeTypeAdapter();
     @Override
     public Project loadProject(File file) {
         try (FileReader fileReader = new FileReader(file)) {
@@ -27,7 +27,7 @@ public class GsonSerializer implements Serializer
     @Override
     public void saveProject(Project project) {
         try (FileWriter writer = new FileWriter(project.getHome_folder())) {
-            gson.toJson(project, writer);
+            gson.toJson(adapter.serialize(project,null,null), writer);
         } catch (IOException e) {
             e.printStackTrace();
         }

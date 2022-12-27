@@ -12,10 +12,7 @@ import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSerializer<MapNode> {
     @Override
@@ -95,12 +92,28 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             obj.addProperty("counter",((Project) node).getCounter());
             obj.addProperty("folder",((Project) node).getHome_folder());
             System.out.println("seralizing proj");
+
+            List<MapNode> maps = ((Project) node).getChildren();
+            int cnt = 0;
+
+            for (MapNode i : maps)
+            {
+                obj.addProperty("map " + cnt++,this.serialize(i,type,jsonSerializationContext).toString());
+            }
         }
         else if (node instanceof MindMap)
         {
             obj.addProperty("type","MindMap");
             obj.addProperty("counter",((MindMap) node).getCounter());
             System.out.println("seralizing map");
+
+            List<MapNode> elems = ((MindMap) node).getChildren();
+            int cnt = 0;
+
+            for (MapNode i : elems)
+            {
+                obj.addProperty("element " + cnt++,this.serialize(i,type,jsonSerializationContext).toString());
+            }
         }
         else if (node instanceof Thought)
         {
