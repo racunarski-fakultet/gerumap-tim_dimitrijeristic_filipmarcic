@@ -19,7 +19,7 @@ public class GsonSerializer implements Serializer
     @Override
     public Project loadProject(File file) {
         try (FileReader fileReader = new FileReader(file)) {
-            return (Project) adapter.deserialize(gson.fromJson(Files.readString(file.toPath()), JsonElement.class),null,null);
+            return (Project) adapter.deserialize(gson.fromJson(Files.readString(file.toPath()), JsonElement.class),null);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
