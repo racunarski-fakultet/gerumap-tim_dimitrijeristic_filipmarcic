@@ -219,7 +219,11 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             string.replace("\\","");
             jsonElement1 = gson.fromJson(string, JsonElement.class);
             MapNode child = deserialize(jsonElement1,parentNode);
-            node= new Link((MapNodeComposite) parentNode,(Thought) parent, (Thought) child,object.get("thickness").getAsInt(),color);
+            MapTreeItem temp1 = mapTreeImplementation.findNode(parent);
+            MapTreeItem temp2 = mapTreeImplementation.findNode(child);
+
+
+            node= new Link((MapNodeComposite) parentNode, (Thought) temp1.getMapNode(), (Thought) temp2.getMapNode(),object.get("thickness").getAsInt(),color);
         }
         return node;
     }

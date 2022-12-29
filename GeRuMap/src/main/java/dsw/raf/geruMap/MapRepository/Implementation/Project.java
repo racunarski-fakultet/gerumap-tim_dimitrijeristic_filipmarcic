@@ -48,11 +48,11 @@ public class Project extends MapNodeComposite
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Project project = (Project) o;
-        return counter == project.counter && changed == project.changed && autor.equals(project.autor) && home_folder.equals(project.home_folder) && children==project.children;
+        return counter == project.counter && changed == project.changed && home_folder.equals(project.home_folder) && children==project.children;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(autor, home_folder, counter, changed, children);
+        return Objects.hash( home_folder, counter, changed, children);
     }
 }
