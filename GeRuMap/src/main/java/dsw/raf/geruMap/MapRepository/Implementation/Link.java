@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.Random;
 
 @Getter
@@ -31,6 +32,20 @@ public class Link extends Element
         this.childThought=childThought;
         this.paint=paint;
         this.thickness=thickness;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Link link = (Link) o;
+        return parentThought.equals(link.parentThought) && childThought.equals(link.childThought);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parentThought, childThought);
     }
 
     @Override

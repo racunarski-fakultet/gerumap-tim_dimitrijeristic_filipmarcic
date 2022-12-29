@@ -5,6 +5,8 @@ import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 
 @Getter
 @Setter
@@ -38,5 +40,19 @@ public class Project extends MapNodeComposite
     public String toString() {
         return "Project{" + "autor='" + autor + '\'' + ", home_folder='" +
                 home_folder + '\'' + ", counter=" + counter + '\'' + "name=" + this.getName() + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Project project = (Project) o;
+        return counter == project.counter && changed == project.changed && autor.equals(project.autor) && home_folder.equals(project.home_folder) && children==project.children;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(autor, home_folder, counter, changed, children);
     }
 }
