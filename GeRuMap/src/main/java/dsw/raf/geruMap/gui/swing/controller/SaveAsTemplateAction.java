@@ -29,14 +29,14 @@ public class SaveAsTemplateAction extends AbstractGeruMapAction{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-//        JFileChooser jfc = new JFileChooser(templateGallery);
-//        jfc.setFileView(new FileView() {
-//            @Override
-//            public Boolean isTraversable(File f) {
-//                return false;
-//            }
-//        });
-//        MindMap map = (MindMap) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();
+        JFileChooser jfc = new JFileChooser(templateGallery);
+        jfc.setFileView(new FileView() {
+            @Override
+            public Boolean isTraversable(File f) {
+                return false;
+            }
+        });
+        //MindMap map = (MindMap) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();
         MindMap map = null;
         if(!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap))
             return;
@@ -47,17 +47,22 @@ public class SaveAsTemplateAction extends AbstractGeruMapAction{
         Template template=null;
         String fileName = JOptionPane.showInputDialog("Unesi ime šablona");
         File homeDir = new File(templateGallery);
+
         if(!homeDir.exists()&&!homeDir.isDirectory())
         {
             homeDir.mkdir();
         }
-            if (!fileName.isEmpty()) {
-                template = new Template(map, fileName);
-            } else {
-                return;
-            }
 
-        AppCore.getInstance().getSerializer().saveTemplate(template,homeDir.getAbsolutePath()+"\\"+fileName);
+        if (!fileName.isEmpty())
+        {
+                template = new Template(map, fileName);
+        }
+        else
+        {
+            return;
+        }
+
+        AppCore.getInstance().getSerializer().saveTemplate(template,homeDir.getAbsolutePath()+"/"+fileName);
 
         ((Project)map.getParent()).setChanged(true);
     }

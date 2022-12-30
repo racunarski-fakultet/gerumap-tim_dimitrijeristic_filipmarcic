@@ -33,7 +33,8 @@ public class GsonSerializer implements Serializer
     }
 
     @Override
-    public void saveProject(Project project) {
+    public void saveProject(Project project)
+    {
         try (FileWriter writer = new FileWriter(project.getHome_folder())) {
             gson.toJson(adapter.serialize(project,null,null), writer);
         } catch (IOException e) {
@@ -46,11 +47,9 @@ public class GsonSerializer implements Serializer
         try (FileReader fileReader = new FileReader(file)) {
             if(!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap))
                 return null;
-            if(((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()).getChildren().isEmpty())
+            else//((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()).getChildren().isEmpty())
                 return (Project) adapter.deserialize(gson.fromJson(Files.readString(file.toPath()), JsonElement.class),MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
-            else
-                AppCore.getInstance().getGenerator().generateMessage("Mapa mora biti prazna da bi se učitao šablon", MessageTypes.ERROR_MESSAGE);
-                return null;
+
         } catch (IOException e) {
             e.printStackTrace();
             return null;

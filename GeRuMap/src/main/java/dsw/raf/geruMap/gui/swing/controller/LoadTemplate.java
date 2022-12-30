@@ -28,12 +28,12 @@ public class LoadTemplate extends AbstractGeruMapAction {
             homeDir.mkdir();
         }
         JFileChooser jfc = new JFileChooser(homeDir.getAbsolutePath());
-        jfc.setFileView(new FileView() {
-            @Override
-            public Boolean isTraversable(File f) {
-                return false;
-            }
-        });
+//        jfc.setFileView(new FileView() {
+//            @Override
+//            public Boolean isTraversable(File f) {
+//                return false;
+//            }
+//        });
         jfc.showOpenDialog(MainFrame.getInstance());
         if (jfc.getSelectedFile()!=null) {
             try {

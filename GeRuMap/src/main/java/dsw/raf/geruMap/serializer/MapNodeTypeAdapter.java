@@ -247,6 +247,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         {
             MindMap mindMap = (MindMap) parentNode;
             mindMap.setCounter(object.get("counter").getAsInt());
+            mindMap.getMaprep().getMapSelection().remove_all();
             int counter = 0;
 
             while (object.get("element " + counter)!= null)
@@ -258,8 +259,10 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
 
                 MapNode node1 = deserialize(jsonElement1,mindMap);
                 MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(mindMap), node1);
+                mindMap.getMaprep().getMapSelection().add_selected((Element) node1);
                 counter++;
             }
+
             return parentNode.getParent();
         }
         return node;
