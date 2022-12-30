@@ -30,6 +30,7 @@ public class SaveAction extends AbstractGeruMapAction{
         if (project.getHome_folder() == null || project.getHome_folder().isEmpty()) {
             if (jfc.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
                 projectFile = jfc.getSelectedFile();
+
                 project.setHome_folder(projectFile.getPath());
             } else {
                 return;
