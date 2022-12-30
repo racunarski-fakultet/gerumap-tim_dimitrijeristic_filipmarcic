@@ -21,8 +21,8 @@ public class SaveImageAction extends AbstractGeruMapAction{
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("images/plus.png"));
-        putValue(NAME,"Save as template");
-        putValue(SHORT_DESCRIPTION,"Save current map as a template  ");
+        putValue(NAME,"Save as image");
+        putValue(SHORT_DESCRIPTION,"Save current map as an image");
     }
 
     @Override

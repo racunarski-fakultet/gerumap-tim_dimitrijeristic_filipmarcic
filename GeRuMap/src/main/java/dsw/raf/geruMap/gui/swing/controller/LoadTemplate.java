@@ -23,6 +23,14 @@ public class LoadTemplate extends AbstractGeruMapAction {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        int create=JOptionPane.showConfirmDialog(MainFrame.getInstance().getDesktop(),"Create a new map?",null,JOptionPane.YES_NO_OPTION );
+
+
+        if(create==0)
+        {
+
+        }
         File homeDir = new File(templateGallery);
         if(!homeDir.exists()&&!homeDir.isDirectory())
         {
