@@ -1,6 +1,8 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
@@ -25,33 +27,45 @@ public class LoadTemplate extends AbstractGeruMapAction {
     public void actionPerformed(ActionEvent e) {
 
         int create=JOptionPane.showConfirmDialog(MainFrame.getInstance().getDesktop(),"Create a new map?",null,JOptionPane.YES_NO_OPTION );
+        System.out.println(create);
 
 
-        if(create==0)
-        {
-
-        }
         File homeDir = new File(templateGallery);
         if(!homeDir.exists()&&!homeDir.isDirectory())
         {
             homeDir.mkdir();
         }
         JFileChooser jfc = new JFileChooser(homeDir.getAbsolutePath());
-        jfc.setFileView(new FileView() {
-            @Override
-            public Boolean isTraversable(File f) {
-                return homeDir.getAbsolutePath().equals(f);
-            }
-        });
+//        jfc.setFileView(new FileView() {
+//            @Override
+//            public Boolean isTraversable(File f) {
+//                return homeDir.getAbsolutePath().equals(f);
+//            }
+//        });
         disableNav(jfc);
         jfc.showOpenDialog(MainFrame.getInstance());
+
         if (jfc.getSelectedFile()!=null) {
             try {
-                Project p = AppCore.getInstance().getSerializer().loadTemplate(jfc.getSelectedFile());
-                if(p!=null)
+                MapNode p = null;
+                if(create==0)
                 {
-                    p.setChanged(true);
+                   p = AppCore.getInstance().getSerializer().loadProject(jfc.getSelectedFile());
                 }
+                else
+                {
+                    p = AppCore.getInstance().getSerializer().loadTemplate(jfc.getSelectedFile());
+
+                }
+
+                    if(p!=null)
+                    {
+                        if(create!=0)
+                            ((Project) p).setChanged(true);
+                        else
+                            ((Project)p.getParent()).setChanged(true);
+                    }
+
                 MapTreeView treeView = ((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeView();
                 SwingUtilities.updateComponentTreeUI(treeView);
                 treeView.expandPath(treeView.getSelectionPath());

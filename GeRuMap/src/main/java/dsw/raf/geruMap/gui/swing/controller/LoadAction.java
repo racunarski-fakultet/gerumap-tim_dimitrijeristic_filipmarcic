@@ -1,6 +1,8 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Composite.MapNode;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.view.MapTreeView;
@@ -25,8 +27,14 @@ public class LoadAction extends AbstractGeruMapAction {
         if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = jfc.getSelectedFile();
-                Project p = AppCore.getInstance().getSerializer().loadProject(file);
-                p.setChanged(false);
+                MapNode p = AppCore.getInstance().getSerializer().loadProject(file);
+                if(p instanceof Project)
+                    ((Project) p).setChanged(false);
+                else if(p instanceof MindMap)
+                {
+                    Project parent = (Project) p.getParent();
+                    parent.setChanged(true);
+                }
 
                 MapTreeView treeView = ((MapTreeImplementation)MainFrame.getInstance().getMapTree()).getTreeView();
                 SwingUtilities.updateComponentTreeUI(treeView);

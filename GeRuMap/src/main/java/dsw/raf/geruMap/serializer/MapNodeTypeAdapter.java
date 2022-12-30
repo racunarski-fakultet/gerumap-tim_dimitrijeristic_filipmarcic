@@ -163,12 +163,14 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
 
         if(jsonElement == null)
         {
+            System.out.println("null");
             return null;
         }
 
 
         MapTreeImplementation mapTreeImplementation = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
         JsonObject object = jsonElement.getAsJsonObject();
+        System.out.println(object);
         String elemType = object.get("type").getAsString();
         MapNode node = null;
 
@@ -201,6 +203,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         }
         else if (elemType.equals("MindMap"))
         {
+            System.out.println("deserializing map");
             MindMap mindMap = new MindMap(object.get("name").getAsString(), (MapNodeComposite) parentNode);
             mindMap.setCounter(object.get("counter").getAsInt());
             int counter = 0;
