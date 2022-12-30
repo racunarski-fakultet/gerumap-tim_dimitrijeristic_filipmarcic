@@ -13,7 +13,7 @@ public class TemplateGallery
 
     public boolean add_template(MindMap temp,String name)
     {
-        templates.add(new Template(temp,name));
+      //  templates.add(new Template(temp,name,));
         return true;
     }
 }

@@ -28,6 +28,8 @@ public class ActionManager
     private ZoomStateAction zoomstate_act;
     private SaveAction save_act;
     private LoadAction load_act;
+    private SaveAsTemplateAction savetemplate_act;
+    private LoadTemplate loadtemplate_act;
 
     public ActionManager() {init_actions();}
 
@@ -51,5 +53,7 @@ public class ActionManager
         zoomOut_act = new ZoomOutAction();
         save_act = new SaveAction();
         load_act = new LoadAction();
+        savetemplate_act = new SaveAsTemplateAction();
+        loadtemplate_act = new LoadTemplate();
     }
 }

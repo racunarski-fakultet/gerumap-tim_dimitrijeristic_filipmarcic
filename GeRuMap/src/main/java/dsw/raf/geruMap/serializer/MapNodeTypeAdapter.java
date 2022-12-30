@@ -105,6 +105,20 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                 obj.addProperty("map " + cnt++,this.serialize(i,type,jsonSerializationContext).toString());
             }
         }
+        else if(node instanceof Template)
+        {
+            obj.addProperty("type","Template");
+            obj.addProperty("counter",((MindMap) node).getCounter());
+            System.out.println("seralizing template");
+
+            List<MapNode> elems = ((MindMap) node).getChildren();
+            int cnt = 0;
+
+            for (MapNode i : elems)
+            {
+                obj.addProperty("element " + cnt++,this.serialize(i,type,jsonSerializationContext).toString());
+            }
+        }
         else if (node instanceof MindMap)
         {
             obj.addProperty("type","MindMap");
@@ -130,7 +144,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             obj.addProperty("thickness",((Thought)node).getThickness());
             System.out.println("seralizing thought");
         }
-        else
+        else if(node instanceof Link)
         {
             obj.addProperty("type","Link");
             obj.addProperty("color", ((Link) node).getPaint().getRGB());
@@ -149,7 +163,6 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
 
         if(jsonElement == null)
         {
-            System.out.println("null");
             return null;
         }
 
@@ -160,7 +173,8 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         MapNode node = null;
 
 
-        if (elemType.equals("Project")) {
+        if (elemType.equals("Project"))
+        {
             int counter = 0;
             ProjectExplorer projectExplorer = AppCore.getInstance().getRep().getProjectExplorer();
             Project project = new Project(object.get("name").getAsString(), projectExplorer);
@@ -184,7 +198,9 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                 counter++;
             }
             node = project;
-        } else if (elemType.equals("MindMap")) {
+        }
+        else if (elemType.equals("MindMap"))
+        {
             MindMap mindMap = new MindMap(object.get("name").getAsString(), (MapNodeComposite) parentNode);
             mindMap.setCounter(object.get("counter").getAsInt());
             int counter = 0;
@@ -202,12 +218,14 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                 counter++;
             }
             node = mindMap;
-        } else if (elemType.equals("Thought")) {
+        }
+        else if (elemType.equals("Thought")) {
             Color color = new Color(object.get("color").getAsInt());
             Point thoughtPoint = new Point(object.get("x").getAsInt(), object.get("y").getAsInt());
             Dimension thoughtDimension = new Dimension(object.get("height").getAsInt(), object.get("width").getAsInt());
             node = new Thought(object.get("name").getAsString(), (MapNodeComposite) parentNode, thoughtPoint, thoughtDimension, object.get("thickness").getAsInt(), color);
-        } else if (elemType.equals("Link"))
+        }
+        else if (elemType.equals("Link"))
         {
             Color color = new Color(object.get("color").getAsInt());
             JsonElement jsonElement1;
@@ -224,6 +242,25 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
 
 
             node= new Link((MapNodeComposite) parentNode, (Thought) temp1.getMapNode(), (Thought) temp2.getMapNode(),object.get("thickness").getAsInt(),color);
+        }
+        else if (elemType.equals("Template"))
+        {
+            MindMap mindMap = (MindMap) parentNode;
+            mindMap.setCounter(object.get("counter").getAsInt());
+            int counter = 0;
+
+            while (object.get("element " + counter)!= null)
+            {
+                JsonElement jsonElement1;
+                String string = object.get("element " + counter).getAsString();
+                string.replace("\\","");
+                jsonElement1 = gson.fromJson(string, JsonElement.class);
+
+                MapNode node1 = deserialize(jsonElement1,mindMap);
+                MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(mindMap), node1);
+                counter++;
+            }
+            return parentNode.getParent();
         }
         return node;
     }

@@ -1,5 +1,7 @@
 package dsw.raf.geruMap.gui.swing.view;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 
 public class Toolbar extends JToolBar
@@ -19,5 +21,8 @@ public class Toolbar extends JToolBar
         add(MainFrame.getInstance().getAct_man().getZoomOut_act());
         add(MainFrame.getInstance().getAct_man().getSave_act());
         add(MainFrame.getInstance().getAct_man().getLoad_act());
+        add(MainFrame.getInstance().getAct_man().getSavetemplate_act());
+        add(MainFrame.getInstance().getAct_man().getLoadtemplate_act());
+
     }
 }

@@ -29,7 +29,6 @@ public class StateMouseListener implements MouseListener, MouseMotionListener, M
             ex.printStackTrace();
         }
 
-        System.out.println("X:"+e.getX()+" Y:"+e.getY());
         MapTreeItem TreeItemMap = MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap());
         MainFrame.getInstance().getState_man().getCurrentState().mousePress((int)pt.getX() ,(int)pt.getY(), TreeItemMap);
         MainFrame.getInstance().getDesktop().getSelectedComponent().repaint();

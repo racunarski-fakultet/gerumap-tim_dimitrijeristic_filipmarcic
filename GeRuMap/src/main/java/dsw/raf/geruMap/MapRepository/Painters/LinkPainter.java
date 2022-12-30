@@ -53,7 +53,6 @@ public class LinkPainter extends ElementPainter{
         double m = deltay/deltax;
         double plus = (-m* from.x)+from.y+((double) element.getThickness());
         double minus = (-m* from.x)+from.y-((double) element.getThickness());
-        System.out.println(element.getThickness());
 
         return((pos.y<=m*pos.x+plus && pos.y>=m*pos.x+minus)&&((pos.x>=from.x && pos.x<=to.x)||(pos.x>=to.x && pos.x<=from.x))
                 &&((pos.y>=from.y && pos.y<=to.y)||(pos.y>=to.y && pos.y<=from.y)));
