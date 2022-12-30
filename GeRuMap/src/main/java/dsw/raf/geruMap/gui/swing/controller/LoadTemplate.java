@@ -8,6 +8,7 @@ import dsw.raf.geruMap.gui.swing.view.MainFrame;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileView;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -28,12 +29,13 @@ public class LoadTemplate extends AbstractGeruMapAction {
             homeDir.mkdir();
         }
         JFileChooser jfc = new JFileChooser(homeDir.getAbsolutePath());
-//        jfc.setFileView(new FileView() {
-//            @Override
-//            public Boolean isTraversable(File f) {
-//                return false;
-//            }
-//        });
+        jfc.setFileView(new FileView() {
+            @Override
+            public Boolean isTraversable(File f) {
+                return homeDir.getAbsolutePath().equals(f);
+            }
+        });
+        disableNav(jfc);
         jfc.showOpenDialog(MainFrame.getInstance());
         if (jfc.getSelectedFile()!=null) {
             try {
@@ -51,5 +53,18 @@ public class LoadTemplate extends AbstractGeruMapAction {
               //  ex.printStackTrace();
             }
         }
+    }
+
+    private void disableNav(Container c) {
+        for (Component x : c.getComponents())
+            if (x instanceof JComboBox)
+                ((JComboBox)x).setEnabled(false);
+            else if (x instanceof JButton) {
+                String text = ((JButton)x).getText();
+                if (text == null || text.isEmpty())
+                    ((JButton)x).setEnabled(false);
+            }
+            else if (x instanceof Container)
+                disableNav((Container)x);
     }
 }
