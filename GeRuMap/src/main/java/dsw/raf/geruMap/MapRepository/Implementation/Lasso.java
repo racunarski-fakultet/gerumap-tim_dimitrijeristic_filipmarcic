@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 @Getter
 @Setter
@@ -72,9 +73,14 @@ public class Lasso implements Publisher
             Line2D left=new Line2D.Double(start.x, start.y, start.x,end.y);
             Line2D right=new Line2D.Double(end.x, start.y, start.x,end.y);
 
+            if(link.intersectsLine(top) || link.intersectsLine(bot) || link.intersectsLine(right) || link.intersectsLine(left))
+                return true;
             if((painter.elementAt(element,start)))
                 return true;
-            else return link.intersectsLine(top) || link.intersectsLine(bot) || link.intersectsLine(right) || link.intersectsLine(left);
+            Rectangle2D rect = new Rectangle2D.Double(start.x,start.y,Math.abs(start.x-end.x),Math.abs(start.y-end.y));
+            if(rect.intersectsLine(link))
+                return true;
+
         }
         return false;
     }

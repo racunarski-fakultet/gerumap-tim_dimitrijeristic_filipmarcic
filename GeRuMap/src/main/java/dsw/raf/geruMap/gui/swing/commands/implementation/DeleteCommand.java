@@ -23,7 +23,6 @@ public class DeleteCommand extends AbstractCommand {
     public void doCommand() {
         if(children == null ||  parent==null) return;
 
-        ((MindMap)parent.getMapNode()).reset_g();
 
         for(MapNode child:children)
         {
@@ -46,13 +45,13 @@ public class DeleteCommand extends AbstractCommand {
                     temp.delete();
             }
         }
+        ((MindMap)parent.getMapNode()).reset_g();
     }
 
     @Override
     public void undoCommand() {
         if(children == null ||  parent==null) return;
 
-        ((MindMap)parent.getMapNode()).reset_g();
 
         for(MapNode child: children)
         {
@@ -65,6 +64,8 @@ public class DeleteCommand extends AbstractCommand {
             if (child instanceof Link)
                 MainFrame.getInstance().getMapTree().add_node(parent, child);
         }
+        ((MindMap)parent.getMapNode()).reset_g();
+
 
     }
 }
