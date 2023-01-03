@@ -88,9 +88,11 @@ public class MapTreeImplementation implements MapTree
         //MapNode child =((MapRepositoryImpl)AppCore.getInstance().getRep()).getFactoryUtils().createNode((MapNodeComposite) parent.getMapNode());
        // MapNode child = FactoryUtils.createNode((MapNodeComposite) parent.getMapNode());
         MapTreeItem item = new MapTreeItem(child);
-        parent.add(item);
 
-        ((MapNodeComposite) parent.getMapNode()).add_child(child);
+        if(((MapNodeComposite) parent.getMapNode()).add_child(child))
+            parent.add(item);
+
+
         treeView.expandPath(treeView.getSelectionPath());
         render();
     }

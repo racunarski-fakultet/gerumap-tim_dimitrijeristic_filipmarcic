@@ -31,6 +31,7 @@ public class ActionManager
     private SaveAsTemplateAction savetemplate_act;
     private LoadTemplate loadtemplate_act;
     private SaveImageAction saveimage_act;
+    private CentralTAction central_act;
 
     public ActionManager() {init_actions();}
 
@@ -57,5 +58,6 @@ public class ActionManager
         savetemplate_act = new SaveAsTemplateAction();
         loadtemplate_act = new LoadTemplate();
         saveimage_act = new SaveImageAction();
+        central_act = new CentralTAction();
     }
 }

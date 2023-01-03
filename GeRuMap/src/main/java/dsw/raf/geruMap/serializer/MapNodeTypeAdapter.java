@@ -142,7 +142,6 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             obj.addProperty("x", ((Thought) node).getPosition().x);
             obj.addProperty("y", ((Thought) node).getPosition().y);
             obj.addProperty("thickness",((Thought)node).getThickness());
-            System.out.println("seralizing thought");
         }
         else if(node instanceof Link)
         {
@@ -151,7 +150,6 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             obj.addProperty("thickness",((Link)node).getThickness());
             obj.addProperty("parent", serialize(((Link) node).getParentThought(),type,jsonSerializationContext).toString());
             obj.addProperty("child", serialize(((Link) node).getChildThought(),type,jsonSerializationContext).toString());
-            System.out.println("seralizing link");
         }
 
         return obj;
