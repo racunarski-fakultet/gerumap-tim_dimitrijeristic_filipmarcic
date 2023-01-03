@@ -1,6 +1,9 @@
 package dsw.raf.geruMap.StateManager;
 
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.StateManager.States.*;
+import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.MapView;
 
 
 public class StateManager {
@@ -32,6 +35,8 @@ public class StateManager {
     }
 
     public void setLinkState() {
+        MindMap myMap = (MindMap) ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();
+        myMap.reset_g();
         this.currentState = linkState;
     }
 

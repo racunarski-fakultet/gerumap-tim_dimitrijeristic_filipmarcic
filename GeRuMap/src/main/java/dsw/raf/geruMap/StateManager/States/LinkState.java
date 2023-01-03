@@ -3,6 +3,7 @@ package dsw.raf.geruMap.StateManager.States;
 
 import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.GhostPainter;
@@ -93,6 +94,8 @@ public class LinkState implements AbstractState {
         node2 = null;
         create = false;
         ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).repaint();
+        MindMap myMap = (MindMap) ((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();
+        myMap.reset_g();
     }
 
     @Override
