@@ -1,13 +1,17 @@
 package dsw.raf.geruMap.gui.swing.controller;
 
 import dsw.raf.geruMap.AppCore;
+import dsw.raf.geruMap.MapRepository.Implementation.Link;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
+import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
+import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
+import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,14 +30,34 @@ public class CentralTAction extends AbstractGeruMapAction
 
 
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        MindMap map = (MindMap) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();
+    public void actionPerformed(ActionEvent e) {
+        MapView mapView = (MapView) MainFrame.getInstance().getDesktop().getSelectedComponent();
+        MindMap map = (MindMap) (mapView.getMyMap());
 
         if (map == null || map.getCentral_thought() != null)
             return;
+        Point pos;
+        if (mapView.getElems().size() != 0) {
 
-        Point pos = new Point(100,100);
+            pos = new Point(0,0);
+
+            int count = 0;
+
+            for (ElementPainter elementPainter : mapView.getElems()) {
+                if (elementPainter instanceof ThoughtPainter) {
+                    count++;
+                    pos.x += elementPainter.getElement().getPosition().x;
+                    pos.y += elementPainter.getElement().getPosition().y;
+                }
+            }
+            pos.x = pos.x / count;
+            pos.y = pos.y / count;
+
+        }
+        else
+            pos = new Point(MainFrame.getInstance().getDesktop().getSelectedComponent().getWidth()/2, MainFrame.getInstance().getDesktop().getSelectedComponent().getHeight()/2);
+
+
         Dimension size = new Dimension(100,100);
         int thickness = 10;
         Color color = new Color(0,0,0);
@@ -42,5 +66,13 @@ public class CentralTAction extends AbstractGeruMapAction
 
         map.setCentral_thought(thought);
         MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(map), thought);
+
+        for(ElementPainter elementPainter: mapView.getElems())
+            if(elementPainter instanceof ThoughtPainter)
+            {
+                Link link = new Link(thought, (Thought) elementPainter.getElement(), StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
+                MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(map), link);
+                map.reset_g();
+            }
     }
 }
