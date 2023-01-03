@@ -1,6 +1,7 @@
 package dsw.raf.geruMap.StateManager.States;
 
 
+import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.GhostLink;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
@@ -8,6 +9,7 @@ import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.GhostPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
+import dsw.raf.geruMap.gui.swing.commands.implementation.LinkCommand;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
@@ -87,8 +89,13 @@ public class LinkState implements AbstractState {
 
         }
 
+        Link link = new Link(node1,node2, StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
+
         if (node2 != null && !node2.equals(node1) && create)
-            MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(((MapView) MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()),new Link(node1,node2, StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor()));
+        {
+            AppCore.getInstance().getGui().getCommandManager().addCommand(new LinkCommand(link, ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()));
+            AppCore.getInstance().getGui().getCommandManager().doCommand();
+        }
 
         node1 = null;
         node2 = null;

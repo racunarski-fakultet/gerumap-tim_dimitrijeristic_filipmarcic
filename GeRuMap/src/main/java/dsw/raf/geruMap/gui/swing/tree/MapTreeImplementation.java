@@ -106,6 +106,7 @@ public class MapTreeImplementation implements MapTree
         while(!que.isEmpty())
         {
             MapTreeItem temp = que.remove();
+
             Iterator<TreeNode> iter = temp.children().asIterator();
 
             while(iter.hasNext())
