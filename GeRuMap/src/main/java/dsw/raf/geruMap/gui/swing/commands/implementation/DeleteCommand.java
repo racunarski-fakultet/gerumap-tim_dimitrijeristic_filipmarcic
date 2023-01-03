@@ -2,6 +2,7 @@ package dsw.raf.geruMap.gui.swing.commands.implementation;
 
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.Link;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.gui.swing.commands.AbstractCommand;
 import dsw.raf.geruMap.gui.swing.tree.MapTree;
@@ -22,15 +23,37 @@ public class DeleteCommand extends AbstractCommand {
     public void doCommand() {
         if(children == null ||  parent==null) return;
 
+        ((MindMap)parent.getMapNode()).reset_g();
+
         for(MapNode child:children)
         {
-            MainFrame.getInstance().getMapTree().findNode(child).delete();
+            if (child instanceof Link)
+            {
+                MapTreeItem temp = MainFrame.getInstance().getMapTree().findNode(child);
+
+                if (temp != null)
+                    temp.delete();
+            }
+        }
+
+        for(MapNode child:children)
+        {
+            if (child instanceof Thought)
+            {
+                MapTreeItem temp = MainFrame.getInstance().getMapTree().findNode(child);
+
+                if (temp != null)
+                    temp.delete();
+            }
         }
     }
 
     @Override
     public void undoCommand() {
         if(children == null ||  parent==null) return;
+
+        ((MindMap)parent.getMapNode()).reset_g();
+
         for(MapNode child: children)
         {
             if (child instanceof Thought)

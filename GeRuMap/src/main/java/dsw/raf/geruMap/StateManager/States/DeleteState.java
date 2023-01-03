@@ -84,13 +84,13 @@ public class DeleteState implements AbstractState {
             }
             ((MapRepositoryImpl) AppCore.getInstance().getRep()).getMapSelection().remove_all();
         }
-        AppCore.getInstance().getGui().getCommandManager().addCommand(new DeleteCommand(node,tempList));
-        AppCore.getInstance().getGui().getCommandManager().doCommand();
 
 
-
-
-
+        if (!tempList.isEmpty())
+        {
+            AppCore.getInstance().getGui().getCommandManager().addCommand(new DeleteCommand(node,tempList));
+            AppCore.getInstance().getGui().getCommandManager().doCommand();
+        }
     }
 
     @Override
