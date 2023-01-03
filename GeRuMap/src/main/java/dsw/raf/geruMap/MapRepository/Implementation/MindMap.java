@@ -134,7 +134,7 @@ public class MindMap extends MapNodeComposite implements Publisher
                 if (dfs(temp, visited, cur))
                     return true;
             }
-            else if (!parent.equals(temp))
+            else if (parent != null && !parent.equals(temp))
                 return true;
         }
 

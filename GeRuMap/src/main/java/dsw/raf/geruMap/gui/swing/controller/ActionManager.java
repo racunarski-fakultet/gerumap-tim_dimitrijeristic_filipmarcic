@@ -32,6 +32,8 @@ public class ActionManager
     private LoadTemplate loadtemplate_act;
     private SaveImageAction saveimage_act;
     private CentralTAction central_act;
+    private UndoAction undo_act;
+    private RedoAction redo_act;
 
     public ActionManager() {init_actions();}
 
@@ -59,5 +61,8 @@ public class ActionManager
         loadtemplate_act = new LoadTemplate();
         saveimage_act = new SaveImageAction();
         central_act = new CentralTAction();
+        undo_act = new UndoAction();
+        redo_act = new RedoAction();
+
     }
 }
