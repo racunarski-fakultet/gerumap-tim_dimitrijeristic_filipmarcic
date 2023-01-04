@@ -14,7 +14,7 @@ public class DeleteAction extends AbstractGeruMapAction{
     public DeleteAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke((char) KeyEvent.VK_DELETE));
-        putValue(SMALL_ICON, loadIcon("images/delete.png"));
+        putValue(SMALL_ICON, loadIcon("/images/delete.png"));
         putValue(NAME, "Delete");
         putValue(SHORT_DESCRIPTION, "Delete");
     }

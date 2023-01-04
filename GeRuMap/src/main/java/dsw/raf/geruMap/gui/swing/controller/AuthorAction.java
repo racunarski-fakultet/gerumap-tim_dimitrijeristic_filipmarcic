@@ -13,7 +13,7 @@ public class AuthorAction extends AbstractGeruMapAction{
     public AuthorAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/author.png"));
+        putValue(SMALL_ICON, loadIcon("/images/author.png"));
         putValue(NAME,"Set author");
         putValue(SHORT_DESCRIPTION,"Set author");
     }

@@ -18,7 +18,7 @@ public class ZoomOutAction extends AbstractGeruMapAction {
     public ZoomOutAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/zoom_out.png"));
+        putValue(SMALL_ICON, loadIcon("/images/zoom_out.png"));
         putValue(NAME, "Zoom out");
         putValue(SHORT_DESCRIPTION, "Zoom out");
     }

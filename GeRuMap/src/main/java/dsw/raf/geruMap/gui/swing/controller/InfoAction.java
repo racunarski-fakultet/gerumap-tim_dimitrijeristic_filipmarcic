@@ -9,9 +9,9 @@ import java.awt.event.KeyEvent;
 public class InfoAction extends AbstractGeruMapAction {
     public InfoAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F12, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/info.png"));
+        putValue(SMALL_ICON, loadIcon("/images/info.png"));
         putValue(NAME, "Info");
-        putValue(SHORT_DESCRIPTION, "Informacije o autoru");
+        putValue(SHORT_DESCRIPTION, "Informations about author");
     }
     public void actionPerformed(ActionEvent arg0)
     {

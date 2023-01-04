@@ -19,7 +19,7 @@ public class LoadTemplate extends AbstractGeruMapAction {
     public LoadTemplate()
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/load_template.png"));
+        putValue(SMALL_ICON, loadIcon("/images/load_template.png"));
         putValue(NAME,"Load template");
         putValue(SHORT_DESCRIPTION,"Load a saved template");
     }

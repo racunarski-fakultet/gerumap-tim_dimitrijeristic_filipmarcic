@@ -25,7 +25,7 @@ public class CentralTAction extends AbstractGeruMapAction
     public CentralTAction()
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke((char) KeyEvent.VK_DELETE));
-        putValue(SMALL_ICON, loadIcon("images/central.png"));
+        putValue(SMALL_ICON, loadIcon("/images/central.png"));
         putValue(NAME, "Central");
         putValue(SHORT_DESCRIPTION, "Create central thought that connects all other thoughts");
     }

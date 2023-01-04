@@ -17,7 +17,7 @@ public class UndoAction extends AbstractGeruMapAction {
     public UndoAction()
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/undo.png"));
+        putValue(SMALL_ICON, loadIcon("/images/undo.png"));
         putValue(NAME,"Undo");
         putValue(SHORT_DESCRIPTION,"Undo action");
     }

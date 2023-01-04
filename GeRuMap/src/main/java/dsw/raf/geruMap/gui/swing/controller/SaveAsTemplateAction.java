@@ -23,7 +23,7 @@ public class SaveAsTemplateAction extends AbstractGeruMapAction{
     public SaveAsTemplateAction()
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/save_template.png"));
+        putValue(SMALL_ICON, loadIcon("/images/save_template.png"));
         putValue(NAME,"Save as template");
         putValue(SHORT_DESCRIPTION,"Save current map as a template  ");
     }

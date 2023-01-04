@@ -20,7 +20,7 @@ public class SaveImageAction extends AbstractGeruMapAction{
     public SaveImageAction()
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/save_as_image.png"));
+        putValue(SMALL_ICON, loadIcon("/images/save_as_image.png"));
         putValue(NAME,"Save as image");
         putValue(SHORT_DESCRIPTION,"Save current map as an image");
     }
