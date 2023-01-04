@@ -12,7 +12,7 @@ public class LinkStateAction extends AbstractGeruMapAction
     public LinkStateAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("/images/link_state.png"));
         putValue(NAME, "Link");
         putValue(SHORT_DESCRIPTION, "Link 2 nodes");
     }
