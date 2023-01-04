@@ -6,6 +6,7 @@ public class Template extends MindMap
     {
         super(name,map);
         this.setChildren(map.getChildren());
+        this.setCentral_thought(map.getCentral_thought());
         this.setName(name);
     }
 }

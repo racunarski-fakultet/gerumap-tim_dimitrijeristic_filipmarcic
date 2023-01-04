@@ -2,6 +2,7 @@ package dsw.raf.geruMap.StateManager.States;
 
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Implementation.Lasso;
+import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.LassoPainter;
@@ -56,7 +57,8 @@ public class SelectionState implements AbstractState{
                 ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().add_selected(i.getElement());
 
         }
-
+//        Thought thought = (Thought) ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().getSelection().get(0);
+//        System.out.println(thought.isCentral());
         ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).setLasso(null);
        // MainFrame.getInstance().getDesktop().repaint();
     }

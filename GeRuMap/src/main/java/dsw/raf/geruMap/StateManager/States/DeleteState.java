@@ -54,7 +54,7 @@ public class DeleteState implements AbstractState {
                         if (((Link)i.getElement()).getParentThought().equals(temp.getElement()) || ((Link)i.getElement()).getChildThought().equals(temp.getElement()))
                         {
                             tempList.add(i.getElement());
-                            System.out.println(i.getElement().getName());
+                           // System.out.println(i.getElement().getName());
                         }
                     }
                 }

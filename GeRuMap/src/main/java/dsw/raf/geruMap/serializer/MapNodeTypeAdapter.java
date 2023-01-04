@@ -10,6 +10,7 @@ import dsw.raf.geruMap.MapRepository.Implementation.*;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
+import dsw.raf.geruMap.gui.swing.view.StylePicker;
 
 import java.awt.*;
 import java.io.IOException;
@@ -110,6 +111,8 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             obj.addProperty("type","Template");
             obj.addProperty("counter",((MindMap) node).getCounter());
             System.out.println("seralizing template");
+            obj.addProperty("centralthought",serialize(((MindMap) node).getCentral_thought(),type,jsonSerializationContext).toString());
+
 
             List<MapNode> elems = ((MindMap) node).getChildren();
             int cnt = 0;
@@ -170,7 +173,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
 
         MapTreeImplementation mapTreeImplementation = (MapTreeImplementation) MainFrame.getInstance().getMapTree();
         JsonObject object = jsonElement.getAsJsonObject();
-        System.out.println(object);
+      //  System.out.println(object);
         String elemType = object.get("type").getAsString();
         MapNode node = null;
 
@@ -213,7 +216,6 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             String string1 = object.get("centralthought").getAsString();
             string1.replace("\\","");
             System.out.println();
-            System.out.println(string1);
             pom = gson.fromJson(string1, JsonElement.class);
             Thought central = (Thought) deserialize(pom,mindMap);
 
@@ -238,7 +240,6 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             Point thoughtPoint = new Point(object.get("x").getAsInt(), object.get("y").getAsInt());
             Dimension thoughtDimension = new Dimension(object.get("height").getAsInt(), object.get("width").getAsInt());
             node = new Thought(object.get("name").getAsString(), (MapNodeComposite) parentNode, thoughtPoint, thoughtDimension, object.get("thickness").getAsInt(), color);
-           // System.out.println("ICENTRAL: "+object.get("iscentral").getAsBoolean());
             ((Thought)node).setCentral(object.get("iscentral").getAsBoolean());
         }
         else if (elemType.equals("Link"))
@@ -265,6 +266,15 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             mindMap.setCounter(object.get("counter").getAsInt());
             mindMap.getMaprep().getMapSelection().remove_all();
             int counter = 0;
+            boolean flag = mindMap.getChildren().isEmpty();
+
+
+            JsonElement pom;
+            String string1 = object.get("centralthought").getAsString();
+            string1.replace("\\","");
+            System.out.println();
+            pom = gson.fromJson(string1, JsonElement.class);
+            Thought central = (Thought) deserialize(pom,mindMap);
 
             while (object.get("element " + counter)!= null)
             {
@@ -274,9 +284,25 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                 jsonElement1 = gson.fromJson(string, JsonElement.class);
 
                 MapNode node1 = deserialize(jsonElement1,mindMap);
+                if(mindMap.getCentral_thought()!=null)
+                {
+                    if (node1 instanceof Thought)
+                        if (((Thought) node1).isCentral())
+                        {
+                            ((Thought) node1).setCentral(false);
+                            ((Thought) node1).setThickness(StylePicker.getInstance().getThickness());
+                            ((Thought) node1).setPaint(StylePicker.getInstance().getColorChooserOut().getColor());
+                        }
+                }
                 MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(mindMap), node1);
-                mindMap.getMaprep().getMapSelection().add_selected((Element) node1);
+                if(!flag)
+                    mindMap.getMaprep().getMapSelection().add_selected((Element) node1);
                 counter++;
+            }
+            if(mindMap.getCentral_thought()==null)
+            {
+                MapTreeItem temp1 = mapTreeImplementation.findNode(central);
+                mindMap.setCentral_thought((Thought) temp1.getMapNode());
             }
 
             return parentNode.getParent();

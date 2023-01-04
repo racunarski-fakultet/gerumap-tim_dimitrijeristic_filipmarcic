@@ -27,7 +27,7 @@ public class LoadTemplate extends AbstractGeruMapAction {
     public void actionPerformed(ActionEvent e) {
 
         int create=JOptionPane.showConfirmDialog(MainFrame.getInstance().getDesktop(),"Create a new map?",null,JOptionPane.YES_NO_OPTION );
-        System.out.println(create);
+        //System.out.println(create);
 
 
         File homeDir = new File(templateGallery);
