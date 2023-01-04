@@ -21,7 +21,7 @@ public class ZoomInAction extends AbstractGeruMapAction{
     public ZoomInAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("images/zoom_in.png"));
         putValue(NAME, "Zoom in");
         putValue(SHORT_DESCRIPTION, "Zoom in");
     }
