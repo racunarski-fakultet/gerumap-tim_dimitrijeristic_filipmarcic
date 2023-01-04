@@ -55,17 +55,22 @@ public class DeleteCommand extends AbstractCommand {
 
         for(MapNode child: children)
         {
+            if (MainFrame.getInstance().getMapTree().findNode(child) != null)
+                continue;
+
             if (child instanceof Thought)
                 MainFrame.getInstance().getMapTree().add_node(parent, child);
         }
 
         for(MapNode child: children)
         {
+            if (MainFrame.getInstance().getMapTree().findNode(child) != null)
+                continue;
+
             if (child instanceof Link)
                 MainFrame.getInstance().getMapTree().add_node(parent, child);
         }
         ((MindMap)parent.getMapNode()).reset_g();
-
 
     }
 }

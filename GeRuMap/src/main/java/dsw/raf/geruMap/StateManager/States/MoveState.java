@@ -18,7 +18,7 @@ import java.awt.event.MouseWheelEvent;
 public class MoveState implements AbstractState{
     Point start;
     Point origin;
-    boolean single;
+    boolean single = false;
 
     @Override
     public void mouseDrag(int x, int y)
@@ -89,11 +89,15 @@ public class MoveState implements AbstractState{
 
         Point delta = new Point(start.x - origin.x, start.y - origin.y);
 
-        AppCore.getInstance().getGui().getCommandManager().addCommand(new MoveCommand(((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().getSelection(), delta));
-        AppCore.getInstance().getGui().getCommandManager().doCommand();
+        if (delta.x != 0 && delta.y != 0)
+        {
+            AppCore.getInstance().getGui().getCommandManager().addCommand(new MoveCommand(((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().getSelection(), delta));
+            AppCore.getInstance().getGui().getCommandManager().doCommand();
+        }
 
         if (single)
             ((MapRepositoryImpl)AppCore.getInstance().getRep()).getMapSelection().remove_all();
+
         single = false;
     }
 
