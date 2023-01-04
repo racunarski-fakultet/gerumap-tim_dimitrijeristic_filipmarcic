@@ -95,7 +95,7 @@ public class MindMap extends MapNodeComposite implements Publisher
         return true;
     }
 
-    private boolean check_cycle()
+    public boolean check_cycle()
     {
         if (edges.isEmpty())
             return true;
@@ -141,7 +141,7 @@ public class MindMap extends MapNodeComposite implements Publisher
         return false;
     }
 
-    private void add_edge(Link edge)
+    public void add_edge(Link edge)
     {
         if (!edges.containsKey(edge.getParentThought()))
             edges.put(edge.getParentThought(), new ArrayList<>());
@@ -153,9 +153,11 @@ public class MindMap extends MapNodeComposite implements Publisher
         edges.get(edge.getParentThought()).add(edge.getChildThought());
     }
 
-    private void remove_edge(Link edge)
+    public void remove_edge(Link edge)
     {
         if (!edges.containsKey(edge.getParentThought()) || !edges.containsKey(edge.getChildThought()))
+            return;
+
         edges.get(edge.getParentThought()).remove(edge.getChildThought());
         edges.get(edge.getChildThought()).remove(edge.getParentThought());
     }

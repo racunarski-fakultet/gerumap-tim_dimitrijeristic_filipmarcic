@@ -89,10 +89,22 @@ public class LinkState implements AbstractState {
 
         }
 
+        if (node2 == null || node2.equals(node1))
+            return;
 
-        if (node2 != null && !node2.equals(node1) && create)
+        Link link = new Link(node1,node2, StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
+        MindMap map = (MindMap) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();
+
+        map.add_edge(link);
+
+        if (map.check_cycle())
+            create = false;
+
+        map.remove_edge(link);
+        map.reset_g();
+
+        if (create)
         {
-            Link link = new Link(node1,node2, StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
             AppCore.getInstance().getGui().getCommandManager().addCommand(new LinkCommand(link, ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap()));
             AppCore.getInstance().getGui().getCommandManager().doCommand();
         }
