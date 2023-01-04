@@ -39,6 +39,9 @@ public class DeleteState implements AbstractState {
             {
                 if (i.elementAt(i.getElement(),new Point(x,y)))
                 {
+                    if (i instanceof LinkPainter && temp!= null)
+                        continue;
+
                     temp = i;
                 }
             }
@@ -51,6 +54,7 @@ public class DeleteState implements AbstractState {
                         if (((Link)i.getElement()).getParentThought().equals(temp.getElement()) || ((Link)i.getElement()).getChildThought().equals(temp.getElement()))
                         {
                             tempList.add(i.getElement());
+                            System.out.println(i.getElement().getName());
                         }
                     }
                 }
@@ -78,6 +82,7 @@ public class DeleteState implements AbstractState {
                         }
                     }
                 }
+
                 if (temp != null)
                     tempList.add(temp);
             }
