@@ -123,6 +123,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         {
             obj.addProperty("type","MindMap");
             obj.addProperty("counter",((MindMap) node).getCounter());
+            obj.addProperty("centralthought",serialize(((MindMap) node).getCentral_thought(),type,jsonSerializationContext).toString());
             System.out.println("seralizing map");
 
             List<MapNode> elems = ((MindMap) node).getChildren();
@@ -136,6 +137,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         else if (node instanceof Thought)
         {
             obj.addProperty("type","Thought");
+            obj.addProperty("iscentral", ((Thought) node).isCentral());
             obj.addProperty("color", ((Thought) node).getPaint().getRGB());
             obj.addProperty("width",((Thought) node).getSize().getWidth());
             obj.addProperty("height", ((Thought) node).getSize().getHeight());
@@ -207,6 +209,15 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             int counter = 0;
             MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(parentNode), mindMap);
 
+            JsonElement pom;
+            String string1 = object.get("centralthought").getAsString();
+            string1.replace("\\","");
+            System.out.println();
+            System.out.println(string1);
+            pom = gson.fromJson(string1, JsonElement.class);
+            Thought central = (Thought) deserialize(pom,mindMap);
+
+
             while (object.get("element " + counter)!= null)
             {
                 JsonElement jsonElement1;
@@ -218,6 +229,8 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                 MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(mindMap), node1);
                 counter++;
             }
+            MapTreeItem temp1 = mapTreeImplementation.findNode(central);
+            mindMap.setCentral_thought((Thought) temp1.getMapNode());
             node = mindMap;
         }
         else if (elemType.equals("Thought")) {
@@ -225,6 +238,8 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             Point thoughtPoint = new Point(object.get("x").getAsInt(), object.get("y").getAsInt());
             Dimension thoughtDimension = new Dimension(object.get("height").getAsInt(), object.get("width").getAsInt());
             node = new Thought(object.get("name").getAsString(), (MapNodeComposite) parentNode, thoughtPoint, thoughtDimension, object.get("thickness").getAsInt(), color);
+           // System.out.println("ICENTRAL: "+object.get("iscentral").getAsBoolean());
+            ((Thought)node).setCentral(object.get("iscentral").getAsBoolean());
         }
         else if (elemType.equals("Link"))
         {

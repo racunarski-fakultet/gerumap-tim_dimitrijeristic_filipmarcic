@@ -13,6 +13,7 @@ public class Thought extends Element
 {
 //    private Point position;
 //    private Dimension size;
+    boolean central=false;
     public Thought(String name, MapNodeComposite parent, Point position, Dimension size, int thickness, Color paint) {
         super(name, parent,position,size,thickness,paint);
         this.position=position;

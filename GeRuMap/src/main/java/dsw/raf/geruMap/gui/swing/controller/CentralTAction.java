@@ -9,6 +9,8 @@ import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MapRepository.Painters.ElementPainter;
 import dsw.raf.geruMap.MapRepository.Painters.ThoughtPainter;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
+import dsw.raf.geruMap.gui.swing.commands.implementation.AddCommand;
+import dsw.raf.geruMap.gui.swing.commands.implementation.LinkCommand;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
 import dsw.raf.geruMap.gui.swing.view.MapView;
 import dsw.raf.geruMap.gui.swing.view.StylePicker;
@@ -63,15 +65,19 @@ public class CentralTAction extends AbstractGeruMapAction
         Color color = new Color(0,0,0);
 
         Thought thought = new Thought("Central", map, pos, size, thickness, color);
-
+        thought.setCentral(true);
         map.setCentral_thought(thought);
-        MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(map), thought);
+
+        AppCore.getInstance().getGui().getCommandManager().addCommand(new AddCommand(MainFrame.getInstance().getMapTree().findNode(map),thought));
+        AppCore.getInstance().getGui().getCommandManager().doCommand();
 
         for(ElementPainter elementPainter: mapView.getElems())
             if(elementPainter instanceof ThoughtPainter)
             {
                 Link link = new Link(thought, (Thought) elementPainter.getElement(), StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
-                MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(map), link);
+                AppCore.getInstance().getGui().getCommandManager().addCommand(new LinkCommand(link,map));
+                AppCore.getInstance().getGui().getCommandManager().doCommand();
+               // MainFrame.getInstance().getMapTree().add_node(MainFrame.getInstance().getMapTree().findNode(map), link);
                 map.reset_g();
             }
     }

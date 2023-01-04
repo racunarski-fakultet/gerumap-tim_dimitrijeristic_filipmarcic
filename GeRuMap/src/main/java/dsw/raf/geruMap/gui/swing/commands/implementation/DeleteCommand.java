@@ -39,6 +39,8 @@ public class DeleteCommand extends AbstractCommand {
         {
             if (child instanceof Thought)
             {
+                if(child.equals(((MindMap)parent.getMapNode()).getCentral_thought()))
+                    ((MindMap)parent.getMapNode()).setCentral_thought(null);
                 MapTreeItem temp = MainFrame.getInstance().getMapTree().findNode(child);
 
                 if (temp != null)
@@ -59,8 +61,20 @@ public class DeleteCommand extends AbstractCommand {
                 continue;
 
             if (child instanceof Thought)
+            {
+                if(((Thought) child).isCentral())
+                {
+                    ((MindMap)parent.getMapNode()).setCentral_thought((Thought) child);
+                }
+
+
+
                 MainFrame.getInstance().getMapTree().add_node(parent, child);
+                System.out.println(((MindMap)parent.getMapNode()).getCentral_thought());
+
+            }
         }
+        ((MindMap)parent.getMapNode()).reset_g();
 
         for(MapNode child: children)
         {
@@ -68,7 +82,11 @@ public class DeleteCommand extends AbstractCommand {
                 continue;
 
             if (child instanceof Link)
+            {
+//                if (((Link) child).getParentThought().equals(((MindMap) parent.getMapNode()).getCentral_thought())||((Link) child).getParentThought()==null)
+//                    continue;
                 MainFrame.getInstance().getMapTree().add_node(parent, child);
+            }
         }
         ((MindMap)parent.getMapNode()).reset_g();
 

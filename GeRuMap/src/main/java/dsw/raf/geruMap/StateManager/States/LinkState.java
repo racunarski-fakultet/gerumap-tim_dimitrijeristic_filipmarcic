@@ -91,6 +91,8 @@ public class LinkState implements AbstractState {
 
         if (node2 == null || node2.equals(node1))
             return;
+        if(node1==null)
+            return;
 
         Link link = new Link(node1,node2, StylePicker.getInstance().getThickness(), StylePicker.getInstance().getColorChooserOut().getColor());
         MindMap map = (MindMap) ((MapView)MainFrame.getInstance().getDesktop().getSelectedComponent()).getMyMap();

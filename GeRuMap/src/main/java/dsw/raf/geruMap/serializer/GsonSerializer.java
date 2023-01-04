@@ -7,6 +7,7 @@ import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
 import dsw.raf.geruMap.MapRepository.Implementation.Project;
+import dsw.raf.geruMap.MapRepository.Implementation.ProjectExplorer;
 import dsw.raf.geruMap.MapRepository.Implementation.Template;
 import dsw.raf.geruMap.MapRepository.MapRepositoryImpl;
 import dsw.raf.geruMap.MessageGenerator.MessageTypes;
@@ -36,6 +37,8 @@ public class GsonSerializer implements Serializer
                 node = adapter.deserialize(gson.fromJson(string2, JsonElement.class),temp);
             else if(temp instanceof MindMap)
                 node = adapter.deserialize(gson.fromJson(string2, JsonElement.class),temp.getParent());
+            else if(temp instanceof ProjectExplorer)
+                node = adapter.deserialize(gson.fromJson(string2, JsonElement.class),temp);
 //           if(Project.class.isAssignableFrom(MapNode.class)||(MindMap.class.isAssignableFrom(MapNode.class)))
             return node;
 //           return null;

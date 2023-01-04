@@ -3,6 +3,8 @@ package dsw.raf.geruMap.gui.swing.commands.implementation;
 import com.sun.tools.javac.Main;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
+import dsw.raf.geruMap.MapRepository.Implementation.MindMap;
+import dsw.raf.geruMap.MapRepository.Implementation.Thought;
 import dsw.raf.geruMap.gui.swing.commands.AbstractCommand;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
@@ -21,6 +23,10 @@ public class AddCommand extends AbstractCommand {
     @Override
     public void doCommand() {
         if(child == null ||  parent==null) return;
+        if(((Thought) child).isCentral())
+        {
+            ((MindMap)parent.getMapNode()).setCentral_thought((Thought) child);
+        }
         MainFrame.getInstance().getMapTree().add_node(parent,child);
 
 
@@ -29,6 +35,10 @@ public class AddCommand extends AbstractCommand {
     @Override
     public void undoCommand() {
         if(child == null ||  parent==null) return;
+        if(((Thought) child).isCentral())
+        {
+            ((MindMap)parent.getMapNode()).setCentral_thought(null);
+        }
         MapTreeItem childitem = MainFrame.getInstance().getMapTree().findNode(child);
         childitem.delete();
 
