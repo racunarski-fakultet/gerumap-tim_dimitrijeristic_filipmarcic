@@ -3,10 +3,13 @@ package dsw.raf.geruMap.serializer;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.sun.tools.javac.Main;
 import dsw.raf.geruMap.AppCore;
 import dsw.raf.geruMap.MapRepository.Composite.MapNode;
 import dsw.raf.geruMap.MapRepository.Composite.MapNodeComposite;
 import dsw.raf.geruMap.MapRepository.Implementation.*;
+import dsw.raf.geruMap.MessageGenerator.MessageGenerator;
+import dsw.raf.geruMap.MessageGenerator.MessageTypes;
 import dsw.raf.geruMap.gui.swing.tree.MapTreeImplementation;
 import dsw.raf.geruMap.gui.swing.tree.model.MapTreeItem;
 import dsw.raf.geruMap.gui.swing.view.MainFrame;
@@ -94,7 +97,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         {
             obj.addProperty("type","Project");
             obj.addProperty("author",((Project) node).getAutor());
-            obj.addProperty("counter",((Project) node).getCounter());
+//            obj.addProperty("counter",((Project) node).getCounter());
             obj.addProperty("folder",((Project) node).getHome_folder());
             System.out.println("seralizing proj");
 
@@ -109,7 +112,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         else if(node instanceof Template)
         {
             obj.addProperty("type","Template");
-            obj.addProperty("counter",((MindMap) node).getCounter());
+//            obj.addProperty("counter",((MindMap) node).getCounter());
             System.out.println("seralizing template");
             obj.addProperty("centralthought",serialize(((MindMap) node).getCentral_thought(),type,jsonSerializationContext).toString());
 
@@ -125,7 +128,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         else if (node instanceof MindMap)
         {
             obj.addProperty("type","MindMap");
-            obj.addProperty("counter",((MindMap) node).getCounter());
+//            obj.addProperty("counter",((MindMap) node).getCounter());
             obj.addProperty("centralthought",serialize(((MindMap) node).getCentral_thought(),type,jsonSerializationContext).toString());
             System.out.println("seralizing map");
 
@@ -187,7 +190,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
             if(object.get("author")!=null)
                 project.setAutor(object.get("author").getAsString());
 
-            project.setCounter(object.get("counter").getAsInt());
+//            project.setCounter(object.get("counter").getAsInt());
             project.setHome_folder(object.get("folder").getAsString());
 
             MainFrame.getInstance().getMapTree().add_node((MapTreeItem) mapTreeImplementation.getTreeModel().getRoot(), project);
@@ -208,7 +211,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         {
             System.out.println("deserializing map");
             MindMap mindMap = new MindMap(object.get("name").getAsString(), (MapNodeComposite) parentNode);
-            mindMap.setCounter(object.get("counter").getAsInt());
+//            mindMap.setCounter(object.get("counter").getAsInt());
             int counter = 0;
             MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(parentNode), mindMap);
 
@@ -263,10 +266,38 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
         else if (elemType.equals("Template"))
         {
             MindMap mindMap = (MindMap) parentNode;
-            mindMap.setCounter(object.get("counter").getAsInt());
+            boolean flag = mindMap.getChildren().isEmpty();
+//
+//                if(!flag)
+//                {
+//                    JsonElement jelement = serialize(mindMap1,null,null);
+//                    String str = gson.toJson(jelement);
+//                    String str2 = str.replace("MindMap","Template");
+//                    String str3 = str2.replace(mindMap.getName(),object.get("name").getAsString());
+//                    System.out.println("AAAA");
+//                  //  String str4 = str3.replace("\"counter\":"+pom.get("counter").getAsString(),"\"counter\":"+object.get("counter"));
+//                    System.out.println("test"+str3);
+//                    // System.out.println("second time = "+str);
+//                    System.out.println("test"+gson.toJson(jsonElement));
+//                  //  System.out.println(str3.equals(jsonElement.getAsString()));
+//                    if(str3==jsonElement.getAsString().toString())
+//                    {
+//                        System.out.println("RETURNING NULL");
+//
+//                        return null;
+//                    }
+//                }
+            if(mindMap.getCentral_thought()!=null)
+            {
+                AppCore.getInstance().getGenerator().generateMessage("Vec postoji centralni pojam", MessageTypes.ERROR_MESSAGE);
+                return null;
+
+            }
+//
+            System.out.println("CONTINUING");
+//            mindMap.setCounter(object.get("counter").getAsInt());
             mindMap.getMaprep().getMapSelection().remove_all();
             int counter = 0;
-            boolean flag = mindMap.getChildren().isEmpty();
 
 
             JsonElement pom;
@@ -284,6 +315,7 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                 jsonElement1 = gson.fromJson(string, JsonElement.class);
 
                 MapNode node1 = deserialize(jsonElement1,mindMap);
+
                 if(mindMap.getCentral_thought()!=null)
                 {
                     if (node1 instanceof Thought)
@@ -291,12 +323,17 @@ public class MapNodeTypeAdapter extends TypeAdapter<MapNode> implements JsonSeri
                         {
                             ((Thought) node1).setCentral(false);
                             ((Thought) node1).setThickness(StylePicker.getInstance().getThickness());
-                            ((Thought) node1).setPaint(StylePicker.getInstance().getColorChooserOut().getColor());
                         }
                 }
+
+
+
+
                 MainFrame.getInstance().getMapTree().add_node(mapTreeImplementation.findNode(mindMap), node1);
                 if(!flag)
+                {
                     mindMap.getMaprep().getMapSelection().add_selected((Element) node1);
+                }
                 counter++;
             }
             if(mindMap.getCentral_thought()==null)
