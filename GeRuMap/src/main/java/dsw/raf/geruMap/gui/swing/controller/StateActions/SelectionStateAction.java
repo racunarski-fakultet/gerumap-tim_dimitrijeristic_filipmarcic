@@ -12,7 +12,7 @@ public class SelectionStateAction extends AbstractGeruMapAction
     public SelectionStateAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("/images/selection_state.png"));
         putValue(NAME, "Select");
         putValue(SHORT_DESCRIPTION, "Select 1 or more nodes");
     }

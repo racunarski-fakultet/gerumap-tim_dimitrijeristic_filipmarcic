@@ -12,7 +12,7 @@ public class DeleteStateAction extends AbstractGeruMapAction
     public DeleteStateAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("/images/delete_state.png"));
         putValue(NAME, "Delete");
         putValue(SHORT_DESCRIPTION, "Delete node");
     }

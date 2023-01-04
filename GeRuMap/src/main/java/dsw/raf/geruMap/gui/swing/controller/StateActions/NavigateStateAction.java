@@ -11,7 +11,7 @@ public class NavigateStateAction extends AbstractGeruMapAction {
     public NavigateStateAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("/images/navigate_state.png"));
         putValue(NAME, "Navigate");
         putValue(SHORT_DESCRIPTION, "Navigate");
     }

@@ -12,7 +12,7 @@ public class MoveStateAction extends AbstractGeruMapAction
     public MoveStateAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("/images/move_state.png"));
         putValue(NAME, "Move");
         putValue(SHORT_DESCRIPTION, "Move nodes");
     }
