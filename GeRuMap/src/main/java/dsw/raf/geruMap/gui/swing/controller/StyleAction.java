@@ -12,7 +12,7 @@ public class StyleAction extends AbstractGeruMapAction {
     public StyleAction()
     {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("images/log-out.png"));
+        putValue(SMALL_ICON, loadIcon("images/style.png"));
         putValue(NAME, "Change style");
         putValue(SHORT_DESCRIPTION, "Change style of an element");
     }

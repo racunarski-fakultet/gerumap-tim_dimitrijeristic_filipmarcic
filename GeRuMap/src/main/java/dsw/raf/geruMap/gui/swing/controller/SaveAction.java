@@ -13,7 +13,7 @@ public class SaveAction extends AbstractGeruMapAction{
     public SaveAction()
     {
         //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("images/save.png"));
         putValue(NAME,"Save");
         putValue(SHORT_DESCRIPTION,"Save current project");
     }
